@@ -23,14 +23,7 @@ class View_Layout {
 
   public function site_title()
   {
-    if (Auth::instance()->logged_in())
-    {
-      return 'Добро пожаловать, '.Auth::instance()->get_user()->username;
-    }
-    else
-    {
-      return Kohana::$config->load('common.title');
-    }
+    return Kohana::$config->load('common.title');
   }
   public function stylesheet()
   {

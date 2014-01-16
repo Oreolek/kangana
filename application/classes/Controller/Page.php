@@ -2,10 +2,7 @@
 
 class Controller_Page extends Controller_Layout {
   protected $secure_actions = array(
-    'drafts' => array('login','admin'),
-    'create' => array('login','admin'),
-		'edit' => array('login','admin'),
-	  'delete' => array('login','admin')
+    'drafts', 'create', 'edit', 'delete'
   );
   /**
    * View a page.
