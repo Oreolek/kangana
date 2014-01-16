@@ -11,33 +11,19 @@ class Controller_Layout extends Controller {
     parent::before();
     $action_name = $this->request->action();
     if (
+      Kohana::$environment === Kohana::PRODUCTION &&
       is_array($this->secure_actions) &&
       array_key_exists($action_name, $this->secure_actions)
     )
     {
-      if ( Auth::instance()->logged_in($this->secure_actions[$action_name]) === FALSE)
+      if ( Auth::instance()->logged_in() === FALSE)
       {
-        if (Auth::instance()->logged_in())
-        {
-          $this->redirect('error/403');
-        }
-        else
-        {
-          $this->redirect('user/signin');
-        }
+        $this->redirect('user/signin');
       }
       else
       {
         //user is clear to go but his pages are cache-sensitive
         $this->is_private = TRUE;
-        // force https
-        if (Kohana::$config->load('common')->get('force_https'))
-        {          
-          if (!$this->request->secure())
-          {
-            $this->request->secure(TRUE);
-          } 
-        }
       }
     }
   }

@@ -118,6 +118,11 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('minion', 'minion(/<action>)', array('action' => '.+'))
+ ->defaults(array( 
+  'controller' => 'Minion',
+));
+
 Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++','message' => '.+'))
  ->defaults(array( 
   'controller' => 'Error',
@@ -125,6 +130,6 @@ Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++','m
 
 Route::set('default', '(<controller>(/<action>(/<id>)(/page/<page>)))')
  ->defaults(array(
-  'controller' => 'Client',
-  'action'     => 'search',
+  'controller' => 'User',
+  'action'     => 'signin',
  ));
