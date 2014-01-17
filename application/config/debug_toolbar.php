@@ -4,6 +4,7 @@
  * Log toolbar data to FirePHP
  */
 $config['firephp_enabled'] = FALSE;
+$config['styles'] = FALSE;
 
 /**
  * Exclude configs

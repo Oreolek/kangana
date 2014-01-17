@@ -73,6 +73,14 @@ class Form extends Kohana_Form {
     $template->value = $model->$name;
     return self::render_control($template);
   }
+  public static function password($name, $value = NULL, array $attributes = NULL)
+  {
+    $template = new View_Form_Password;
+    $template->name = $name;
+    $template->label = __(Arr::get($attributes, 'label'));
+    $template->value = $value;
+    return self::render_control($template);
+  }
   public static function orm_textinput_inline($model, $name)
   {
     $template = new View_Form_Input;

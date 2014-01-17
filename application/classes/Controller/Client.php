@@ -18,4 +18,12 @@ class Controller_Client extends Controller_Layout {
   {
     $this->template = new View_Client_Search;
   }
+
+  public function action_subscribe()
+  {
+  }
+  
+  public function action_unsubscribe()
+  {
+  }
 }
