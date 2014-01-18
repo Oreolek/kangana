@@ -18,7 +18,7 @@ class Model_Subscription extends ORM {
 				array('not_empty'),
 				array('min_length', array(':value', 4)),
 				array('max_length', array(':value', 100)),
-      )
+      ),
       'description' => array(
 				array('not_empty'),
 				array('min_length', array(':value', 20)),
@@ -42,4 +42,12 @@ class Model_Subscription extends ORM {
     'period' => 'Mailing period (in days)',
     'description' => 'Description (for the clients)'
   );
+
+  public function customize()
+  {
+    if ($this->period < 1)
+    {
+      $this->period = 1;
+    }
+  }
 }

@@ -5,6 +5,11 @@ class Controller_Layout extends Controller {
   protected $is_private = FALSE;
   public $auto_render = TRUE;
   public $template = '';
+  /**
+   * Array of CRUD controls (create & edit).
+   * @see View_Edit
+   **/
+  protected $controls = array();
 
   public function before()
   {
@@ -31,6 +36,10 @@ class Controller_Layout extends Controller {
   {
     if ($this->auto_render)
     {
+      if (!empty($this->controls))
+      {
+        $this->template->controls = $this->controls;
+      }
       $renderer = Kostache_Layout::factory('layout');
       $this->response->body($renderer->render($this->template, $this->template->_view));
     }

@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Index view controller.
@@ -56,7 +56,7 @@ class View_Index extends View_Layout {
     $result = array();
     if (is_null($this->items) OR $this->items === FALSE OR count($this->items) === 0)
     {
-      return 'Не найдено объектов для отображения.';
+      return __('No objects found to show');
     };
     if ($this->item_count === count($this->items))
     {
@@ -85,51 +85,18 @@ class View_Index extends View_Layout {
       $this->is_admin = Auth::instance()->logged_in('admin');
     }
     $output = array(
-        'date' => '',
-        'name' => '',
-        'edit_link' => '',
-        'view_link' => '',
-        'delete_link' => '',
+      'view_link' => HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'view','id' => $item->id)), $item->name, array('class' => 'link_view')),
     );
     if ($this->show_date)
     {
       $output['date'] = $item->posted_at;
     }
-    $output['name'] = $item->name;
-    $output['view_link'] = $this->link_view($item->id);
     if ($this->is_admin and $this->show_edit)
     {
-      $output['edit_link'] = $this->link_edit($item->id);
-      $output['delete_link'] = $this->link_delete($item->id);
+      $output['edit_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit'));
+      $output['delete_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'delete','id' => $item->id)), __('Delete'), array('class' => 'link_delete'));
     }
     return $output;
-  }
-
-  /**
-   * Generate a link to view item by its ID
-   * @param integer ID
-   **/
-  protected function link_view($id)
-  {
-    return Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'view','id' => $id));
-  }
-  
-  /**
-   * Generate a link to edit item by its ID
-   * @param integer ID
-   **/
-  protected function link_edit($id)
-  {
-    return Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'edit','id' => $id));
-  }
-  
-  /**
-   * Generate a link to delete item by its ID
-   * @param integer ID
-   **/
-  protected function link_delete($id)
-  {
-    return Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'delete','id' => $id));
   }
 
   /**
@@ -180,7 +147,7 @@ class View_Index extends View_Layout {
   {
     if (Auth::instance()->logged_in('admin'))
     {
-      return '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'create')).'" class="link_new">Добавить</a>';
+      return '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'create')).'" class="link_new">'.__('Add').'</a>';
     }
     return '';
   }

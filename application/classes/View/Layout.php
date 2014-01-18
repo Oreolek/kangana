@@ -68,8 +68,7 @@ class View_Layout {
   {
     $result = array();
     $navigation = array(
-//      'Список страниц' => 'page/index',
-//      'О сайте' => 'page/view/1',
+      __('Subscriptions') => 'subscription/index',
     );
     if (!Auth::instance()->logged_in())
     {

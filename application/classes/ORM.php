@@ -126,4 +126,25 @@ class ORM extends Kohana_ORM {
       return $this->where($this->_object_name .'.'. $this->_primary_key, 'IN', $id)->find_all();
     return $this->where('id', '=', $id)->find();
   }
+
+  /**
+   * Pagination filter: get only current page
+   * @param int $num page number (i.e. 1 for first page, 2 - second page and so on).
+   **/
+  public function filter_by_page($num = 0)
+  {
+    $num = (int) $num - 1;
+    if ($num < 0)
+    {
+      $num = 0;
+    }
+    $page_size = Kohana::$config->load('common.page_size');
+    $first_item = $page_size * $num;
+    return $this->offset($first_item)->limit($page_size);
+  }
+
+  /**
+   * A utility function to customize model before saving it
+   **/
+  public function customize() {}
 }

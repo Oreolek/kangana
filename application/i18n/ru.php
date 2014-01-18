@@ -12,7 +12,17 @@ return array(
   'Mailing period (in days)' => 'Период рассылки (в днях)',
   'Description (for the clients)' => 'Описание (для клиентов)',
   'Email' => 'Email',
-  'Subscription token' => 'Токен подписки',
+  'Subscription token' => 'Токен рассылки',
   'Mailing date' => 'Дата отправки',
-  'Status' => 'Статус'
+  'Status' => 'Статус',
+  'Subscriptions' => 'Рассылки',
+  'No objects found to show' => 'Не найдено объектов для отображения.',
+  'Add' => 'Добавить',
+  'Edit' => 'Редактировать',
+  'Delete' => 'Удалить',
+  'Attempt to call _edit() on non-ORM model. Parameter class should be ORM, not ' => 'Попытка вызвать __edit() на не-ORM модели. Класс параметра должен быть ORM, а не ',
+  'New subscription' => 'Новая рассылка',
+  'Subscription index' => 'Все рассылки',
+  'Delete subscription' => 'Удалить рассылку',
+  'Edit subscription' => 'Редактировать рассылку'
 );
