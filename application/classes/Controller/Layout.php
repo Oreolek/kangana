@@ -18,7 +18,7 @@ class Controller_Layout extends Controller {
     if (
       Kohana::$environment === Kohana::PRODUCTION &&
       is_array($this->secure_actions) &&
-      array_key_exists($action_name, $this->secure_actions)
+      in_array($action_name, $this->secure_actions, TRUE)
     )
     {
       if ( Auth::instance()->logged_in() === FALSE)
