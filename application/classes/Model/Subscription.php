@@ -11,6 +11,9 @@ class Model_Subscription extends ORM {
     'client' => array(
       'model' => 'Client',
       'through' => 'clients_subscriptions'
+    ),
+    'letters' => array(
+      'model' => 'Letter'
     )
   );
 

@@ -63,6 +63,20 @@ class Controller_Subscription extends Controller_Layout {
       $this->redirect('/');
     }
   }
+  public function action_view()
+  {
+    $this->template = new View_Letter_Index;
+    $id = $this->request->param('id');
+    $model = ORM::factory('Subscription', $id)->with('letters');
+    if (!$model->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $this->template->title = __('Subscription').' '.$model->title;
+    $this->template->items = $model->letters
+      ->filter_by_page($this->request->param('page'))
+      ->find_all();
+  }
 
   public function action_subscribe()
   {
