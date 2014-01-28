@@ -6,8 +6,11 @@
  * @author Oreolek
  **/
 class Model_Client extends ORM {
-  protected $has_many = array(
-    'subscription'
+  protected $_has_many = array(
+    'subscription' => array(
+      'model' => 'Subscription',
+      'through' => 'clients_subscriptions'
+    )
   );
   
   /**
@@ -25,10 +28,6 @@ class Model_Client extends ORM {
 				array('not_empty'),
 				array('min_length', array(':value', 5)),
       ),
-      'token' => array(
-				array('not_empty'),
-        array('numeric')
-      )
 		);
 	}
 
@@ -42,5 +41,9 @@ class Model_Client extends ORM {
     'token' => 'Subscription token'
   );
 
+  public function customize()
+  {
+    $this->token = base64_encode(openssl_random_pseudo_bytes(32));
+  }
 
 }

@@ -49,7 +49,7 @@ class Form extends Kohana_Form {
     $template->value = $model->$name;
     return self::render_control($template);
   }
-  public static function input($name, $value = NULL, array $attributes = NULL)
+  public static function textinput($name, $value = NULL, array $attributes = NULL)
   {
     $template = new View_Form_Input;
     $template->name = $name;

@@ -36,11 +36,11 @@ class Controller_Layout extends Controller {
   {
     if ($this->auto_render)
     {
-      if (!empty($this->controls))
+      if (!empty($this->controls) && empty($this->template->controls))
       {
         $this->template->controls = $this->controls;
       }
-      $renderer = Kostache_Layout::factory('layout');
+      $renderer = Kostache_Layout::factory($this->template->_layout);
       $this->response->body($renderer->render($this->template, $this->template->_view));
     }
     if ($this->is_private)

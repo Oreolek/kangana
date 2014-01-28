@@ -56,10 +56,11 @@ class View_Edit extends View_Layout {
           $input = Form::textarea($key, $value['value']);
           break;
         default:
-          $input = Form::input($key,$value['value']);
+          $input = Form::textinput($key,$value['value']);
       }
       $output .= $input.'</div>';
     }
+    $output .= Form::hidden('csrf', Security::token());
     $output .= Form::btn_submit('Отправить');
     return $output;
   }

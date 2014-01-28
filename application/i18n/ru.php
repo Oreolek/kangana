@@ -24,5 +24,8 @@ return array(
   'New subscription' => 'Новая рассылка',
   'Subscription index' => 'Все рассылки',
   'Delete subscription' => 'Удалить рассылку',
-  'Edit subscription' => 'Редактировать рассылку'
+  'Edit subscription' => 'Редактировать рассылку',
+  'Subscribe to ' => 'Подписка на ',
+  'Name' => 'Имя',
+  'You were subscribed. A welcome email has been sent to you. Please check your inbox.' => 'Вы были подписаны. Вам было выслано вступительное письмо; пожалуйста, проверьте входящие сообщения.'
 );

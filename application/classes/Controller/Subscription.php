@@ -64,10 +64,61 @@ class Controller_Subscription extends Controller_Layout {
     }
   }
 
+  public function action_subscribe()
+  {
+    $this->template = new View_Subscription_Subscribe;
+    $id = $this->request->param('id');
+    $subscription = ORM::factory('Subscription', $id);
+    if (!$subscription->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $this->template->title = __('Subscribe to ').$subscription->title;
+    $controls = array(
+      'name' => 'input',
+      'email' => 'input'
+    );
+    $this->template->controls = $controls;
+    $this->template->errors = array();
+    
+    if ($this->request->method() === HTTP_Request::POST) {
+      $model = ORM::factory('Client')->where('email', '=', $this->request->post('email'))->find();
+      if (!$model->loaded())
+      {
+        $model = ORM::factory('Client');
+      }
+      $model->values($this->request->post(), array_keys($controls));
+      $model->customize();
+      $validation = $model->validate_create($this->request->post());
+      try
+      {
+        if ($validation->check())
+        {
+          $model->save();
+          $model->add('subscription', $subscription);
+          // TODO: send welcome letter
+        }
+        else
+        {
+          $this->template->errors = $validation->errors('default');
+        }
+      }
+      catch (ORM_Validation_Exception $e)
+      {
+        $this->template->errors = $e->errors('default');
+      }
+      if (empty($this->template->errors))
+      {
+        Session::instance()->set('flash_success', __('You were subscribed. A welcome email has been sent to you. Please check your inbox.'));
+      }
+    }
+    $this->template->model = $model;
+  }
+
   /**
    * Edit or create model.
    **/
-  protected function _edit($model)
+  protected function _edit($model, $controls = NULL)
   {
     if (!($model instanceof ORM))
     {
@@ -75,11 +126,15 @@ class Controller_Subscription extends Controller_Layout {
       $this->redirect('error/500');
     }
     $this->template->errors = array();
+    if (is_null($controls))
+    {
+      $controls = $this->controls;
+    }
     
     if ($this->request->method() === HTTP_Request::POST) {
-      $model->values($this->request->post(), array_keys($this->controls));
-      $validation = $model->validate_create($this->request->post());
+      $model->values($this->request->post(), array_keys($controls));
       $model->customize();
+      $validation = $model->validate_create($this->request->post());
       try
       {
         if ($validation->check())

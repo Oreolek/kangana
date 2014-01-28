@@ -5,6 +5,7 @@
  **/
 class View_Layout {
   public $_view = NULL;
+  public $_layout = 'layout';
   public $title = '';
   public $scripts = array();
   public $base_scripts = array(
@@ -68,7 +69,6 @@ class View_Layout {
   {
     $result = array();
     $navigation = array(
-      __('Subscriptions') => 'subscription/index',
     );
     if (!Auth::instance()->logged_in())
     {
@@ -77,6 +77,7 @@ class View_Layout {
     else
     {
       $navigation = array_merge($navigation, array(
+        __('Subscriptions') => 'subscription/index',
         'Клиенты' => 'clients/index',
         'Поиск клиентов' => 'clients/search',
       ));
@@ -100,5 +101,16 @@ class View_Layout {
       array_push($result, $string);
     }
     return $result;
+  }
+
+  public function flashes()
+  {
+    $session = Session::instance();
+    return array(
+      'info' => $session->get_once('flash_info'),
+      'success' => $session->get_once('flash_success'),
+      'error' => $session->get_once('flash_error'),
+      'warning' => $session->get_once('flash_warning'),
+    );
   }
 }

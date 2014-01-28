@@ -23,6 +23,14 @@ class ORM extends Kohana_ORM {
     {
       $validation->rules($field, $rules);
     }
+    // check CSRF token
+    if (array_key_exists('csrf', $post_data))
+    {
+      $validation->rules('csrf', array(
+        array('not_empty'),
+        array('Security::check')
+      ));
+    }
 		return $validation;
 	}
 

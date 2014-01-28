@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href='{{favicon}}' rel='shortcut icon' type='image/x-icon'/>
+    {{{stylesheet}}}
+   </head>
+  <body>
+    <div class="container">
+      <div class = "main_content">
+        <h2>{{title}}</h2>
+      {{#flashes}}
+        {{#info}}
+          <div class="alert alert-info">{{.}}</div>
+        {{/info}}
+        {{#error}}
+          <div class="alert alert-danger">{{.}}</div>
+        {{/error}}
+        {{#warning}}
+          <div class="alert alert-warning">{{.}}</div>
+        {{/warning}}
+        {{#success}}
+          <div class="alert alert-success">{{.}}</div>
+        {{/success}}
+      {{/flashes}}
+{{>content}}
+      </div>
+    </div>
+{{{scripts}}}
+  </body>
+</html>
