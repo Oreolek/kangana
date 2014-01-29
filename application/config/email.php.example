@@ -1,0 +1,12 @@
+<?php defined('SYSPATH') OR die('No direct access allowed.');
+return array(
+	'driver' => 'smtp',
+  'sender' => array('sender@example.com', 'Sender Name'),
+	'options' => array(
+    'hostname' => '',
+    'username' => '',
+    'password' => '',
+    'port' => '465',
+    'encryption' => 'tls'
+  ),
+ );

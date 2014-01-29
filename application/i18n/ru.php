@@ -32,5 +32,6 @@ return array(
   'New letter' => 'Новое письмо',
   'Letter editing' => 'Редактирование письма',
   'Delete letter' => 'Удалить письмо',
-  'View' => 'Просмотреть'
+  'View' => 'Просмотреть',
+  'Message subject' => 'Тема письма',
 );

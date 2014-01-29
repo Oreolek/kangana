@@ -112,6 +112,7 @@ Kohana::modules(array(
    'less'          => MODPATH.'less',              // LEaner CSS
    'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
 	 'kostache'      => MODPATH.'kostache',          // Logic-less Mustache views
+	 'email'         => MODPATH.'email',             // Electronic mail class
 	));
 
 /**

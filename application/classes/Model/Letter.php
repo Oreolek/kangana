@@ -16,6 +16,10 @@ class Model_Letter extends ORM {
   public function rules()
 	{
 		return array(
+      'subject' => array(
+				array('not_empty'),
+				array('max_length', array(':value', 128)),
+      ),
       'text' => array(
 				array('not_empty'),
 				array('min_length', array(':value', 20)),
@@ -32,6 +36,7 @@ class Model_Letter extends ORM {
    **/
   protected $_labels = array(
     'text' => 'Message text',
+    'subject' => 'Message subject',
     'order' => 'Message order'
   );
 
@@ -41,6 +46,19 @@ class Model_Letter extends ORM {
     {
       $this->order = Model_Subscription::count_letters($this->subscription_id) + 1;
     }
+  }
+
+  /**
+   * Function to send a email to a specified address.
+   * Not suitable for a large-scale use.
+   * @param email $address email address
+   * TODO: render text in HTML template
+   **/
+  public function send($address)
+  {
+    $sender = Kohana::$config->load('email')->get('sender');
+    $email = Email::factory($this->subject, $this->text)->to($address)->from($sender);
+    return $email->send();
   }
 
 }

@@ -22,7 +22,7 @@ class View_Letter_Index extends View_Index {
 
     $output = array(
       'description' => $item->text,
-      'view_link' => HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view','id' => $item->id)),__('View'), array('class' => 'link_view')),
+      'view_link' => $item->subject,//HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view','id' => $item->id)), $item->subject, array('class' => 'link_view')),
       'edit_link' => HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit')),
       'delete_link' =>  HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'delete','id' => $item->id)), __('Delete'), array('class' => 'link_delete')),
     );

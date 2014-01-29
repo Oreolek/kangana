@@ -8,6 +8,7 @@ class Controller_Letter extends Controller_Layout {
     'index','create', 'edit', 'delete'
   );
   protected $controls = array(
+    'subject' => 'input',
     'text' => 'textarea',
     'order' => 'input',
   );
@@ -56,19 +57,5 @@ class Controller_Letter extends Controller_Layout {
       $post->delete();
       $this->redirect('/');
     }
-  }
-    public function action_view()
-  {
-    $this->template = new View_Letter_Index;
-    $id = $this->request->param('id');
-    $model = ORM::factory('Subscription', $id)->with('letters');
-    if (!$model->loaded())
-    {
-      $this->redirect('error/404');
-    }
-    $this->template->title = __('Subscription').' '.$model->title;
-    $this->template->items = $model->letters
-      ->filter_by_page($this->request->param('page'))
-      ->find_all();
   }
 }
