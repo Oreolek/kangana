@@ -70,4 +70,18 @@ class Model_Subscription extends ORM {
     $count = DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('subscriptions')->where('id', '=', $id)->execute()->get('cnt');
     return ($count == 1);
   }
+
+  /**
+   * Get next letter in subscription
+   * @param int $offset search offset (typically number of already sent letters)
+   **/
+  public function next_letter($offset = 0)
+  {
+    return ORM::factory('Letter')
+      ->where('subscription_id', '=', $this->id)
+      ->order_by('order', 'ASC')
+      ->limit(1)
+      ->offset($offset)
+      ->find();
+  }
 }

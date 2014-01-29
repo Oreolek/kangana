@@ -112,7 +112,15 @@ class Controller_Subscription extends Controller_Layout {
         {
           $model->save();
           $model->add('subscription', $subscription);
-          // TODO: send welcome letter
+          $task = ORM::factory('Task');
+          $letter = $subscription->next_letter();
+          $task->letter_id = $letter->id;
+          $task->client_id = $model->id;
+          // now we break the abstraction to speed things up
+          $task->status = Model_Task::STATUS_SENT;
+          $task->date = date('Y-m-d');
+          $task->create();
+          $letter->send($model->email);
         }
         else
         {

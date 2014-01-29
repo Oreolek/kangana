@@ -11,7 +11,7 @@ class Model_Task extends ORM {
   const STATUS_SENDING = 2;
   const STATUS_SENT = 3;
 
-  protected $has_many = array(
+  protected $_has_many = array(
     'letter',
     'client'
   );
@@ -40,4 +40,13 @@ class Model_Task extends ORM {
     'date' => 'Mailing date',
     'status' => 'Status'
   );
+
+  public function execute()
+  {
+    $letter = ORM::factory('Letter', $this->letter_id);
+    $client = ORM::factory('Client', $this->client_id);
+    $letter->send($client->email);
+    $this->status = STATUS_SENT;
+    $this->save();
+  }
 }
