@@ -59,4 +59,15 @@ class Model_Subscription extends ORM {
       $this->period = 1;
     }
   }
+
+  public static function count_letters($id)
+  {
+    return DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('letters')->where('subscription_id', '=', $id)->execute()->get('cnt');
+  }
+
+  public static function exists($id)
+  {
+    $count = DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('subscriptions')->where('id', '=', $id)->execute()->get('cnt');
+    return ($count == 1);
+  }
 }

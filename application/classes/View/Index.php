@@ -145,7 +145,7 @@ class View_Index extends View_Layout {
 
   public function link_new()
   {
-    if (Auth::instance()->logged_in('admin'))
+    if (Auth::instance()->logged_in())
     {
       return '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'create')).'" class="link_new">'.__('Add').'</a>';
     }

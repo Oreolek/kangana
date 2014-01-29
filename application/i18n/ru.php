@@ -28,5 +28,9 @@ return array(
   'Subscribe to ' => 'Подписка на ',
   'Subscription' => 'Рассылка',
   'Name' => 'Имя',
-  'You were subscribed. A welcome email has been sent to you. Please check your inbox.' => 'Вы были подписаны. Вам было выслано вступительное письмо; пожалуйста, проверьте входящие сообщения.'
+  'You were subscribed. A welcome email has been sent to you. Please check your inbox.' => 'Вы были подписаны. Вам было выслано вступительное письмо; пожалуйста, проверьте входящие сообщения.',
+  'New letter' => 'Новое письмо',
+  'Letter editing' => 'Редактирование письма',
+  'Delete letter' => 'Удалить письмо',
+  'View' => 'Просмотреть'
 );

@@ -35,4 +35,12 @@ class Model_Letter extends ORM {
     'order' => 'Message order'
   );
 
+  public function customize()
+  {
+    if(empty($this->order))
+    {
+      $this->order = Model_Subscription::count_letters($this->subscription_id) + 1;
+    }
+  }
+
 }

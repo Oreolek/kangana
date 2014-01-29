@@ -49,4 +49,47 @@ class Controller_Layout extends Controller {
       $this->check_cache();
     }
   }
+
+  /**
+   * Edit or create model.
+   **/
+  protected function _edit($model, $controls = NULL)
+  {
+    if (!($model instanceof ORM))
+    {
+      Log::instance()->add(Log::ERROR, __('Attempt to call _edit() on non-ORM model. Parameter class should be ORM, not  ').get_class($model).'.');
+      $this->redirect('error/500');
+    }
+    $this->template->errors = array();
+    if (is_null($controls))
+    {
+      $controls = $this->controls;
+    }
+    
+    if ($this->request->method() === HTTP_Request::POST) {
+      $model->values($this->request->post(), array_keys($controls));
+      $model->customize();
+      $validation = $model->validate_create($this->request->post());
+      try
+      {
+        if ($validation->check())
+        {
+          $model->save();
+        }
+        else
+        {
+          $this->template->errors = $validation->errors('default');
+        }
+      }
+      catch (ORM_Validation_Exception $e)
+      {
+        $this->template->errors = $e->errors('default');
+      }
+      if (empty($this->template->errors))
+      {
+        $this->redirect(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'view','id' => $model->id)));
+      }
+    }
+    $this->template->model = $model;
+  }
 }
