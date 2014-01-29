@@ -22,3 +22,6 @@
 [submodule "modules/email"]
 	path = modules/email
 	url = git@github.com:shadowhand/email.git
+[submodule "modules/minion"]
+	path = modules/minion
+	url = git@github.com:kohana/minion.git
