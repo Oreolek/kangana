@@ -1,0 +1,15 @@
+<?php defined('SYSPATH') OR die('No direct access allowed.');
+
+return array(
+
+	'driver'       => 'File',
+  'users'        => array(
+      'admin' => 'password-hash'
+      // generate the hash using hash_hmac('sha256', $str, "hashing_key")
+  ),
+	'hash_method'  => 'sha256',
+	'hash_key'     => "hashing_key",
+	'lifetime'     => 1209600,
+	'session_key'  => 'auth_user',
+
+);
