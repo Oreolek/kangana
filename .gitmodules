@@ -25,3 +25,6 @@
 [submodule "modules/minion"]
 	path = modules/minion
 	url = git@github.com:kohana/minion.git
+[submodule "modules/config-writer"]
+	path = modules/config-writer
+	url = https://github.com/ppx17/kohana-config-file-writer.git

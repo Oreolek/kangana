@@ -114,6 +114,7 @@ Kohana::modules(array(
 	 'kostache'      => MODPATH.'kostache',          // Logic-less Mustache views
 	 'email'         => MODPATH.'email',             // Electronic mail class
 	 'minion'        => MODPATH.'minion',            // CLI framework
+	 'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
 	));
 
 /**

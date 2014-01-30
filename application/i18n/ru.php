@@ -34,4 +34,5 @@ return array(
   'Delete letter' => 'Удалить письмо',
   'View' => 'Просмотреть',
   'Message subject' => 'Тема письма',
+  'The password was successfully changed.' => 'Пароль был успешно изменён.'
 );

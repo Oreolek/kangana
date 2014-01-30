@@ -53,4 +53,10 @@ class Controller_User extends Controller_Layout {
       }
     }
   }
+
+  public function action_logout()
+  {
+    Auth::instance()->logout();
+    $this->redirect('/');
+  }
 }
