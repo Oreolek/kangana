@@ -66,8 +66,17 @@ class Model_Letter extends ORM {
    **/
   public static function _send($address, $text, $subject, $token = '')
   {
+    Log::instance()->add(Log::NOTICE, __('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
     $sender = Kohana::$config->load('email')->get('sender');
-    $email = Email::factory($subject, $text)->to($address)->from($sender);
+    $email = Email::factory($subject, $text)->from($sender[0], $sender[1]);
+    if (is_array($address))
+    {
+      $email->bcc($address);
+    }
+    else
+    {
+      $email->to($address);
+    }
     return $email->send();
   }
 

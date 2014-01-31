@@ -35,5 +35,6 @@ return array(
   'View' => 'Просмотреть',
   'Message subject' => 'Тема письма',
   'The password was successfully changed.' => 'Пароль был успешно изменён.',
-  'Total subscription count' => 'Всего подписок'
+  'Total subscription count' => 'Всего подписок',
+  'Sending letter with subject "%subject" to address %address' => 'Отсылаю письмо с темой %subject на адрес %address'
 );
