@@ -71,6 +71,29 @@ class Model_Subscription extends ORM {
     return ($count == 1);
   }
 
+  public static function get_ids()
+  {
+    return DB::select('id')->from('subscriptions')->execute()->get('id');
+  }
+
+  public static function get_letter_ids($subscription_id)
+  {
+    return DB::select('id')
+      ->from('letters')
+      ->where('subscription_id', '=', $subscription_id)
+      ->order_by('order')
+      ->execute()
+      ->get('id');
+  }
+  public static function get_client_ids($subscription_id)
+  {
+    return DB::select('client_id')
+      ->from('clients_subscriptions')
+      ->where('subscription_id', '=', $subscription_id)
+      ->execute()
+      ->get('client_id');
+  }
+
   /**
    * Get next letter in subscription
    * @param int $offset search offset (typically number of already sent letters)

@@ -8,7 +8,7 @@ return array(
   'users'        => array(
       'admin' => 'password-hash'
   ),
-	'hash_method'  => 'sha256',
+	'hash_method'  => 'sha512',
 	'hash_key'     => "hashing_key",
 	'lifetime'     => 1209600,
 	'session_key'  => 'auth_user',

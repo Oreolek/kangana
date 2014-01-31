@@ -29,8 +29,7 @@ class Task_Password extends Minion_Task
     $writer = new Config_File_Writer;
     Kohana::$config->attach($writer);
     $config = Kohana::$config->load('auth');
-    $hashing_key = $config->get('hash_key');
-    $hash = hash_hmac('sha256', $params['password'], $hashing_key);
+    $hash = hash_hmac($config->get('hash_method'), $params['password'], $config->get('hash_key'));
     $config->set('users', array($params['user'] => $hash));
     Kohana::$config->detach($writer);
     echo __('The password was successfully changed.');

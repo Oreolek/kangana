@@ -52,12 +52,22 @@ class Model_Letter extends ORM {
    * Function to send a email to a specified address.
    * Not suitable for a large-scale use.
    * @param email $address email address
-   * TODO: render text in HTML template
    **/
-  public function send($address)
+  public function send($address, $token = '')
+  {
+    return self::_send($address, $this->text, $this->subject, $token);
+  }
+  
+  /**
+   * @param $address string or array of strings - email addresses
+   * @param $text message body
+   * @param $subject message subject
+   * @param $token user subscription token
+   **/
+  public static function _send($address, $text, $subject, $token = '')
   {
     $sender = Kohana::$config->load('email')->get('sender');
-    $email = Email::factory($this->subject, $this->text)->to($address)->from($sender);
+    $email = Email::factory($subject, $text)->to($address)->from($sender);
     return $email->send();
   }
 
