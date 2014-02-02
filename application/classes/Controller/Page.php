@@ -4,6 +4,10 @@ class Controller_Page extends Controller_Layout {
   protected $secure_actions = array(
     'drafts', 'create', 'edit', 'delete'
   );
+  protected $controls = array(
+    'name' => 'input',
+    'content' => 'textarea',
+  );
   /**
    * View a page.
    **/
@@ -41,10 +45,10 @@ class Controller_Page extends Controller_Layout {
     }
     $this->template = new View_Page_View;
     $this->template->title = $page->name;
-    $this->template->content = Markdown::instance()->transform($page->content);
+    $this->template->content = $page->content;
     if ($page->is_draft)
     {
-      $this->template->title .= ' (черновик)';
+      $this->template->title .= ' ('.__('draft').')';
     }
     $renderer = Kostache_Layout::factory('layout');
     $body = $renderer->render($this->template, $this->template->_view);
@@ -61,25 +65,13 @@ class Controller_Page extends Controller_Layout {
   public function action_index()
   {
     $this->template = new View_Index;
-    $this->template->title = 'Содержание';
+    $this->template->title = __('Page index');
     $this->template->show_date = FALSE;
-    $page_size = Kohana::$config->load('common.page_size');
-    $current_page = (int) $this->request->param('page') - 1;
-    if ($current_page < 0)
-    {
-      $current_page = 0;
-    }
-    $first_item = $page_size * $current_page;
     $this->template->items = ORM::factory('Page')
       ->where('is_draft', '=', '0')
       ->order_by('name', 'ASC')
-      ->offset($first_item)
-      ->limit($page_size)
+      ->filter_by_page($this->request->param('page'))
       ->find_all(); 
-    $this->template->item_count = ORM::factory('Page')
-      ->where('is_draft', '=', '0')
-      ->count_all();
-
   }
   public function action_delete()
   {
@@ -90,9 +82,9 @@ class Controller_Page extends Controller_Layout {
     {
       $this->redirect('error/404');
     }
-    $this->template->title = 'Удаление страницы';
+    $this->template->title = __('Delete page');
     $this->template->content_title = $page->name;
-    $this->template->content = Markdown::instance()->transform($page->content);
+    $this->template->content = $page->content;
 
     $confirmation = $this->request->post('confirmation');
     if ($confirmation === 'yes') {
@@ -106,10 +98,10 @@ class Controller_Page extends Controller_Layout {
   public function action_create()
   {
     $this->template = new View_Edit;
-    $this->template->title = 'Новая страница';
+    $this->template->title = __('New page');
     $this->template->errors = array();
-    $page = ORM::factory('Page');
-    $this->edit_page($page); 
+    $this->template->model = ORM::factory('Page');
+    $this->_edit($this->template->model);
   }
   /**
    * Edit a page (for admin)
@@ -117,43 +109,14 @@ class Controller_Page extends Controller_Layout {
   public function action_edit()
   {
     $this->template = new View_Page_Edit;
-    $this->template->title = 'Редактирование страницы';
+    $this->template->title = __('Edit page');
     $id = $this->request->param('id');
-    $page = ORM::factory('Page', $id);
-    if (!$page->loaded())
+    $this->template->model = ORM::factory('Page', $id);
+    if (!$this->template->model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->edit_page($page);
-  }
-
-  /**
-   * Edit or create page.
-   * Page model should be initialized with empty page (create) or existing one (update).
-   **/
-  protected function edit_page($page)
-  {
-    $this->template->errors = array();
-    if ($this->request->method() === HTTP_Request::POST) {
-      $page->content = $this->request->post('content');
-      $page->name = $this->request->post('name');
-      $page->is_draft = $this->request->post('is_draft');
-      try {
-        if ($page->check())
-        {
-          $page->save();
-        }
-      }
-      catch (ORM_Validation_Exception $e)
-      {
-        $this->template->errors = $e->errors('');
-      }
-      if (empty($this->template->errors))
-      {
-        $this->redirect('page/view/' . $page->id);
-      }
-    }
-    $this->template->model = $page;
+    $this->_edit($this->template->model);
   }
 
   /**
@@ -162,7 +125,7 @@ class Controller_Page extends Controller_Layout {
   public function action_drafts()
   {
     $this->template = new View_Index;
-    $this->template->title = 'Содержание (черновики)';
+    $this->template->title = __('Page drafts');
     $this->template->show_date = FALSE;
     $this->template->items = ORM::factory('Page')
       ->where('is_draft', '=', '1')

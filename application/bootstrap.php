@@ -115,6 +115,7 @@ Kohana::modules(array(
 	 'email'         => MODPATH.'email',             // Electronic mail class
 	 'minion'        => MODPATH.'minion',            // CLI framework
 	 'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
+	 'cache'         => MODPATH.'cache',             // Object caching
 	));
 
 /**
