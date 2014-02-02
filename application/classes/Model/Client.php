@@ -46,4 +46,15 @@ class Model_Client extends ORM {
     $this->token = base64_encode(openssl_random_pseudo_bytes(32));
   }
 
+  /**
+   * Search by name or email
+   **/
+  public function search($query)
+  {
+    $query = '%'.trim($query, '%').'%';
+    return $this
+      ->where(DB::expr('LOWER(name)'), 'LIKE', strtolower($query))
+      ->or_where(DB::expr('LOWER(email)'), 'LIKE', strtolower($query));
+  }
+
 }

@@ -113,4 +113,13 @@ class View_Layout {
       'warning' => $session->get_once('flash_warning'),
     );
   }
+
+  public function search_form()
+  {
+    return array(
+      'button_text' => __('Submit'),
+      'input_text' => __('Search'),
+      'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search')) 
+    );
+  }
 }

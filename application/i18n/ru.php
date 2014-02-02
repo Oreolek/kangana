@@ -39,5 +39,10 @@ return array(
   'Sending letter with subject "%subject" to address %address' => 'Отсылаю письмо с темой %subject на адрес %address',
   'Clients' => 'Клиенты',
   'Description' => 'Описание',
-  'Subscribers' => 'Подписчики'
+  'Subscribers' => 'Подписчики',
+  'New client' => 'Новый клиент',
+  'Edit client info' => 'Редактировать информацию о подписчике',
+  'Delete client' => 'Удалить клиента',
+  'Submit' => 'Отправить',
+  'Search' => 'Искать'
 );

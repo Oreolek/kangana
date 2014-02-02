@@ -13,28 +13,19 @@
         {{{get_paging}}}
       </div>
       <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">{{site_title}}</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <form class="navbar-form navbar-left" role="search">
+        {{#search_form}}
+          <form class="navbar-form navbar-left" role="search" action="{{{action}}}" method="POST">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" name="query" class="form-control" placeholder="{{input_text}}">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">{{button_text}}</button>
           </form>
-          <ul class="nav navbar-nav navbar-right">
-          {{#navigation}}
-            <li><a href="{{url}}">{{title}}</a></li> 
-          {{/navigation}}
-          </ul>
-        </div>
+        {{/search_form}}
+        <ul class="nav navbar-nav navbar-right">
+        {{#navigation}}
+          <li><a href="{{url}}">{{title}}</a></li> 
+        {{/navigation}}
+        </ul>
       </nav>
       <a href="#" class="link_top hidden-xs"><i class="fa fa-angle-up">&nbsp;</i>Наверх</a>
       <div class = "main_content">
