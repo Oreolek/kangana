@@ -65,6 +65,14 @@ class Model_Subscription extends ORM {
     return DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('letters')->where('subscription_id', '=', $id)->execute()->get('cnt');
   }
 
+  /**
+   * Return subscriber count
+   **/
+  public function count_clients()
+  {
+    return DB::select(array(DB::expr('COUNT(client_id)'), 'cnt'))->from('clients_subscriptions')->where('subscription_id', '=', $this->id)->execute()->get('cnt');
+  }
+
   public static function exists($id)
   {
     $count = DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('subscriptions')->where('id', '=', $id)->execute()->get('cnt');

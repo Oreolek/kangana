@@ -7,7 +7,6 @@
  **/
 class View_Letter_Index extends View_Index {
   protected $is_admin = TRUE; // admin only view
-  public $_view = 'subscription/index';
   public $show_date = FALSE;
   public $subscription_id;
   /**
