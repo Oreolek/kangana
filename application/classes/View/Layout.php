@@ -116,10 +116,13 @@ class View_Layout {
 
   public function search_form()
   {
-    return array(
-      'button_text' => __('Submit'),
-      'input_text' => __('Search'),
-      'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search')) 
-    );
+    if (Auth::instance()->logged_in())
+    {
+      return array(
+        'button_text' => __('Submit'),
+        'input_text' => __('Search'),
+        'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search')) 
+      );
+    }
   }
 }
