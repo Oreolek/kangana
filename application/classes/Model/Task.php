@@ -111,4 +111,32 @@ class Model_Task extends ORM {
       ->values(array($client_id, $letter_id, date('Y-m-d'), self::STATUS_PENDING))
       ->execute();
   }
+
+  /**
+   * Get last sent or prepared letter and check if it's time to send another one.
+   **/
+  public static function check_period($client_id, $letters, $period)
+  {
+    $query = DB::select('date')
+      ->from('tasks');
+    if (is_array($letters))
+    {
+      $query = $query->where('letter_id', 'IN', $letters);
+    }
+    else
+    {
+      $query = $query->where('letter_id', '=', $letters);
+    }
+    $check = NULL;
+    $check = $query
+      ->and_where('status', '=', self::STATUS_SENT)
+      ->or_where('status', '=', self::STATUS_PENDING)
+      ->and_where('client_id', '=', $client_id)
+      ->and_where(DB::expr('DATEDIFF(CURDATE(), `date`)'), '=', $period)
+      ->execute()
+      ->get('date');
+    if (!empty($check))
+      return TRUE;
+    return FALSE;
+  }
 }

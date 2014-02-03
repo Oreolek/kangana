@@ -17,27 +17,31 @@ class Task_Prepare extends Minion_Task
     $count = Model_Subscription::count_letters($subscription);
     if ($count == 0)
       return;
-    $clients = Model_Subscription::get_client_ids($subscription);
+    $period = Model_Subscription::get_period($subscription);
+    $clients = Model_Subscription::get_client_ids($subscription, $period);
     $letters = Model_Subscription::get_letter_ids($subscription);
     if (!is_array($clients))
     {
-      $this->prepare_letters($clients, $letters);
+      $this->prepare_letters($clients, $letters, $period);
     }
     else
     {
       foreach ($clients as $client)
       {
-        $this->prepare_letters($client, $letters);
+        $this->prepare_letters($client, $letters, $period);
       }
     }
   }
 
-  protected function prepare_letters($client_id, $letter_ids)
+  protected function prepare_letters($client_id, $letter_ids, $period)
   {
-    $letter = Model_Task::next_unsent($client_id, $letter_ids);
-    if ($letter !== FALSE)
+    if (Model_Task::check_period($client_id, $letter_ids, $period))
     {
-      Model_Task::prepare($client_id, $letter);
+      $letter = Model_Task::next_unsent($client_id, $letter_ids);
+      if ($letter !== FALSE)
+      {
+        Model_Task::prepare($client_id, $letter);
+      }
     }
   }
 

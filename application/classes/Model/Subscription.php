@@ -84,6 +84,15 @@ class Model_Subscription extends ORM {
     return DB::select('id')->from('subscriptions')->execute()->get('id');
   }
 
+  public static function get_period($subscription_id)
+  {
+    return DB::select('period')
+      ->from('subscriptions')
+      ->where('subscription_id', '=', $subscription_id)
+      ->execute()
+      ->get('period');
+  }
+
   public static function get_letter_ids($subscription_id)
   {
     return DB::select('id')
