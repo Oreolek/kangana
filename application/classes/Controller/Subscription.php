@@ -59,7 +59,7 @@ class Controller_Subscription extends Controller_Layout {
 
     $confirmation = $this->request->post('confirmation');
     if ($confirmation === 'yes') {
-      $post->delete();
+      $model->delete();
       $this->redirect('/');
     }
   }
