@@ -124,4 +124,26 @@ class Model_Subscription extends ORM {
       ->offset($offset)
       ->find();
   }
+
+  public function delete()
+  {
+    $letter_ids = $this->get_letter_ids($this->id);
+    $query = DB::delete('tasks');
+    if (is_array($letter_ids))
+    {
+      $query->where('letter_id', 'IN', $letter_ids);
+    }
+    else
+    {
+      $query->where('letter_id', '=', $letter_ids);
+    }
+    $query->execute();
+    DB::delete('letters')
+      ->where('subscription_id', '=', $this->id)
+      ->execute();
+    DB::delete('clients_subscriptions')
+      ->where('subscription_id', '=', $this->id)
+      ->execute();
+    return parent::delete();
+  }
 }
