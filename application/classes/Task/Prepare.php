@@ -10,16 +10,16 @@ class Task_Prepare extends Minion_Task
 {
   protected $_options = array();
   /**
-   * @param int $subscription subscription ID
+   * @param int $course course ID
    **/
-  protected function prepare_subscription($subscription)
+  protected function prepare_course($course)
   {
-    $count = Model_Subscription::count_letters($subscription);
+    $count = Model_Course::count_letters($course);
     if ($count == 0)
       return;
-    $period = Model_Subscription::get_period($subscription);
-    $clients = Model_Subscription::get_client_ids($subscription, $period);
-    $letters = Model_Subscription::get_letter_ids($subscription);
+    $period = Model_Course::get_period($course);
+    $clients = Model_Course::get_client_ids($course, $period);
+    $letters = Model_Course::get_letter_ids($course);
     if (!is_array($clients))
     {
       $this->prepare_letters($clients, $letters, $period);
@@ -47,7 +47,7 @@ class Task_Prepare extends Minion_Task
 
   /**
    * Prepare letters to be sent out.
-   * If a client received less letters from subscription than there is in subscription,
+   * If a client received less letters from course than there is in course,
    * a task is formed.
    *
    * @return null
@@ -58,17 +58,16 @@ class Task_Prepare extends Minion_Task
     $db->begin();
     try
     {
-      $subscriptions = Model_Subscription::get_ids();
-      echo __('Total subscription count').': '.count($subscriptions)."\n";
-      if (!is_array($subscriptions))
+      $courses = Model_Course::get_ids();
+      if (!is_array($courses))
       {
-        $this->prepare_subscription($subscriptions);
+        $this->prepare_course($courses);
       }
       else
       {
-        foreach ($subscriptions as $subscription)
+        foreach ($courses as $course)
         {
-          $this->prepare_subscription($subscription);
+          $this->prepare_course($course);
         } 
       }
       $db->commit();

@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
- * Subscription index view controller.
+ * Course index view controller.
  * @package Views
  * @author Oreolek
  **/
-class View_Subscription_Index extends View_Index {
+class View_Course_Index extends View_Index {
   protected $is_admin = TRUE; // admin only view
   public $show_date = FALSE;
   public function get_header()

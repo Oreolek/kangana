@@ -7,7 +7,7 @@
  **/
 class Model_Letter extends ORM {
   protected $belongs_to = array(
-    'subscription'
+    'course'
   );
   
   /**
@@ -44,7 +44,7 @@ class Model_Letter extends ORM {
   {
     if(empty($this->order))
     {
-      $this->order = Model_Subscription::count_letters($this->subscription_id) + 1;
+      $this->order = Model_Course::count_letters($this->course_id) + 1;
     }
   }
 
@@ -62,7 +62,7 @@ class Model_Letter extends ORM {
    * @param $address string or array of strings - email addresses
    * @param $text message body
    * @param $subject message subject
-   * @param $token user subscription token
+   * @param $token user course token
    **/
   public static function _send($address, $text, $subject, $token = '')
   {

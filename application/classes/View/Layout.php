@@ -77,7 +77,7 @@ class View_Layout {
     else
     {
       $navigation = array_merge($navigation, array(
-        __('Subscriptions') => 'subscription/index',
+        __('Courses') => 'course/index',
         'Клиенты' => 'client/index',
         'Поиск клиентов' => 'client/search',
       ));

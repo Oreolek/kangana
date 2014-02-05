@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<dataset>
+  <table name="courses">
+    <column>id</column>
+    <column>title</column>
+    <column>description</column>
+    <column>period</column>
+    <column>price</column>
+    <row>
+      <value>1</value>
+      <value>Test course</value>
+      <value>Application testing purposes</value>
+      <value>1</value>
+      <value>0</value>
+    </row>
+  </table>
+  <table name="clients">
+    <column>id</column>
+    <column>email</column>
+    <column>name</column>
+    <column>token</column>
+    <row>
+      <value>1</value>
+      <value>test@example.com</value>
+      <value>Test User</value>
+      <value></value><!-- empty token -->
+    </row>
+  </table>
+  <table name="clients_courses">
+    <column>id</column>
+    <column>client_id</column>
+    <column>course_id</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+  </table>
+  <table name="letters">
+    <column>id</column>
+    <column>text</column>
+    <column>course_id</column>
+    <column>order</column>
+    <column>subject</column>
+    <row>
+      <value>1</value>
+      <value>This is a test message. Please ignore it.</value>
+      <value>1</value>
+      <value>0</value>
+      <value>Test message #1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>This is a test message number two. Please ignore it.</value>
+      <value>1</value>
+      <value>1</value>
+      <value>Test message #2</value>
+    </row>
+  </table>
+  <table name="tasks">
+    <column>id</column>
+    <column>letter_id</column>
+    <column>client_id</column>
+    <column>date</column>
+    <column>status</column>
+  </table>
+</dataset>

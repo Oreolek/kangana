@@ -28,18 +28,15 @@ return array
     'caching'      => TRUE,
     'profiling'    => FALSE,
   ),
-  'sphinx' => array(
-    'type'       => 'MySQLi',
+  'test' => array(
+    'type' => 'MySQL',
     'connection' => array(
-      'hostname'   => 'localhost:9306',
-      'database'   => 'oreolek', // index name from sphinx config
+      'hostname'   => 'localhost',
+      'database'   => 'oreolek',
       'username'   => '',
       'password'   => '',
       'persistent' => FALSE,
-    ),
-    'charset'      => 'utf8',
-    'caching'      => TRUE,
-    'profiling'    => FALSE,
-  ),
+    )
+  )
 );
 

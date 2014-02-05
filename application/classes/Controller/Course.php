@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Subscription controller.
+ * Course controller.
  **/
-class Controller_Subscription extends Controller_Layout {
+class Controller_Course extends Controller_Layout {
   protected $secure_actions = array(
     'index','create', 'edit', 'delete', 'view'
   );
@@ -16,9 +16,9 @@ class Controller_Subscription extends Controller_Layout {
   
   public function action_index()
   {
-    $this->template = new View_Subscription_Index;
-    $this->template->title = __('Subscription index');
-    $this->template->items = ORM::factory('Subscription')
+    $this->template = new View_Course_Index;
+    $this->template->title = __('Course index');
+    $this->template->items = ORM::factory('Course')
       ->filter_by_page($this->request->param('page'))
       ->find_all();
   }
@@ -26,17 +26,17 @@ class Controller_Subscription extends Controller_Layout {
   public function action_create()
   {
     $this->template = new View_Edit;
-    $this->template->model = ORM::factory('Subscription');
-    $this->template->title = __('New subscription');
+    $this->template->model = ORM::factory('Course');
+    $this->template->title = __('New course');
     $this->_edit($this->template->model);
   }
 
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Edit subscription');
+    $this->template->title = __('Edit course');
     $id = $this->request->param('id');
-    $model = ORM::factory('Subscription', $id);
+    $model = ORM::factory('Course', $id);
     if (!$model->loaded())
     {
       $this->redirect('error/404');
@@ -48,12 +48,12 @@ class Controller_Subscription extends Controller_Layout {
   {
     $this->template = new View_Delete;
     $id = $this->request->param('id');
-    $model = ORM::factory('Subscription', $id);
+    $model = ORM::factory('Course', $id);
     if (!$model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Delete subscription');
+    $this->template->title = __('Delete course');
     $this->template->content_title = $model->title;
     $this->template->content = $model->description;
 
@@ -67,13 +67,13 @@ class Controller_Subscription extends Controller_Layout {
   {
     $this->template = new View_Letter_Index;
     $id = $this->request->param('id');
-    $model = ORM::factory('Subscription', $id)->with('letters');
+    $model = ORM::factory('Course', $id)->with('letters');
     if (!$model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Subscription').' '.$model->title;
-    $this->template->subscription_id = $id;
+    $this->template->title = __('Course').' '.$model->title;
+    $this->template->course_id = $id;
     $this->template->items = $model->letters
       ->filter_by_page($this->request->param('page'))
       ->order_by('order')
@@ -82,14 +82,14 @@ class Controller_Subscription extends Controller_Layout {
 
   public function action_subscribe()
   {
-    $this->template = new View_Subscription_Subscribe;
+    $this->template = new View_Course_Subscribe;
     $id = $this->request->param('id');
-    $subscription = ORM::factory('Subscription', $id);
-    if (!$subscription->loaded())
+    $course = ORM::factory('Course', $id);
+    if (!$course->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Subscribe to ').$subscription->title;
+    $this->template->title = __('Subscribe to ').$course->title;
     $controls = array(
       'name' => 'input',
       'email' => 'input'
@@ -108,9 +108,9 @@ class Controller_Subscription extends Controller_Layout {
         if ($validation->check())
         {
           $model->save();
-          $model->add('subscription', $subscription);
+          $model->add('course', $course);
           $task = ORM::factory('Task');
-          $letter = $subscription->next_letter();
+          $letter = $course->next_letter();
           $task->letter_id = $letter->id;
           $task->client_id = $model->id;
           // now we break the abstraction to speed things up

@@ -16,12 +16,12 @@ class Controller_Letter extends Controller_Layout {
   {
     $this->template = new View_Edit;
     $id = $this->request->param('id');
-    if (!Model_Subscription::exists($id))
+    if (!Model_Course::exists($id))
     {
       $this->redirect('error/500');
     }
     $this->template->model = ORM::factory('Letter');
-    $this->template->model->subscription_id = $id;
+    $this->template->model->course_id = $id;
     $this->template->title = __('New letter');
     $this->_edit($this->template->model);
   }
