@@ -57,5 +57,6 @@ return array(
   'Edit page' => 'Редактировать страницу',
   'Page drafts' => 'Черновики страниц',
   'Page index' => 'Список страниц',
-  'Delete page' => 'Удалить страницу'
+  'Delete page' => 'Удалить страницу',
+  'Welcome message' => 'Приветственное сообщение'
 );

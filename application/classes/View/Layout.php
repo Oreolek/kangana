@@ -78,8 +78,8 @@ class View_Layout {
     {
       $navigation = array_merge($navigation, array(
         __('Courses') => 'course/index',
-        'Клиенты' => 'client/index',
-        'Поиск клиентов' => 'client/search',
+        __('Subscriptions') => 'subscription/index',
+        __('Clients') => 'client/index',
       ));
     }
 

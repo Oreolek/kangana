@@ -1,0 +1,17 @@
+{{#show_create}}
+  {{{link_new}}}
+{{/show_create}}
+<div class="hyphenate">
+  {{{content}}}
+</div>
+<table class="table">
+{{#get_items}}
+  <tr>
+    <td>{{{view_link}}}</td>
+    <td class="hyphenate">{{{description}}}</td>
+    {{#edit_link}}
+    <td>{{{edit_link}}}</td>
+    {{/edit_link}}
+  </tr>
+{{/get_items}}
+</table>

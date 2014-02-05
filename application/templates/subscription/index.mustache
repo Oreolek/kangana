@@ -1,0 +1,24 @@
+{{#show_create}}
+  {{{link_new}}}
+{{/show_create}}
+<div class="hyphenate">
+  {{{content}}}
+</div>
+<table class="table">
+  <thead>
+{{#get_header}}
+    <th>{{.}}</th>
+{{/get_header}}
+  </thead>
+{{#get_items}}
+  <tr>
+    <td>{{{view_link}}}</td>
+    <td class="hyphenate">{{{description}}}</td>
+    <td>{{client_count}}</td>
+    {{#edit_link}}
+    <td>{{{edit_link}}}</td>
+    <td>{{{delete_link}}}</td>
+    {{/edit_link}}
+  </tr>
+{{/get_items}}
+</table>
