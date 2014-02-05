@@ -34,3 +34,6 @@
 [submodule "modules/unittest"]
 	path = modules/unittest
 	url = git@github.com:kohana/unittest.git
+[submodule "modules/migrations"]
+	path = modules/migrations
+	url = git@github.com:kohana-minion/tasks-migrations.git

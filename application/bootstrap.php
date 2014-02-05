@@ -116,6 +116,7 @@ Kohana::modules(array(
 	 'minion'        => MODPATH.'minion',            // CLI framework
 	 'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
 	 'cache'         => MODPATH.'cache',             // Object caching
+	 'migrations'    => MODPATH.'migrations',        // SQL migrations
 	));
 
 /**
