@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 /**
  * Task model.
- * Task is a job to send the next letter in a subscription.
+ * Task is a job to send the next letter in a course.
  * @package Models
  * @author Oreolek
  **/
@@ -12,8 +12,12 @@ class Model_Task extends ORM {
   const STATUS_SENT = 3;
 
   protected $_has_many = array(
-    'letter',
-    'client'
+    'letter' => array(
+      'model' => 'Letter'
+    ),
+    'client' => array(
+      'model' => 'Client'
+    )
   );
   
   /**
