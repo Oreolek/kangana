@@ -8,7 +8,7 @@
 class View_Letter_Index extends View_Index {
   protected $is_admin = TRUE; // admin only view
   public $show_date = FALSE;
-  public $subscription_id;
+  public $course_id;
   /**
    * An internal function to prepare item data.
    **/
@@ -30,6 +30,6 @@ class View_Letter_Index extends View_Index {
 
   public function link_new()
   {
-    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'create', 'id' => $this->subscription_id)), __('Add'), array('class' => 'link_new'));
+    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'create', 'id' => $this->course_id)), __('Add'), array('class' => 'link_new'));
   }
 }
