@@ -58,6 +58,10 @@ class Model_Course extends ORM {
     {
       $this->period = 1;
     }
+    if (empty($this->price))
+    {
+      $this->price = 0;
+    }
   }
 
   public static function count_letters($id)

@@ -11,7 +11,7 @@ class Controller_Course extends Controller_Layout {
     'title' => 'input',
     'description' => 'textarea',
     'period' => 'input',
-//    'price' => 'input'
+    'price' => 'input'
   );
   
   public function action_index()
