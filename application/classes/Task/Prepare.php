@@ -14,6 +14,11 @@ class Task_Prepare extends Minion_Task
    **/
   protected function prepare_course($course)
   {
+    if (is_null($course))
+    {
+      Log::instance()->add(Log::ERROR, 'Course ID is NULL when preparing');
+      return;
+    }
     $count = Model_Course::count_letters($course);
     if ($count == 0)
       return;
@@ -58,6 +63,7 @@ class Task_Prepare extends Minion_Task
     $db->begin();
     try
     {
+      // get courses which have subscribers
       $courses = Model_Course::get_ids();
       if (!is_array($courses))
       {

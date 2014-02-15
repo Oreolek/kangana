@@ -66,7 +66,8 @@ class Model_Course extends ORM {
 
   public static function count_letters($id)
   {
-    return DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('letters')->where('course_id', '=', $id)->execute()->get('cnt');
+    $query = DB::select(array(DB::expr('COUNT(*)'), 'cnt'))->from('letters')->where('course_id', '=', $id);
+    return $query->execute()->get('cnt');
   }
 
   /**
@@ -83,28 +84,29 @@ class Model_Course extends ORM {
     return ($count == 1);
   }
 
+  /**
+   * Get ID of all courses which have subscribers
+   **/
   public static function get_ids()
   {
-    return DB::select('id')->from('courses')->execute()->get('id');
+    return DB::select('course_id')->from('clients_courses')->execute()->get('course_id');
   }
 
   public static function get_period($course_id)
   {
-    return DB::select('period')
+    $query = DB::select('period')
       ->from('courses')
-      ->where('course_id', '=', $course_id)
-      ->execute()
-      ->get('period');
+      ->where('id', '=', $course_id);
+    return $query->execute()->get('period');
   }
 
   public static function get_letter_ids($course_id)
   {
-    return DB::select('id')
+    $query = DB::select('id')
       ->from('letters')
       ->where('course_id', '=', $course_id)
-      ->order_by('order')
-      ->execute()
-      ->get('id');
+      ->order_by('order');
+    return $query->execute()->as_array(NULL, 'id');
   }
   public static function get_client_ids($course_id)
   {

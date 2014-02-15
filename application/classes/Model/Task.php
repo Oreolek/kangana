@@ -93,7 +93,7 @@ class Model_Task extends ORM {
         ->and_where('status', '=', self::STATUS_SENT)
         ->and_where('client_id', '=', $client_id)
         ->execute()
-        ->get('letter_id');
+        ->as_array(NULL, 'letter_id');
       if (is_array($letters))
       {
         $diff = array_diff($letters, $sent_letters);
