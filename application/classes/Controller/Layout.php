@@ -87,9 +87,18 @@ class Controller_Layout extends Controller {
       }
       if (empty($this->template->errors))
       {
-        $this->redirect(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'view','id' => $model->id)));
+        $this->redirect($this->_edit_redirect($model));
       }
     }
     $this->template->model = $model;
+  }
+
+  /**
+   * Where to redirect after successful model editing.
+   * @param ORM $model
+   **/
+  protected function _edit_redirect($model)
+  {
+    return Route::url('default', array('controller' => Request::current()->controller(),'action' => 'view','id' => $model->id));
   }
 }

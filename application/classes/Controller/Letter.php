@@ -38,6 +38,11 @@ class Controller_Letter extends Controller_Layout {
     }
     $this->_edit($model);
   }
+  
+  protected function _edit_redirect($model)
+  {
+    return Route::url('default', array('controller' => 'Course','action' => 'view','id' => $model->course_id));
+  }
 
   public function action_delete()
   {
