@@ -89,7 +89,7 @@ class Controller_Course extends Controller_Layout {
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Subscribe to ').$course->title;
+    $this->template->title = $course->title;
     $controls = array(
       'name' => 'input',
       'email' => 'input'
