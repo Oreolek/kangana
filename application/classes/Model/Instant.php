@@ -24,9 +24,6 @@ class Model_Instant extends ORM {
 				array('not_empty'),
 				array('min_length', array(':value', 20)),
       ),
-      'is_draft' => array(
-        array('numeric')
-      )
 		);
 	}
 
@@ -37,7 +34,7 @@ class Model_Instant extends ORM {
   protected $_labels = array(
     'text' => 'Message text',
     'subject' => 'Message subject',
-    'is_draft' => 'Is a draft?'
+    'sent' => 'Is sent?'
   );
 
   /**
@@ -47,6 +44,7 @@ class Model_Instant extends ORM {
    **/
   public function send($address, $token = '')
   {
+    $this->sent = TRUE;
     return self::_send($address, $this->text, $this->subject, $token);
   }
   

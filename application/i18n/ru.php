@@ -58,5 +58,8 @@ return array(
   'Page drafts' => 'Черновики страниц',
   'Page index' => 'Список страниц',
   'Delete page' => 'Удалить страницу',
-  'Welcome message' => 'Приветственное сообщение'
+  'Welcome message' => 'Приветственное сообщение',
+  'Sent' => 'Отправлено',
+  'Send instant to all subscribers' => 'Отослать мгновенное всем подписчикам',
+  'The instant has been sent.' => 'Мгновенное было выслано.'
 );

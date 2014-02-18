@@ -10,13 +10,13 @@ class Controller_Instant extends Controller_Layout {
   protected $controls = array(
     'subject' => 'input',
     'text' => 'textarea',
-    'is_draft' => 'checkbox'
   );
   public function action_create()
   {
     $this->template = new View_Edit;
     $id = $this->request->param('id');
-    if (!Model_Course::exists($id))
+    $subscription = ORM::factory('Subscription', $id);
+    if (!$subscription->loaded())
     {
       $this->redirect('error/500');
     }
@@ -53,5 +53,25 @@ class Controller_Instant extends Controller_Layout {
       $this->redirect('error/404');
     }
     $this->_edit($model);
+  }
+
+  public function action_send()
+  {
+    $this->template = new View_Message;
+    $this->template->title = __('Send instant to all subscribers');
+    $id = $this->request->param('id');
+    $model = ORM::factory('Instant', $id);
+    if (!$model->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $subscription = ORM::factory('Subscription', $model->subscription_id)->with('clients');
+    $clients = $subscription->clients->find_all();
+    foreach ($clients as $client)
+    {
+      $model->send($client->email, $client->token);
+    }
+    $model->save();
+    $this->template->message = __('The instant has been sent.');
   }
 }

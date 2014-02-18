@@ -10,7 +10,6 @@ class Controller_Subscription extends Controller_Layout {
   protected $controls = array(
     'title' => 'input',
     'description' => 'textarea',
-    'welcome' => 'textarea'
 //    'price' => 'input'
   );
   

@@ -22,8 +22,15 @@ class View_Instant_Index extends View_Index {
     $output = array(
       'description' => $item->text,
       'view_link' => $item->subject,//HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view','id' => $item->id)), $item->subject, array('class' => 'link_view')),
-      'edit_link' => HTML::anchor(Route::url('default', array('controller' => 'Instant', 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit')),
+      'is_sent' => __('Sent'),
+      'edit_link' => FALSE,
+      'send_button' => HTML::anchor(Route::url('default', array('controller' => 'Instant', 'action' => 'send','id' => $item->id)), Form::btn('send', 'Send to subscribers')),
     );
+
+    if ($item->sent == 0)
+    {
+      $output['edit_link'] = HTML::anchor(Route::url('default', array('controller' => 'Instant', 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit'));
+    }
     return $output;
   }
 

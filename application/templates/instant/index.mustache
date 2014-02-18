@@ -12,6 +12,10 @@
     {{#edit_link}}
     <td>{{{edit_link}}}</td>
     {{/edit_link}}
+    {{^edit_link}}
+    <td>{{is_sent}}</td>
+    {{/edit_link}}
+    <td>{{{send_button}}}</td>
   </tr>
 {{/get_items}}
 </table>
