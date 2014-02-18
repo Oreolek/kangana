@@ -71,20 +71,4 @@ class Model_Instant extends ORM {
     }
     return $email->send();
   }
-
-  /**
-   * Send the instant to all subscribers if it's not a draft
-   **/
-  public function save()
-  {
-    if (!$this->is_draft())
-    {
-      $subscription = ORM::factory('Subscription', $this->subscription_id);
-      $subscribers = $subscription->clients->find_all();
-      foreach ($subscribers as $subscriber)
-      {
-      }
-    }
-  }
-
 }

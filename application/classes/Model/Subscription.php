@@ -50,4 +50,12 @@ class Model_Subscription extends ORM {
     'welcome' => 'Welcome message',
     'description' => 'Description (for the clients)'
   );
+
+  /**
+   * Return subscriber count
+   **/
+  public function count_clients()
+  {
+    return DB::select(array(DB::expr('COUNT(client_id)'), 'cnt'))->from('clients_courses')->where('course_id', '=', $this->id)->execute()->get('cnt');
+  }
 }
