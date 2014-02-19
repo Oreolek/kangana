@@ -61,5 +61,8 @@ return array(
   'Welcome message' => 'Приветственное сообщение',
   'Sent' => 'Отправлено',
   'Send instant to all subscribers' => 'Отослать мгновенное всем подписчикам',
-  'The instant has been sent.' => 'Мгновенное было выслано.'
+  'The instant has been sent.' => 'Мгновенное было выслано.',
+  'First letter' => 'Первое письмо',
+  'Subject' => 'Тема',
+  'Message body' => 'Тело письма'
 );

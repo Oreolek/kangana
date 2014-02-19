@@ -31,6 +31,55 @@ class Controller_Course extends Controller_Layout {
     $this->_edit($this->template->model);
   }
 
+  /**
+   * One-page course creation
+   **/
+  public function action_simple()
+  {
+    $this->template = new View_Course_Simple;
+    $this->template->controls = array();
+    $this->template->title = __('New course');
+    if ($this->request->method() === HTTP_Request::POST) {
+      $course = ORM::factory('Course');
+      $letter = ORM::factory('Letter');
+      $course->values($this->request->post(), array('title', 'description'));
+      $letter->subject = $this->request->post('letter_subject');
+      $letter->text = $this->request->post('letter_body');
+      $course->price = 0;
+      $course->period = 1;
+      $letter->order = 1;
+      $validation_course = $course->validate_create($this->request->post());
+      $validation_letter = $letter->validate_create(array(
+        'subject' => $this->request->post('letter_subject'),
+        'text' => $this->request->post('letter_body')
+      ));
+      try
+      {
+        if ($validation_course->check() AND $validation_letter->check())
+        {
+          $course->create();
+          $letter->course_id = $course->id;
+          $letter->create();
+        }
+        else
+        {
+          $this->template->errors = array_merge(
+            $validation_course->errors('default'),
+            $validation_letter->errors('default')
+          );
+        }
+      }
+      catch (ORM_Validation_Exception $e)
+      {
+        $this->template->errors = $e->errors('default');
+      }
+      if (empty($this->template->errors))
+      {
+        $this->redirect($this->_edit_redirect($course));
+      }
+    }
+  }
+
   public function action_edit()
   {
     $this->template = new View_Edit;

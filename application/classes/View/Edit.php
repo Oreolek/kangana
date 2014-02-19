@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Edit view controller
@@ -26,9 +26,12 @@ class View_Edit extends View_Layout {
   public function get_controls()
   {
     $output = '';
-    foreach ($this->controls as $key => $value)
+    if ($this->model instanceof ORM)
     {
-      $output .= Form::orm_input($this->model, $key, $value);
+      foreach ($this->controls as $key => $value)
+      {
+        $output .= Form::orm_input($this->model, $key, $value);
+      }
     }
     foreach ($this->custom_controls as $key => $value)
     {

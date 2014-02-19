@@ -116,6 +116,28 @@ class Form extends Kohana_Form {
     $template->value = $model->$name;
     return self::render_inline_control($template);
   }
+  public static function textarea_inline($model, $name)
+  {
+    $template = new View_Form_Textarea;
+    $template->_view = 'form/inline/textarea';
+    $template->name = $name;
+    $template->label = __($model->get_label($name));
+    $template->value = $model->$name;
+    return self::render_inline_control($template);
+  }
+
+  /**
+   * New textarea.
+   * Does not support $double_encode = FALSE.
+   **/
+  public static function textarea($name, $value = NULL, array $attributes = NULL, $double_encode = TRUE)
+  {
+    $template = new View_Form_Textarea;
+    $template->name = $name;
+    $template->label = __(Arr::get($attributes, 'label'));
+    $template->value = $value;
+    return self::render_control($template);
+  }
 
   /**
    * A textarea with a HTML visual editor
