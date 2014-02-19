@@ -65,5 +65,7 @@ return array(
   'First letter' => 'Первое письмо',
   'Subject' => 'Тема',
   'Message body' => 'Тело письма',
-  'Subscription code' => 'Код подписки'
+  'Subscription code' => 'Код подписки',
+  'You were subscribed to ' => 'Вы были подписаны на',
+  'From now on you will receive letters from this subscription.' => 'Теперь вы будете получать письма из этой рассылки.'
 );

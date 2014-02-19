@@ -47,7 +47,6 @@ class Model_Subscription extends ORM {
   protected $_labels = array(
     'title' => 'Title',
     'price' => 'Subscription price',
-    'welcome' => 'Welcome message',
     'description' => 'Description (for the clients)'
   );
 

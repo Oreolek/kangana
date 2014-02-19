@@ -99,9 +99,9 @@ class Controller_Subscription extends Controller_Layout {
           $instant = ORM::factory('Instant');
           $instant->subscription_id = $id;
           $instant->subject = __('You were subscribed to ').$subscription->title;
-          $instant->text = $subscription->welcome;
-          $instant->create();
-          $instant->send($model->email);
+          $instant->text = __('From now on you will receive letters from this subscription.');
+          $instant->send($model->email, $model->token);
+          // instant is not saved because it's just a welcome email
         }
         else
         {
