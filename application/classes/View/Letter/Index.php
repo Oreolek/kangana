@@ -28,6 +28,14 @@ class View_Letter_Index extends View_Index {
     return $output;
   }
 
+  public function iframe_code()
+  {
+    return array(
+      'text' => __('Subscription code'),
+      'code' => '<iframe src="'.Route::url('default', array('controller' => 'Course', 'action' => 'subscribe', 'id' => $this->course_id), TRUE).'" width="100%" height="400"></iframe>',
+    );
+  }
+
   public function link_new()
   {
     return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'create', 'id' => $this->course_id)), __('Add'), array('class' => 'link_new'));

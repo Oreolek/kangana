@@ -64,5 +64,6 @@ return array(
   'The instant has been sent.' => 'Мгновенное было выслано.',
   'First letter' => 'Первое письмо',
   'Subject' => 'Тема',
-  'Message body' => 'Тело письма'
+  'Message body' => 'Тело письма',
+  'Subscription code' => 'Код подписки'
 );
