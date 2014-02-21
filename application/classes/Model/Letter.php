@@ -69,6 +69,8 @@ class Model_Letter extends ORM {
     Log::instance()->add(Log::NOTICE, __('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
     $sender = Kohana::$config->load('email')->get('sender');
     $template = new View_Letter_View;
+    $template->content = $text;
+    $template->token = $token;
     $renderer = Kostache_Layout::factory($template->_layout);
     $email = Email::factory($subject, $renderer->render($template, $template->_view))->from($sender[0], $sender[1]);
     if (is_array($address))

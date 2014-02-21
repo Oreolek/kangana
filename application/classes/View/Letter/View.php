@@ -19,28 +19,4 @@ class View_Letter_View extends View {
   {
     return Kostache::factory()->render($this->content);
   }
-
-  public function scripts()
-  {
-    $scripts = $this->scripts;
-    $temp = "";
-    foreach($scripts as $script):
-      if (strstr($script, '://') === FALSE) //no protocol given, script is local
-      {
-        if ($script === 'jquery') // CDN shortcut
-        {
-          $temp .= HTML::script('https://yandex.st/jquery/2.0.3/jquery.min.js')."\n";
-        }
-        else
-        {
-          $temp .= HTML::script('application/assets/javascript/'.$script)."\n";
-        }
-      }
-      else
-      {
-        $temp .= HTML::script($script)."\n";
-      }
-    endforeach;
-    return $temp;
-  }
 }
