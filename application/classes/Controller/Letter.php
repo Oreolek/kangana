@@ -63,4 +63,16 @@ class Controller_Letter extends Controller_Layout {
       $this->redirect('/');
     }
   }
+
+  public function action_view()
+  {
+    $id = $this->request->param('id');
+    $model = ORM::factory('Letter', $id);
+    if (!$model->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $this->template = new View_Letter_View;
+    $this->template->content = $model->text;
+  }
 }
