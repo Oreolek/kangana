@@ -157,7 +157,10 @@ class Controller_Course extends Controller_Layout {
         if ($validation->check())
         {
           $model->save();
-          $model->add('course', $course);
+          if (!$model->has('course', $course))
+          {
+            $model->add('course', $course);
+          }
           $task = ORM::factory('Task');
           $letter = $course->next_letter();
           $task->letter_id = $letter->id;

@@ -95,7 +95,10 @@ class Controller_Subscription extends Controller_Layout {
         if ($validation->check())
         {
           $model->save();
-          $model->add('subscription', $subscription);
+          if (!$model->has('subscription', $subscription))
+          {
+            $model->add('subscription', $subscription);
+          }
           $instant = ORM::factory('Instant');
           $instant->subscription_id = $id;
           $instant->subject = __('You were subscribed to ').$subscription->title;
