@@ -96,8 +96,26 @@ class Model_Task extends ORM {
         ->as_array(NULL, 'letter_id');
       if (is_array($letters))
       {
-        $diff = array_diff($letters, $sent_letters);
-        return $diff[0];
+        $retval = $letters[0];
+        $i = 0;
+        while ($i < $cnt)
+        {
+          $retval = $letters[$i];
+          if (!in_array($retval, $sent_letters))
+          {
+            break;
+          }
+          $i++;
+        }
+        if ($i < $cnt)
+        {
+          return $retval;
+        }
+        elseif( $i < count($letters))
+        {
+          return $letters[$i];
+        }
+        return FALSE;
       }
       else
       {

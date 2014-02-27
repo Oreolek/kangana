@@ -89,7 +89,7 @@ class Model_Course extends ORM {
    **/
   public static function get_ids()
   {
-    return DB::select('course_id')->from('clients_courses')->execute()->get('course_id');
+    return DB::select('course_id')->distinct(TRUE)->from('clients_courses')->execute()->as_array(NULL, 'course_id');
   }
 
   public static function get_period($course_id)
