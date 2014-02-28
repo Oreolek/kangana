@@ -55,21 +55,24 @@ class Model_Letter extends ORM {
    **/
   public function send($address, $token = '')
   {
-    return self::_send($address, $this->text, $this->subject, $token);
+    return self::_send($address, $this->text, $this->subject, $this->id, $token);
   }
   
   /**
    * @param $address string or array of strings - email addresses
    * @param $text message body
    * @param $subject message subject
+   * @param $id message ID
    * @param $token user course token
    **/
-  public static function _send($address, $text, $subject, $token = '')
+  public static function _send($address, $text, $subject, $id, $token = '')
   {
     Log::instance()->add(Log::NOTICE, __('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
     $sender = Kohana::$config->load('email')->get('sender');
     $template = new View_Letter_View;
     $template->content = $text;
+    $template->id = $id;
+    $template->subject = $subject;
     $template->token = $token;
     $renderer = Kostache_Layout::factory($template->_layout);
     $email = Email::factory($subject, $renderer->render($template, $template->_view))->from($sender[0], $sender[1]);

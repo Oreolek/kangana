@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <title>{{title}}</title>
+    <title>{{subject}}</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <style type="text/css">
@@ -10,8 +10,13 @@
    </head>
   <body>
     <div class="container">
-      <div class = "main_content">
-        <h3>{{title}}</h3>
+      <div class="row heading">
+        <h3>{{subject}}</h3>
+      </div>
+      <div class="row">
+        <div class="email_link">{{{view_link}}}</div>
+      </div>
+      <div class = "row">
 {{>content}}
       </div>
     </div>

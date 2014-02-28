@@ -81,6 +81,20 @@ textarea {
   }
 }
 
+.heading {
+  background-color: @navbar-default-bg;
+  color: @navbar-default-color; 
+  h3 {
+    text-align: center;
+  }
+}
+
+.email_link {
+  font-size: @font-size-small;
+  text-align: center;
+  margin-bottom: @navbar-margin-bottom;
+}
+
 span.hidden-xs {
   display: inline-block !important;
 }
@@ -240,15 +254,7 @@ footer {
 }
 
 .main_content {
-  @media(min-width: @screen-lg-desktop) {
-    .make-lg-column(10);
-  }
-  @media(min-width: @screen-desktop) and (max-width: @screen-lg-desktop) {
-    .make-md-column(10);
-  }
-  @media(min-width: @screen-tablet) and (max-width: @screen-desktop) {
-    .make-sm-column(9);
-  }
+  .make-sm-column(12);
   p {
     text-align: justify;
   }

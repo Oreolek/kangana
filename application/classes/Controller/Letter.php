@@ -74,5 +74,7 @@ class Controller_Letter extends Controller_Layout {
     }
     $this->template = new View_Letter_View;
     $this->template->content = $model->text;
+    $this->template->subject = $model->subject;
+    $this->template->id = $model->id;
   }
 }

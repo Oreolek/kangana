@@ -37,7 +37,7 @@ class Task_Send extends Minion_Task
         ->execute();
       foreach ($letters as $letter)
       {
-        Model_Letter::_send($letter['email'], $letter['text'], $letter['subject'], $letter['token']);
+        Model_Letter::_send($letter['email'], $letter['text'], $letter['subject'], $letter['id'], $letter['token']);
       }
 
       DB::update('tasks')
