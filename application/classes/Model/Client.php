@@ -40,8 +40,8 @@ class Model_Client extends ORM {
    * Used in forms.
    **/
   protected $_labels = array(
-    'email' => 'Email',
-    'name' => 'Name',
+    'email' => 'Your e-mail',
+    'name' => 'What is your name?',
     'token' => 'Subscription token'
   );
 

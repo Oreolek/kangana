@@ -68,5 +68,7 @@ return array(
   'Subscription code' => 'Код подписки',
   'You were subscribed to ' => 'Вы были подписаны на',
   'From now on you will receive letters from this subscription.' => 'Теперь вы будете получать письма из этой рассылки.',
-  'Problems viewing this email? Click here.' => 'Проблемы с отображением письма? Нажмите сюда.'
+  'Problems viewing this email? Click here.' => 'Проблемы с отображением письма? Нажмите сюда.',
+  'What is your name?' => 'Как вас зовут?',
+  'Your e-mail' => 'Ваш адрес электронной почты'
 );
