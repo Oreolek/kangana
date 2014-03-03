@@ -4,19 +4,12 @@
     <title>{{subject}}</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style type="text/css">
-      {{{stylesheet}}}
-    </style>
    </head>
   <body>
-    <div class="container">
-      <div class="row heading">
-        <h3>{{subject}}</h3>
-      </div>
+    <div class="container" style="margin: 20px;">
+      <h3>{{subject}}</h3>
+      <div class="email_link" style="font-size: 10px; margin-bottom: 10px">{{{view_link}}}</div>
       <div class="row">
-        <div class="email_link">{{{view_link}}}</div>
-      </div>
-      <div class = "row">
 {{>content}}
       </div>
     </div>

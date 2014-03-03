@@ -11,12 +11,6 @@ class View_Letter_View extends View {
   public $id = NULL;
   public $scripts = array();
   
-  public function stylesheet()
-  {
-    $url = Less::compile(APPPATH.'assets/stylesheets/email', 'all', FALSE);
-    return file_get_contents(DOCROOT.$url[0]);
-  }
-
   public function view_link()
   {
     return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view', 'id' => $this->id), TRUE), __('Problems viewing this email? Click here.'));

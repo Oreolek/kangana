@@ -75,7 +75,8 @@ class Model_Letter extends ORM {
     $template->subject = $subject;
     $template->token = $token;
     $renderer = Kostache_Layout::factory($template->_layout);
-    $email = Email::factory($subject, $renderer->render($template, $template->_view), 'text/html')->from($sender[0], $sender[1]);
+    $html = $renderer->render($template, $template->_view);
+    $email = Email::factory($subject, $html, 'text/html')->from($sender[0], $sender[1]);
     if (is_array($address))
     {
       $email->bcc($address);

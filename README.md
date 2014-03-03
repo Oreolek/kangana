@@ -15,3 +15,5 @@ PHP 5 with enabled OpenSSL and APCu
 * All comments in config file are lost on write.
 * Feature is highly unreliable. You can lose the file. You can have two users writing config simultaneously.
 * Do not use in web environment.
+
+// uses tijsverkoyen / CssToInlineStyles to convert CSS to inline styles
