@@ -10,6 +10,7 @@ class Model_Task extends ORM {
   const STATUS_PENDING = 1;
   const STATUS_SENDING = 2;
   const STATUS_SENT = 3;
+  const STATUS_CANCELED = 4;
 
   protected $_has_many = array(
     'letter' => array(
@@ -160,5 +161,18 @@ class Model_Task extends ORM {
     if (!empty($check))
       return TRUE;
     return FALSE;
+  }
+
+  /**
+   * Cancel tasks for specified client. If a course ID parameter is present, cancel only tasks for this course.
+   **/
+  public static function cancel($client_id, $course_id = 0)
+  {
+    $query = DB::update('tasks')->set(array('status' => self::STATUS_CANCELED))->where('client_id', '=', $client_id);
+    if ($course_id > 0)
+    {
+      $query->and_where('letter_id', 'IN', Model_Course::get_letter_ids($course_id));
+    }
+    return $query->execute();
   }
 }

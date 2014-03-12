@@ -74,6 +74,7 @@ class Model_Letter extends ORM {
     $template->id = $id;
     $template->subject = $subject;
     $template->token = $token;
+    $template->address = $address;
     $renderer = Kostache_Layout::factory($template->_layout);
     $html = $renderer->render($template, $template->_view);
     $email = Email::factory($subject, $html, 'text/html')->from($sender[0], $sender[1]);

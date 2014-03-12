@@ -78,4 +78,30 @@ class Controller_Letter extends Controller_Layout {
     $this->template->subject = $model->subject;
     $this->template->id = $model->id;
   }
+
+  public function action_unsubscribe()
+  {
+    $id = $this->request->param('id');
+    $letter = ORM::factory('Letter', $id);
+    $token = $this->request->query('token');
+    $email = $this->request->query('email');
+    if (!$letter->loaded() || empty($token) || empty($email))
+    {
+      $this->redirect('error/500');
+    }
+    $client = ORM::factory('Client')->where('email', '=', $email)->and_where('token', '=', $token)->find();
+    $course = ORM::factory('Course', $letter->course_id);
+    if (!$client->loaded() || !$course->loaded())
+    {
+      Session::instance()->set_once('flash_error', __('Client not found. Possible subscription token problem.'));
+      $this->redirect('error/403');
+    }
+    // token is valid, client is found, letter is found - we can unsubscribe him now
+    $course->remove('clients', $client);
+    Log::instance()->add(Log::NOTICE, 'Client '.$client->name.' has been unsubscribed from course '.$course->title);
+    Model_Task::cancel($client->id, $course->id);
+    $this->template = new View_Message;
+    $this->template->message = __('You have been successfully unsubscribed from course %s', array('%s' => $course->title));
+  }
+
 }

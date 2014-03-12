@@ -70,5 +70,8 @@ return array(
   'From now on you will receive letters from this subscription.' => 'Теперь вы будете получать письма из этой рассылки.',
   'Problems viewing this email? Click here.' => 'Проблемы с отображением письма? Нажмите сюда.',
   'What is your name?' => 'Как вас зовут?',
-  'Your e-mail' => 'Ваш адрес электронной почты'
+  'Your e-mail' => 'Ваш адрес электронной почты',
+  'Tired of receiving these emails? Click this link to unsubscribe.' => 'Устали получать эти письма? Нажмите на эту ссылку для отписки.',
+  'Client not found. Possible subscription token problem.' => 'Клиент не найден. Возможна проблема с токеном подписки.',
+  'You have been successfully unsubscribed from course %s' => 'Вы были успешно отписаны от курса %s'
 );

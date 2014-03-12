@@ -8,7 +8,7 @@
  **/
 class Model_Course extends ORM {
   protected $_has_many = array(
-    'client' => array(
+    'clients' => array(
       'model' => 'Client',
       'through' => 'clients_courses'
     ),
