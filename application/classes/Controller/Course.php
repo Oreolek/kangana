@@ -39,12 +39,11 @@ class Controller_Course extends Controller_Layout {
     $this->template = new View_Course_Simple;
     $this->template->controls = array();
     $this->template->title = __('New course');
+    $course = ORM::factory('Course');
+    $letter = ORM::factory('Letter');
     if ($this->request->method() === HTTP_Request::POST) {
-      $course = ORM::factory('Course');
-      $letter = ORM::factory('Letter');
       $course->values($this->request->post(), array('title', 'description'));
-      $letter->subject = $this->request->post('letter_subject');
-      $letter->text = $this->request->post('letter_body');
+      $letter->values($this->request->post(), array('subject', 'text'));
       $course->price = 0;
       $course->period = 1;
       $letter->order = 1;
@@ -78,6 +77,8 @@ class Controller_Course extends Controller_Layout {
         $this->redirect($this->_edit_redirect($course));
       }
     }
+    $this->template->model_letter = $letter;
+    $this->template->model_course = $course;
   }
 
   public function action_edit()
