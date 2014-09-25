@@ -63,7 +63,6 @@ class View_Edit extends View_Layout {
       }
       $output .= $input.'</div>';
     }
-    $output .= Form::hidden('csrf', Security::token());
     $output .= Form::btn_submit('Отправить');
     return $output;
   }
