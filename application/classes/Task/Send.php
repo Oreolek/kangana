@@ -9,7 +9,7 @@
 class Task_Send extends Minion_Task
 {
   protected $_options = array();
-  
+
   /**
    * Send all prepared letters.
    *
@@ -23,6 +23,7 @@ class Task_Send extends Minion_Task
     try
     {
       $letters = DB::select(
+          array('letters.id', 'id'),
           array('letters.text', 'text'),
           array('letters.subject', 'subject'),
           array('clients.email', 'email'),
