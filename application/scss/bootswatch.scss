@@ -5,11 +5,11 @@
 // Navbar =====================================================================
 
 .navbar {
-	font-family: @headings-font-family;
+	font-family: $headings-font-family;
 	text-transform: uppercase;
 
 	&-nav > li > a {
-		padding-top: @navbar-padding-vertical + 6px;
+		padding-top: $navbar-padding-vertical + 6px;
 	}
 
 	&-nav > .active > a,
@@ -18,22 +18,22 @@
 	}
 
 	&-default .navbar-nav > .active > a:hover {
-		color: @navbar-default-link-hover-color;
+		color: $navbar-default-link-hover-color;
 	}
 
 	&-inverse .navbar-nav > .active > a:hover {
-		color: @navbar-inverse-link-hover-color;
+		color: $navbar-inverse-link-hover-color;
 	}
 
 	&-brand {
-		padding-top: @navbar-padding-vertical + 5px;
+		padding-top: $navbar-padding-vertical + 5px;
 	}
 }
 
 // Buttons ====================================================================
 
 .btn {
-	font-family: @headings-font-family;
+	font-family: $headings-font-family;
 	text-transform: uppercase;
 }
 
@@ -71,7 +71,7 @@ p {
 .alert {
 	a,
 	.alert-link {
-		color: @alert-success-text;
+		color: $alert-success-text;
 		text-decoration: underline;
 	}
 }

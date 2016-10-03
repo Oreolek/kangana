@@ -30,7 +30,7 @@ class Controller_User extends Controller_Layout {
         'value' => ''
       ),
     );
-    if (HTTP_Request::POST == $this->request->method()) {
+    if (Request::POST == $this->request->method()) {
       $validation = Validation::factory($this->request->post())
         ->rules('username', array(
           array('not_empty'),

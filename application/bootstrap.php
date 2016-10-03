@@ -33,10 +33,17 @@ date_default_timezone_set('Asia/Novosibirsk');
 setlocale(LC_ALL, 'ru_RU.utf-8');
 
 /**
+ * Enable Composer auto-loader.
+ *
+ * @link https://getcomposer.org/doc/00-intro.md#autoloading
+ */
+require __DIR__.'/../vendor/autoload.php';
+
+/**
  * Enable the Kohana auto-loader.
  *
- * @see  http://kohanaframework.org/guide/using.autoloading
- * @see  http://php.net/spl_autoload_register
+ * @link http://kohanaframework.org/guide/using.autoloading
+ * @link http://www.php.net/manual/function.spl-autoload-register
  */
 spl_autoload_register(array('Kohana', 'auto_load'));
 
@@ -51,9 +58,49 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 // -- Configuration and initialization -----------------------------------------
 
 /**
+ * Enable modules. Modules are referenced by a relative or absolute path.
+ */
+Kohana::modules([
+  'application' => APPPATH,                         // Main application module
+  'auth'        => $vendor_path.'kohana/auth',      // Basic authentication
+  'cache'       => $vendor_path.'kohana/cache',     // Caching with multiple backends
+  //'codebench'   => $vendor_path.'kohana/codebench', // Benchmarking tool
+  'database'    => $vendor_path.'kohana/database',  // Database access
+  //'image'       => $vendor_path.'kohana/image',     // Image manipulation
+  'minion'      => $vendor_path.'kohana/minion',    // CLI Tasks
+  'orm'         => $vendor_path.'kohana/orm',       // Object Relationship Mapping
+  //'unittest'    => $vendor_path.'kohana/unittest',  // Unit testing
+  //'userguide'   => $vendor_path.'kohana/userguide', // User guide and API documentation
+  'kostache'      => $vendor_path.'zombor/kostache', // Logic-less Mustache views
+  'email'         => $vendor_path.'tscms/email',// Electronic mail class
+  'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
+  'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
+  'migrations'    => MODPATH.'migrations',        // SQL migrations
+  'core'        => SYSPATH,                         // Core system
+]);
+/**
  * Set the default language
  */
 I18n::lang('ru');
+
+if ( ! function_exists('__'))
+{
+  /**
+   * I18n translate alias function.
+   *
+   * @deprecated 3.4 Use I18n::translate() instead
+   */
+  function __($string, array $values = NULL, $lang = 'en-us')
+  {
+    return I18n::translate($string, $values, $lang);
+  }
+}
+
+if (isset($_SERVER['SERVER_PROTOCOL']))
+{
+	// Replace the default protocol.
+	HTTP::$protocol = $_SERVER['SERVER_PROTOCOL'];
+}
 
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
@@ -63,7 +110,7 @@ I18n::lang('ru');
  */
 if (isset($_SERVER['KOHANA_ENV']))
 {
-	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
+  Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
 /**
@@ -80,11 +127,11 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
- 'base_url'   => '/',
- 'index_file' => false,
- 'errors'     => TRUE,
- 'profile'    => (Kohana::$environment == Kohana::DEVELOPMENT), 
- 'caching'    => (Kohana::$environment == Kohana::PRODUCTION) 
+  'base_url'   => '/',
+  'index_file' => false,
+  'errors'     => TRUE,
+  'profile'    => (Kohana::$environment == Kohana::DEVELOPMENT), 
+  'caching'    => (Kohana::$environment == Kohana::PRODUCTION) 
 ));
 
 /**
@@ -97,44 +144,30 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
  */
 Kohana::$config->attach(new Config_File);
 
+// Initialize modules
+Kohana::init_modules();
+
 /**
  * Set cookie salt (required)
  */
 Cookie::$salt = 'YehsmJK:*$jel_@dj';
 
 /**
- * Enable modules. Modules are referenced by a relative or absolute path.
- */
-Kohana::modules(array(
-	 'auth'          => MODPATH.'auth',              // Basic authentication
-	 'database'      => MODPATH.'database',          // Database access
-	 'orm'           => MODPATH.'orm',               // Object Relationship Mapping
-   'less'          => MODPATH.'less',              // LEaner CSS
-   'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
-	 'kostache'      => MODPATH.'kostache',          // Logic-less Mustache views
-	 'email'         => MODPATH.'email',             // Electronic mail class
-	 'minion'        => MODPATH.'minion',            // CLI framework
-	 'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
-	 'cache'         => MODPATH.'cache',             // Object caching
-	 'migrations'    => MODPATH.'migrations',        // SQL migrations
-	));
-
-/**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
 Route::set('minion', 'minion(/<action>)', array('action' => '.+'))
- ->defaults(array( 
-  'controller' => 'Minion',
-));
+  ->defaults(array( 
+    'controller' => 'Minion',
+  ));
 
 Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++','message' => '.+'))
- ->defaults(array( 
-  'controller' => 'Error',
-));
+  ->defaults(array( 
+    'controller' => 'Error',
+  ));
 
 Route::set('default', '(<controller>(/<action>(/<id>)(/page/<page>)))')
- ->defaults(array(
-  'controller' => 'User',
-  'action'     => 'signin',
- ));
+  ->defaults(array(
+    'controller' => 'User',
+    'action'     => 'signin',
+  ));

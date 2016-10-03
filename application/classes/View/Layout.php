@@ -26,9 +26,8 @@ class View_Layout {
   {
     return Kohana::$config->load('common.title');
   }
-  public function stylesheet()
-  {
-    return Less::compile(APPPATH.'assets/stylesheets/main');
+  public function stylesheet() {
+    return Html::style("/style.css")."\n".Html::style("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
   }
 
   public function get_content()

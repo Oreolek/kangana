@@ -2,12 +2,12 @@ div#kohana-debug-toolbar :focus { outline: 0; }
 
 /* Global */
 div#kohana-debug-toolbar {
-	font-family: Arial, "Open Sans", sans-serif;
-	color: #333;
-	text-align: left;
+  font-family: Arial, "Open Sans", sans-serif;
+  color: #333;
+  text-align: left;
 }
 div#kohana-debug-toolbar h1 {
-  .h3;
+  @extend .h3;
 }
 div#kohana-debug-toolbar a,
 div#kohana-debug-toolbar a:hover {
@@ -20,16 +20,16 @@ div#kohana-debug-toolbar pre {
 
 /* Tables */
 div#kohana-debug-toolbar table {
-	border-collapse: collapse;
-	border-spacing: 0;
-  .table;
-  .table-condensed;
-	font-family: monospace;
+  border-collapse: collapse;
+  border-spacing: 0;
+  @extend .table;
+  @extend .table-condensed;
+  font-family: monospace;
 }
 div#kohana-debug-toolbar td {
   padding: 3px 3px;
   vertical-align: top;
-	background-color: #eee;
+  background-color: #eee;
   // break long lines
   white-space: pre;
   white-space: pre-wrap;
@@ -38,21 +38,21 @@ div#kohana-debug-toolbar td {
   word-wrap: break-word;
 }
 div#kohana-debug-toolbar tr.odd td {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 div#kohana-debug-toolbar th {
-	padding: 3px 5px;
-	vertical-align: top;
-	background-color: #999;
-	color: #eee;
-	white-space: nowrap;
+  padding: 3px 5px;
+  vertical-align: top;
+  background-color: #999;
+  color: #eee;
+  white-space: nowrap;
 }
 div#kohana-debug-toolbar td,
 div#kohana-debug-toolbar th {
-	border: 1px solid #efefef;
+  border: 1px solid #efefef;
 }
 div#kohana-debug-toolbar tr.current {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* Toolbar */
@@ -73,14 +73,14 @@ div#kohana-debug-toolbar tr.current {
     }
   }
   .top {
-  	position: absolute;
-	  right: 275px;
+    position: absolute;
+    right: 275px;
     top: 0px;
-	  width: 960px;
-  	z-index: 999;
-	  border-bottom: 1px solid #aaa;
-  	background-color: #efefef;
-	  padding: 10px;
+    width: 960px;
+    z-index: 999;
+    border-bottom: 1px solid #aaa;
+    background-color: #efefef;
+    padding: 10px;
   }
 }
 
@@ -88,47 +88,47 @@ div#kohana-debug-toolbar tr.current {
 
 /*
 div#kohana-debug-toolbar div#debug-toolbar {
-  position: absolute;
-	top: 0px;
-  width: 100%;
-	padding: 0 0 3px 0;
-	line-height: 16px;
-	background-color: #ccc;
+position: absolute;
+top: 0px;
+width: 100%;
+padding: 0 0 3px 0;
+line-height: 16px;
+background-color: #ccc;
 }
 html {
-  position: absolute;
-  top: 16px;
+position: absolute;
+top: 16px;
 }
 div#kohana-debug-toolbar .top {
-	position: absolute;
-	left: 0px;
-	top: 20px;
-	width: 100%;
-	z-index: 9999;
-	border-bottom: 1px solid #aaa;
-	background-color: #efefef;
-	padding: 10px;
+position: absolute;
+left: 0px;
+top: 20px;
+width: 100%;
+z-index: 9999;
+border-bottom: 1px solid #aaa;
+background-color: #efefef;
+padding: 10px;
 }
 
 div#kohana-debug-toolbar div#debug-toolbar img { 
-  display: inline;
+display: inline;
 }
 div#kohana-debug-toolbar div#debug-toolbar ul.menu {
-	padding: 5px;
-  display: inline;
+padding: 5px;
+display: inline;
 }
 div#kohana-debug-toolbar div#debug-toolbar ul.menu li {
-	display: inline-block;
-  list-style: none;
-  padding: 0 5px;
-  border-right: 1px solid #aaa;
-	cursor: pointer;
-	line-height: 16px;
+display: inline-block;
+list-style: none;
+padding: 0 5px;
+border-right: 1px solid #aaa;
+cursor: pointer;
+line-height: 16px;
 }
 div#kohana-debug-toolbar div#debug-toolbar ul.menu li.last {
-	border: none;
+border: none;
 }
-*/
+ */
 
 /* Benchmarks */
 div#kohana-debug-toolbar div#debug-benchmarks { padding: 3px 0px; }
@@ -138,36 +138,36 @@ div#kohana-debug-toolbar div#debug-database { padding: 3px 0px; }
 
 /* Vars & Config */
 div#kohana-debug-toolbar div#debug-vars {
-	padding: 3px 0px;
+  padding: 3px 0px;
 }
 div#kohana-debug-toolbar div#debug-vars pre {
-	background-color: #ddd;
-	padding: 5px;
-	color: #333;
+  background-color: #ddd;
+  padding: 5px;
+  color: #333;
 }
 div#kohana-debug-toolbar div#debug-vars .varmenu {
   margin: 20px 0 0 0;
-	height: 23px;
+  height: 23px;
 }
 div#kohana-debug-toolbar div#debug-vars .varmenu li {
-	float: left;
-	display: block;
-	padding: 5px;
-	margin: 0 6px 0 0;
-	border-top: 1px solid #999;
-	border-left: 1px solid #999;
-	border-right: 1px solid #999;
-	cursor:  pointer;
+  float: left;
+  display: block;
+  padding: 5px;
+  margin: 0 6px 0 0;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  cursor:  pointer;
 }
 div#kohana-debug-toolbar div#debug-vars .varmenu li.active {
-	background-color: #ddd;
-	color: #000;
+  background-color: #ddd;
+  color: #000;
 }
 div#kohana-debug-toolbar div#debug-vars .configmenu { background-color: #ddd; }
 div#kohana-debug-toolbar div#debug-vars .configmenu li {
-	display: block;
-	padding: 5px;
-	cursor: pointer;
+  display: block;
+  padding: 5px;
+  cursor: pointer;
 }
 div#kohana-debug-toolbar div#debug-vars .configmenu li.odd { background-color: #eee; }
 div#kohana-debug-toolbar div#debug-vars .configmenu li.even { background-color: #fff; }
@@ -180,41 +180,41 @@ div#kohana-debug-toolbar div#debug-vars .configmenu li:hover.even pre { backgrou
 
 /* Logs & Msgs */
 div#kohana-debug-toolbar div#debug-log {
-	padding: 3px 0px;
-	font-size: 11px;
+  padding: 3px 0px;
+  font-size: 11px;
 }
 
 /* Ajax */
 div#kohana-debug-toolbar div#debug-ajax {
-	padding: 3px 0px;
-	font-size: 11px;
+  padding: 3px 0px;
+  font-size: 11px;
 }
 
 /* Custom data */
 div#kohana-debug-toolbar div#debug-customs {
-	padding: 3px 0px;
+  padding: 3px 0px;
 }
 div#kohana-debug-toolbar div#debug-customs pre {
-	background-color: #ddd;
-	padding: 5px;
-	color: #333;
+  background-color: #ddd;
+  padding: 5px;
+  color: #333;
 }
 div#kohana-debug-toolbar div#debug-customs .sectionmenu {
   margin: 20px 0 0 0;
-	height: 23px;
+  height: 23px;
 }
 div#kohana-debug-toolbar div#debug-customs .sectionmenu li {
-	float: left;
-	display: block;
-	padding: 5px;
-	margin: 0 6px 0 0;
-	border-top: 1px solid #999;
-	border-left: 1px solid #999;
-	border-right: 1px solid #999;
-	cursor:  pointer;
+  float: left;
+  display: block;
+  padding: 5px;
+  margin: 0 6px 0 0;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  cursor:  pointer;
 }
 div#kohana-debug-toolbar div#debug-customs .sectionmenu li.active {
-	background-color: #ddd;
-	color: #000;
+  background-color: #ddd;
+  color: #000;
 }
 

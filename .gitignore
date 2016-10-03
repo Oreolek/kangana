@@ -5,3 +5,7 @@ application/config/email.php
 application/config/sphinxql.php
 application/cache
 application/logs
+vendor/
+public/style.css
+*.css.map
+.sass-cache
