@@ -21,16 +21,16 @@ class Model_Course extends ORM {
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'title' => array(
-				array('not_empty'),
-				array('min_length', array(':value', 4)),
-				array('max_length', array(':value', 100)),
+        array('not_empty'),
+        array('min_length', array(':value', 4)),
+        array('max_length', array(':value', 100)),
       ),
       'description' => array(
-				array('not_empty'),
-				array('min_length', array(':value', 20)),
+        array('not_empty'),
+        array('min_length', array(':value', 20)),
       ),
       'period' => array(
         array('numeric')
@@ -38,8 +38,8 @@ class Model_Course extends ORM {
       'price' => array(
         array('numeric')
       )
-		);
-	}
+    );
+  }
 
   /**
    * Array of field labels.

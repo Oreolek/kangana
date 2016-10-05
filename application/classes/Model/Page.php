@@ -5,20 +5,20 @@ class Model_Page extends ORM {
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'name' => array(
-				array('not_empty'),
+        array('not_empty'),
       ),
       'content' => array(
-				array('not_empty'),
-				array('min_length', array(':value', 4)),
+        array('not_empty'),
+        array('min_length', array(':value', 4)),
       ),
       'draft' => array(
         array('numeric')
       )
-		);
-	}
+    );
+  }
 
   /**
    * Array of field labels.

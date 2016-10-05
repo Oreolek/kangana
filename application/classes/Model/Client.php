@@ -14,26 +14,30 @@ class Model_Client extends ORM {
     'subscription' => array(
       'model' => 'Subscription',
       'through' => 'clients_subscriptions'
-    )
+    ),
+    'group' => array(
+      'model' => 'Group',
+      'through' => 'clients_groups'
+    ),
   );
-  
+
   /**
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'email' => array(
-				array('not_empty'),
-				array('email'),
-				array('min_length', array(':value', 5)),
+        array('not_empty'),
+        array('email'),
+        array('min_length', array(':value', 5)),
       ),
       'name' => array(
-				array('not_empty'),
-				array('min_length', array(':value', 5)),
+        array('not_empty'),
+        array('min_length', array(':value', 5)),
       ),
-		);
-	}
+    );
+  }
 
   /**
    * Array of field labels.

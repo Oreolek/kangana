@@ -4,6 +4,3 @@
 [submodule "modules/config-writer"]
 	path = modules/config-writer
 	url = https://github.com/ppx17/kohana-config-file-writer.git
-[submodule "modules/migrations"]
-	path = modules/migrations
-	url = git@github.com:kohana-minion/tasks-migrations.git

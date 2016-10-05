@@ -5,10 +5,10 @@ class Model_Photo extends ORM {
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'name' => array(
-				array('not_empty'),
+        array('not_empty'),
       ),
       'filename' => array(
         array('not_empty')
@@ -30,23 +30,23 @@ class Model_Photo extends ORM {
   }
 
   /**
-	 * Function that adds suffix _thumb to file name: /home/dhawu.jpeg -> /home/dhawu_thumb.jpeg
-	 * @param integer $width
-	 * 	thumbnail width (manages the suffix)
-	 * @param integer $height
-	 *	thumbnail height (manages the suffix)
-	 * @retval string
-	 */
+   * Function that adds suffix _thumb to file name: /home/dhawu.jpeg -> /home/dhawu_thumb.jpeg
+   * @param integer $width
+   * 	thumbnail width (manages the suffix)
+   * @param integer $height
+   *	thumbnail height (manages the suffix)
+   * @retval string
+   */
   public function get_thumbnail_path($width = NULL, $height = NULL)
   {
-		$image_path = $this->get_image_path();
+    $image_path = $this->get_image_path();
     return $this->generate_thumbnail($image_path, $width, $height);
   }
 
   public static function generate_thumbnail($image_path, $width = 0, $height = 0)
   {
     if ($width == 0) $width = Kohana::$config->load('common.thumbnail_width');
-		if ($height == 0) $height = Kohana::$config->load('common.thumbnail_height');
+    if ($height == 0) $height = Kohana::$config->load('common.thumbnail_height');
     if (!is_file(DOCROOT.$image_path))
     {
       throw new HTTP_Exception_404('File not found');
@@ -55,26 +55,26 @@ class Model_Photo extends ORM {
 
     $thumbnail_path = self::generate_thumbnail_path($image_path, $width, $height);
 
-		if (!is_file(DOCROOT.$thumbnail_path)) {
-			$image = Image::factory(DOCROOT.$image_path);
-			$image->resize($width, $height, Image::WIDTH); 
-			$image->crop($width, $height);
-			$image->save(DOCROOT.$thumbnail_path, 80); //save thumbnail with quality of 80
-		}
-		return $thumbnail_path;
+    if (!is_file(DOCROOT.$thumbnail_path)) {
+      $image = Image::factory(DOCROOT.$image_path);
+      $image->resize($width, $height, Image::WIDTH);
+      $image->crop($width, $height);
+      $image->save(DOCROOT.$thumbnail_path, 80); //save thumbnail with quality of 80
+    }
+    return $thumbnail_path;
   }
 
   public static function generate_thumbnail_path($image_path, $width = 0, $height = 0)
   {
     if ($width == 0) $width = Kohana::$config->load('common.thumbnail_width');
-		if ($height == 0) $height = Kohana::$config->load('common.thumbnail_height');
+    if ($height == 0) $height = Kohana::$config->load('common.thumbnail_height');
     $parts = explode('.', $image_path);
-		$count = count($parts) - 2;
-		if ($count < 0) $count = 0;
-		$suffix = 'thumb';
-		if ($width) $suffix .= $width;
-		if ($height) $suffix .= '_' . $height;
-		$parts[$count] .= '_' . $suffix;
+    $count = count($parts) - 2;
+    if ($count < 0) $count = 0;
+    $suffix = 'thumb';
+    if ($width) $suffix .= $width;
+    if ($height) $suffix .= '_' . $height;
+    $parts[$count] .= '_' . $suffix;
     return implode('.', $parts);
   }
 

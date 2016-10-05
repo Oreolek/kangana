@@ -17,6 +17,12 @@
 		"irc": "irc://irc.freenode.net/kohana",
 		"source": "http://github.com/kohana/kohana"
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/zer0pants/kohana-migrations.git"
+		}
+	],
 	"require": {
 		"php": ">=5.4.0",
 		"kohana/core": "3.4.*",
@@ -30,7 +36,8 @@
 		"psr/log": "^1.0",
 		"zombor/kostache": "^4.0",
 		"tscms/email": "dev-3.3/master",
-		"twbs/bootstrap-sass": "^3.3"
+		"twbs/bootstrap-sass": "^3.3",
+		"zer0pants/kohana-migrations": "dev-3.4/develop"
 	},
 	"require-dev": {
 		"phing/phing": "dev-master",

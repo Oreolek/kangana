@@ -20,22 +20,22 @@ class Model_Task extends ORM {
       'model' => 'Client'
     )
   );
-  
+
   /**
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'date' => array(
-				array('not_empty'),
-				array('date'),
+        array('not_empty'),
+        array('date'),
       ),
       'status' => array(
         array('numeric')
       )
-		);
-	}
+    );
+  }
 
   /**
    * Array of field labels.

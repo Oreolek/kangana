@@ -9,23 +9,23 @@ class Model_Instant extends ORM {
   protected $belongs_to = array(
     'subscription'
   );
-  
+
   /**
    * @return array validation rules
    **/
   public function rules()
-	{
-		return array(
+  {
+    return array(
       'subject' => array(
-				array('not_empty'),
-				array('max_length', array(':value', 128)),
+        array('not_empty'),
+        array('max_length', array(':value', 128)),
       ),
       'text' => array(
-				array('not_empty'),
-				array('min_length', array(':value', 20)),
+        array('not_empty'),
+        array('min_length', array(':value', 20)),
       ),
-		);
-	}
+    );
+  }
 
   /**
    * Array of field labels.
@@ -47,7 +47,7 @@ class Model_Instant extends ORM {
     $this->sent = TRUE;
     return self::_send($address, $this->text, $this->subject, $token);
   }
-  
+
   /**
    * @param $address string or array of strings - email addresses
    * @param $text message body
