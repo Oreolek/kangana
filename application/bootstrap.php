@@ -60,7 +60,7 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
-Kohana::modules([
+$modules = [
   'application' => APPPATH,                         // Main application module
   'auth'        => $vendor_path.'kohana/auth',      // Basic authentication
   'cache'       => $vendor_path.'kohana/cache',     // Caching with multiple backends
@@ -70,14 +70,19 @@ Kohana::modules([
   'minion'      => $vendor_path.'kohana/minion',    // CLI Tasks
   'orm'         => $vendor_path.'kohana/orm',       // Object Relationship Mapping
   //'unittest'    => $vendor_path.'kohana/unittest',  // Unit testing
-  //'userguide'   => $vendor_path.'kohana/userguide', // User guide and API documentation
   'kostache'      => $vendor_path.'zombor/kostache', // Logic-less Mustache views
   'email'         => $vendor_path.'tscms/email',// Electronic mail class
   'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
   'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
   'migrations'    => MODPATH.'migrations',        // SQL migrations
   'core'        => SYSPATH,                         // Core system
-]);
+];
+if (Kohana::$environment === Kohana::DEVELOPMENT)
+{
+  $modules['userguide'] = $vendor_path.'kohana/userguide'; // User guide and API documentation
+}
+Kohana::modules($modules);
+unset($modules);
 /**
  * Set the default language
  */

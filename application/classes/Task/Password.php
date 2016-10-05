@@ -8,10 +8,10 @@
   **/
 class Task_Password extends Minion_Task
 {
-  protected $_options = array(
+  protected $_options = [
     'user' => 'admin',
     'password' => NULL,
-  );
+  ];
   
   public function build_validation(Validation $validation)
   {
@@ -22,15 +22,18 @@ class Task_Password extends Minion_Task
   /**
    * This is an admin password task
    *
-   * @return null
+   * @return void
    */
-  protected function _execute(array $params)
+  protected function _execute()
   {
+    $params = $this->get_options();
     $writer = new Config_File_Writer;
     Kohana::$config->attach($writer);
     $config = Kohana::$config->load('auth');
     $hash = hash_hmac($config->get('hash_method'), $params['password'], $config->get('hash_key'));
-    $config->set('users', array($params['user'] => $hash));
+    $users = $config->get('users');
+    $users[$params['user']] = $hash;
+    $config->set('users', $users);
     Kohana::$config->detach($writer);
     echo __('The password was successfully changed.');
   }
