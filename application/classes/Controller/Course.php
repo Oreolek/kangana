@@ -41,7 +41,7 @@ class Controller_Course extends Controller_Layout {
     $this->template->title = __('New course');
     $course = ORM::factory('Course');
     $letter = ORM::factory('Letter');
-    if ($this->request->method() === HTTP_Request::POST) {
+    if ($this->request->method() === Request::POST) {
       $course->values($this->request->post(), array('title', 'description'));
       $letter->values($this->request->post(), array('subject', 'text'));
       $course->price = 0;
@@ -148,7 +148,7 @@ class Controller_Course extends Controller_Layout {
     $this->template->errors = array();
     $model = ORM::factory('Client');
     
-    if ($this->request->method() === HTTP_Request::POST) {
+    if ($this->request->method() === Request::POST) {
       $model = ORM::factory('Client')->where('email', '=', $this->request->post('email'))->find();
       $model->values($this->request->post(), array_keys($controls));
       $model->customize();

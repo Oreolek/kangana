@@ -85,7 +85,7 @@ class Controller_Subscription extends Controller_Layout {
     $this->template->errors = array();
     $model = ORM::factory('Client');
     
-    if ($this->request->method() === HTTP_Request::POST) {
+    if ($this->request->method() === Request::POST) {
       $model = ORM::factory('Client')->where('email', '=', $this->request->post('email'))->find();
       $model->values($this->request->post(), array_keys($controls));
       $model->customize();

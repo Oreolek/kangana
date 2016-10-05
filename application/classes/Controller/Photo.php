@@ -47,7 +47,7 @@ class Controller_Photo extends Controller_Layout {
         'label' => 'Файл изображения'
       )
     );
-    if (HTTP_Request::POST == $this->request->method()) {
+    if (Request::POST == $this->request->method()) {
       $validation_post = Validation::factory($this->request->post())
         ->rules('name', array(
           array('not_empty'),
