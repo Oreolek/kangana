@@ -117,7 +117,7 @@ class View_Index extends View_Layout {
       return $this->items;
     }
   }
-  
+
   /**
    * Pagination: calculate current page
    **/
@@ -128,7 +128,7 @@ class View_Index extends View_Layout {
       return 1;
     return $current_page;
   }
-  
+
   protected function view_link_colwidth()
   {
     $columns = 3;

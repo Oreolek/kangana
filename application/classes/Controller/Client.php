@@ -5,7 +5,13 @@
  **/
 class Controller_Client extends Controller_Layout {
   protected $secure_actions = array(
-    'index','create', 'edit', 'delete', 'view'
+    'index',
+    'group',
+    'create',
+    'edit',
+    'delete',
+    'view',
+    'search',
   );
   protected $controls = array(
     'name' => 'input',
@@ -18,6 +24,15 @@ class Controller_Client extends Controller_Layout {
     $this->template->items = ORM::factory('Client')
       ->filter_by_page($this->request->param('page'))
       ->find_all();
+  }
+
+  public function action_group()
+  {
+    $this->template = new View_Client_Index;
+    $this->template->title = __('Clients');
+    $this->template->items = ORM::factory('Client')
+      ->filter_by_page($this->request->param('page'))
+      ->find_by_group($this->request->param('group_id'));
   }
 
   /**
@@ -78,7 +93,7 @@ class Controller_Client extends Controller_Layout {
       ->filter_by_page($this->request->param('page'))
       ->find_all();
   }
-  
+
   /**
    * Unsubscription link action.
    **/

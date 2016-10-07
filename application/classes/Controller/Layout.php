@@ -65,7 +65,7 @@ class Controller_Layout extends Controller {
     {
       $controls = $this->controls;
     }
-    
+
     if ($this->request->method() === Request::POST) {
       $model->values($this->request->post(), array_keys($controls));
       $model->customize();
