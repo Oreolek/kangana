@@ -18,11 +18,11 @@ class Controller_Group extends Controller_Layout {
   public function action_index()
   {
     $this->template = new View_Index;
-    $this->template->title = __('Groups');
+    $this->template->title = I18n::translate('Groups');
     $this->template->header = [
-      __('Group name'),
-      __('Edit'),
-      __('Delete'),
+      I18n::translate('Group name'),
+      I18n::translate('Edit'),
+      I18n::translate('Delete'),
     ];
     $this->template->items = ORM::factory('Group')
       ->filter_by_page($this->request->param('page'))
@@ -36,17 +36,17 @@ class Controller_Group extends Controller_Layout {
   {
     $this->template = new View_Edit;
     $this->template->model = ORM::factory('Group');
-    $this->template->title = __('New group');
+    $this->template->title = I18n::translate('New group');
     $this->_edit($this->template->model);
   }
 
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Edit group info');
+    $this->template->title = I18n::translate('Edit group info');
     $id = $this->request->param('id');
     $model = ORM::factory('Group', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -58,11 +58,11 @@ class Controller_Group extends Controller_Layout {
     $this->template = new View_Delete;
     $id = $this->request->param('id');
     $model = ORM::factory('Group', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Delete group');
+    $this->template->title = I18n::translate('Delete group');
     $this->template->content_title = $model->name;
     // $this->template->content = $model->email;
     // TODO - display a list of subscribers in group
@@ -89,7 +89,7 @@ class Controller_Group extends Controller_Layout {
   {
     $this->template = new View_Client_Index;
     $this->template->show_create = FALSE;
-    $this->template->title = __('Groups');
+    $this->template->title = I18n::translate('Groups');
     $query = $this->request->post('query');
     $this->template->items = ORM::factory('Group')
       ->search($query)

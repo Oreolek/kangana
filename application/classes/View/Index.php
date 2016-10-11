@@ -68,7 +68,7 @@ class View_Index extends View_Layout {
     $result = array();
     if (is_null($this->items) OR $this->items === FALSE OR count($this->items) === 0)
     {
-      return __('No objects found to show');
+      return I18n::translate('No objects found to show');
     };
     if ($this->item_count === count($this->items))
     {
@@ -87,7 +87,7 @@ class View_Index extends View_Layout {
    **/
   protected function show_item($item)
   {
-    if (!$item instanceof ORM)
+    if ( ! $item instanceof ORM)
     {
       return FALSE;
     }
@@ -101,8 +101,8 @@ class View_Index extends View_Layout {
     );
     if ($this->is_admin and $this->show_edit)
     {
-      $output['edit_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit'));
-      $output['delete_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'delete','id' => $item->id)), __('Delete'), array('class' => 'link_delete'));
+      $output['edit_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'edit','id' => $item->id)), I18n::translate('Edit'), array('class' => 'link_edit'));
+      $output['delete_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'delete','id' => $item->id)), I18n::translate('Delete'), array('class' => 'link_delete'));
     }
     return $output;
   }
@@ -132,7 +132,7 @@ class View_Index extends View_Layout {
   protected function get_current_page()
   {
     $current_page = Request::current()->param('page');
-    if (!$current_page)
+    if ( ! $current_page)
       return 1;
     return $current_page;
   }
@@ -140,11 +140,11 @@ class View_Index extends View_Layout {
   protected function view_link_colwidth()
   {
     $columns = 3;
-    if (!$this->show_date)
+    if ( ! $this->show_date)
     {
       $columns++;
     }
-    if (!Auth::instance()->logged_in('admin'))
+    if ( ! Auth::instance()->logged_in('admin'))
     {
       $columns = $columns + 2;
     }
@@ -155,7 +155,7 @@ class View_Index extends View_Layout {
   {
     if (Auth::instance()->logged_in())
     {
-      return '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'create')).'" class="link_new">'.__('Add').'</a>';
+      return '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'create')).'" class="link_new">'.I18n::translate('Add').'</a>';
     }
     return '';
   }

@@ -42,7 +42,7 @@ class Model_Letter extends ORM {
 
   public function customize()
   {
-    if(empty($this->order))
+    if($this->order == 0)
     {
       $this->order = Model_Course::count_letters($this->course_id) + 1;
     }
@@ -67,7 +67,7 @@ class Model_Letter extends ORM {
    **/
   public static function _send($address, $text, $subject, $id, $token = '')
   {
-    Log::instance()->add(Log::NOTICE, __('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
+    Log::instance()->add(Log::NOTICE, I18n::translate('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
     $sender = Kohana::$config->load('email')->get('sender');
     $template = new View_Letter_View;
     $template->content = $text;

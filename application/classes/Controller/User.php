@@ -16,21 +16,21 @@ class Controller_User extends Controller_Layout {
       $this->redirect('post/index');
     }
     $this->template = new View_Edit;
-    $this->template->title = __('User login');
+    $this->template->title = I18n::translate('User login');
     $this->template->errors = array();
     $this->template->custom_controls = array(
       'username' => array(
         'type' => 'input',
-        'label' => __('Username'),
+        'label' => I18n::translate('Username'),
         'value' => ''
       ),
       'password' => array(
         'type' => 'password',
-        'label' => __('Password'),
+        'label' => I18n::translate('Password'),
         'value' => ''
       ),
     );
-    if (Request::POST == $this->request->method()) {
+    if ($this->request->method() === Request::POST) {
       $validation = Validation::factory($this->request->post())
         ->rules('username', array(
           array('not_empty'),
@@ -44,7 +44,7 @@ class Controller_User extends Controller_Layout {
         }
         else
         {
-          array_push($this->template->errors, __('Authorization error. Please check user login and password.'));
+          array_push($this->template->errors, I18n::translate('Authorization error. Please check user login and password.'));
         }
       }
       else

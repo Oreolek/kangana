@@ -15,8 +15,8 @@ class ORM extends Kohana_ORM {
    * @param array $_POST data
    * @return Validation
    **/
-  public function validate_create($post_data) 
-	{
+  public function validate_create($post_data)
+  {
 		$validation = Validation::factory($post_data);
     $rules = $this->rules();
     foreach ($rules as $field => $rules)
@@ -122,7 +122,7 @@ class ORM extends Kohana_ORM {
 			return FALSE;
 		}
 	}
-  
+
   /**
    * Loads model(s) from array of IDs or single ID.
    **/
@@ -131,7 +131,7 @@ class ORM extends Kohana_ORM {
     if (empty($id))
       return FALSE;
     if (is_array($id))
-      return $this->where($this->_object_name .'.'. $this->_primary_key, 'IN', $id)->find_all();
+      return $this->where($this->_object_name.'.'.$this->_primary_key, 'IN', $id)->find_all();
     return $this->where('id', '=', $id)->find();
   }
 
@@ -154,5 +154,7 @@ class ORM extends Kohana_ORM {
   /**
    * A utility function to customize model before saving it
    **/
-  public function customize() {}
+  public function customize()
+  {
+  }
 }

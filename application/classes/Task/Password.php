@@ -12,7 +12,7 @@ class Task_Password extends Minion_Task
     'user' => 'admin',
     'password' => NULL,
   ];
-  
+
   public function build_validation(Validation $validation)
   {
     return parent::build_validation($validation)
@@ -35,6 +35,6 @@ class Task_Password extends Minion_Task
     $users[$params['user']] = $hash;
     $config->set('users', $users);
     Kohana::$config->detach($writer);
-    echo __('The password was successfully changed.');
+    echo I18n::translate('The password was successfully changed.');
   }
 }

@@ -102,7 +102,7 @@ class Model_Task extends ORM {
         while ($i < $cnt)
         {
           $retval = $letters[$i];
-          if (!in_array($retval, $sent_letters))
+          if ( ! in_array($retval, $sent_letters))
           {
             break;
           }
@@ -112,7 +112,7 @@ class Model_Task extends ORM {
         {
           return $retval;
         }
-        elseif( $i < count($letters))
+        elseif($i < count( $letters ))
         {
           return $letters[$i];
         }
@@ -158,7 +158,7 @@ class Model_Task extends ORM {
       ->and_where(DB::expr('DATEDIFF(CURDATE(), `date`)'), '=', $period)
       ->execute()
       ->get('date');
-    if (!empty($check))
+    if ( ! empty($check))
       return TRUE;
     return FALSE;
   }

@@ -23,7 +23,7 @@ return array
       'password'   => '',
       'persistent' => FALSE,
     ),
-    'table_prefix' => '', //currently not implemented
+    'table_prefix' => '', // currently not implemented
     'charset'      => 'utf8',
     'caching'      => TRUE,
     'profiling'    => FALSE,

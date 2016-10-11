@@ -2,10 +2,11 @@
 require_once '../../modules/unittest/bootstrap.php';
 class PHPUnit_Extensions_Database_Operation_MySQL55Truncate extends PHPUnit_Extensions_Database_Operation_Truncate
 {
-  public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet) {
+  public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $data_set)
+  {
     $connection->getConnection()->query("SET @PHAKE_PREV_foreign_key_checks = @@foreign_key_checks");
     $connection->getConnection()->query("SET foreign_key_checks = 0");
-    parent::execute($connection, $dataSet);
+    parent::execute($connection, $data_set);
     $connection->getConnection()->query("SET foreign_key_checks = @PHAKE_PREV_foreign_key_checks");
   }
 }

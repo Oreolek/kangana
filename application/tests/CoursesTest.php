@@ -15,13 +15,14 @@ class CoursesTest extends Unittest_Database_TestCase
     return $this->createXMLDataSet(Kohana::find_file('tests', 'test_data/courses', 'xml'));
   }
 
-  public function getSetUpOperation() {
+  public function get_setup_operation()
+  {
     // whether you want cascading truncates
     // set false if unsure
-    $cascadeTruncates = false;
+    $cascade_truncates = false;
 
     return new PHPUnit_Extensions_Database_Operation_Composite(array(
-      new PHPUnit_Extensions_Database_Operation_MySQL55Truncate($cascadeTruncates),
+      new PHPUnit_Extensions_Database_Operation_MySQL55Truncate($cascade_truncates),
       PHPUnit_Extensions_Database_Operation_Factory::INSERT()
     ));
   }
@@ -29,14 +30,14 @@ class CoursesTest extends Unittest_Database_TestCase
   /**
    * @group Mail
    **/
-  function testPrepareCourse()
+  function test_prepare_course()
   {
     Minion_Task::factory(array('task' => 'prepare'))->execute();
     $status = DB::select('status')->from('tasks')->where('letter_id', '=', '1')->and_where('client_id','=','1')->execute()->get('status');
     $this->assertEquals(Model_Task::STATUS_PENDING, $status);
   }
 
-  function testSendCourse()
+  function test_send_course()
   {
     $status = DB::select('status')->from('tasks')->where('letter_id', '=', '1')->and_where('client_id','=','1')->execute()->get('status');
     if (is_null($status))

@@ -16,13 +16,13 @@ class Controller_Instant extends Controller_Layout {
     $this->template = new View_Edit;
     $id = $this->request->param('id');
     $subscription = ORM::factory('Subscription', $id);
-    if (!$subscription->loaded())
+    if ( ! $subscription->loaded())
     {
       $this->redirect('error/500');
     }
     $this->template->model = ORM::factory('Instant');
     $this->template->model->subscription_id = $id;
-    $this->template->title = __('New letter');
+    $this->template->title = I18n::translate('New letter');
     $this->_edit($this->template->model);
   }
   public function action_index()
@@ -30,11 +30,11 @@ class Controller_Instant extends Controller_Layout {
     $this->template = new View_Instant_Index;
     $id = $this->request->param('id');
     $model = ORM::factory('Subscription', $id)->with('instants');
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Subscription').' '.$model->title;
+    $this->template->title = I18n::translate('Subscription').' '.$model->title;
     $this->template->subscription_id = $id;
     $this->template->items = $model->instants
       ->filter_by_page($this->request->param('page'))
@@ -45,10 +45,10 @@ class Controller_Instant extends Controller_Layout {
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Instant editing');
+    $this->template->title = I18n::translate('Instant editing');
     $id = $this->request->param('id');
     $model = ORM::factory('Instant', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -58,10 +58,10 @@ class Controller_Instant extends Controller_Layout {
   public function action_send()
   {
     $this->template = new View_Message;
-    $this->template->title = __('Send instant to all subscribers');
+    $this->template->title = I18n::translate('Send instant to all subscribers');
     $id = $this->request->param('id');
     $model = ORM::factory('Instant', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -72,6 +72,6 @@ class Controller_Instant extends Controller_Layout {
       $model->send($client->email, $client->token);
     }
     $model->save();
-    $this->template->message = __('The instant has been sent.');
+    $this->template->message = I18n::translate('The instant has been sent.');
   }
 }

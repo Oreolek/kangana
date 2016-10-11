@@ -45,7 +45,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Input;
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_control($template);
   }
@@ -53,7 +53,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Input;
     $template->name = $name;
-    $template->label = __(Arr::get($attributes, 'label'));
+    $template->label = I18n::translate(Arr::get($attributes, 'label'));
     $template->value = $value;
     return self::render_control($template);
   }
@@ -61,7 +61,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Date;
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = strftime('%Y-%m-%dT%H:%M:%S', strtotime($model->$name));
     return self::render_control($template);
   }
@@ -69,7 +69,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Password;
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_control($template);
   }
@@ -77,7 +77,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Password;
     $template->name = $name;
-    $template->label = __(Arr::get($attributes, 'label'));
+    $template->label = I18n::translate(Arr::get($attributes, 'label'));
     $template->value = $value;
     return self::render_control($template);
   }
@@ -86,7 +86,7 @@ class Form extends Kohana_Form {
     $template = new View_Form_Input;
     $template->_view = 'form/inline/input';
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_inline_control($template);
   }
@@ -95,7 +95,7 @@ class Form extends Kohana_Form {
     $template = new View_Form_Password;
     $template->_view = 'form/inline/password';
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_inline_control($template);
   }
@@ -103,7 +103,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Textarea;
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_control($template);
   }
@@ -112,7 +112,7 @@ class Form extends Kohana_Form {
     $template = new View_Form_Textarea;
     $template->_view = 'form/inline/textarea';
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_inline_control($template);
   }
@@ -121,7 +121,7 @@ class Form extends Kohana_Form {
     $template = new View_Form_Textarea;
     $template->_view = 'form/inline/textarea';
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_inline_control($template);
   }
@@ -134,7 +134,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Textarea;
     $template->name = $name;
-    $template->label = __(Arr::get($attributes, 'label'));
+    $template->label = I18n::translate(Arr::get($attributes, 'label'));
     $template->value = $value;
     return self::render_control($template);
   }
@@ -146,7 +146,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_WYSIWYG;
     $template->name = $name;
-    $template->label = __($model->get_label($name));
+    $template->label = I18n::translate($model->get_label($name));
     $template->value = $model->$name;
     return self::render_control($template);
   }
@@ -157,7 +157,7 @@ class Form extends Kohana_Form {
    **/
   public static function orm_checkbox($model, $name)
   {
-    return self::checkbox($name, 1, (boolean) $model->$name, array('label' => $model->get_label($name)));
+    return self::checkbox($name, 1, (bool) $model->$name, array('label' => $model->get_label($name)));
   }
 
   /**
@@ -167,9 +167,9 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Checkbox;
     $template->name = $name;
-    $template->label = __(Arr::get($attributes, 'label'));
-    $template->is_selected = (boolean) $checked;
-    $template->value = (boolean) $value;
+    $template->label = I18n::translate(Arr::get($attributes, 'label'));
+    $template->is_selected = (bool) $checked;
+    $template->value = (bool) $value;
     return self::render_control($template);
   }
 
@@ -177,7 +177,7 @@ class Form extends Kohana_Form {
   {
     $template = new View_Form_Select;
     $template->name = $name;
-    $template->label = __(Arr::get($attributes, 'label'));
+    $template->label = I18n::translate(Arr::get($attributes, 'label'));
     $template->options = array();
     foreach ($options as $value => $text)
     {
@@ -207,12 +207,12 @@ class Form extends Kohana_Form {
     }
     $parameters['class'] = $class;
     $parameters['type'] = $type;
-    return parent::button($name, __($text), $parameters);
+    return parent::button($name, I18n::translate($text), $parameters);
   }
 
   public static function btn_submit($text = 'Send', $is_default = TRUE)
   {
-    return self::btn('submit', __($text), 'primary', 'submit');
+    return self::btn('submit', I18n::translate($text), 'primary', 'submit');
   }
 
   protected static function render_control($template)

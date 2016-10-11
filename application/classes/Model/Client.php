@@ -69,7 +69,8 @@ class Model_Client extends ORM {
    * A function to search by group ID
    * @param int $group_id
    */
-  public function find_by_group($group_id) {
+  public function find_by_group($group_id)
+  {
     return $this
       ->with('groups')
       ->find()

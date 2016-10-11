@@ -15,18 +15,22 @@ class View_Layout {
   /**
    * Inherited paging function
    **/
-  public function get_paging() {}
+  public function get_paging()
+  {
+  }
 
   public function has_errors()
   {
-    return !empty($this->errors);
+    return ! empty($this->errors);
   }
 
   public function site_title()
   {
     return Kohana::$config->load('common.title');
   }
-  public function stylesheet() {
+
+  public function stylesheet()
+  {
     return Html::style("/style.css")."\n".Html::style("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
   }
 
@@ -39,8 +43,9 @@ class View_Layout {
   {
     $scripts = array_merge ($this->base_scripts, $this->scripts);
     $temp = "";
-    foreach($scripts as $script):
-      if (strstr($script, '://') === FALSE) //no protocol given, script is local
+    foreach($scripts as $script)
+    {
+      if (strstr($script, '://') === FALSE) // no protocol given, script is local
       {
         if ($script === 'jquery') // CDN shortcut
         {
@@ -55,7 +60,7 @@ class View_Layout {
       {
         $temp .= HTML::script($script)."\n";
       }
-    endforeach;
+    };
     return $temp;
   }
 
@@ -69,18 +74,18 @@ class View_Layout {
     $result = array();
     $navigation = array(
     );
-    if (!Auth::instance()->logged_in())
+    if ( ! Auth::instance()->logged_in())
     {
       $navigation = array_merge($navigation, array('Вход' => 'user/signin'));
     }
     else
     {
       $navigation = array_merge($navigation, array(
-        __('New course') => 'course/simple',
-        __('Courses') => 'course/index',
-        __('Subscriptions') => 'subscription/index',
-        __('Clients') => 'client/index',
-        __('Groups') => 'group/index',
+        I18n::translate('New course') => 'course/simple',
+        I18n::translate('Courses') => 'course/index',
+        I18n::translate('Subscriptions') => 'subscription/index',
+        I18n::translate('Clients') => 'client/index',
+        I18n::translate('Groups') => 'group/index',
       ));
     }
 
@@ -120,8 +125,8 @@ class View_Layout {
     if (Auth::instance()->logged_in())
     {
       return array(
-        'button_text' => __('Submit'),
-        'input_text' => __('Search'),
+        'button_text' => I18n::translate('Submit'),
+        'input_text' => I18n::translate('Search'),
         'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search'))
       );
     }

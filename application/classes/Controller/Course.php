@@ -13,11 +13,11 @@ class Controller_Course extends Controller_Layout {
     'period' => 'input',
     'price' => 'input'
   );
-  
+
   public function action_index()
   {
     $this->template = new View_Course_Index;
-    $this->template->title = __('Course index');
+    $this->template->title = I18n::translate('Course index');
     $this->template->items = ORM::factory('Course')
       ->filter_by_page($this->request->param('page'))
       ->find_all();
@@ -27,7 +27,7 @@ class Controller_Course extends Controller_Layout {
   {
     $this->template = new View_Edit;
     $this->template->model = ORM::factory('Course');
-    $this->template->title = __('New course');
+    $this->template->title = I18n::translate('New course');
     $this->_edit($this->template->model);
   }
 
@@ -38,7 +38,7 @@ class Controller_Course extends Controller_Layout {
   {
     $this->template = new View_Course_Simple;
     $this->template->controls = array();
-    $this->template->title = __('New course');
+    $this->template->title = I18n::translate('New course');
     $course = ORM::factory('Course');
     $letter = ORM::factory('Letter');
     if ($this->request->method() === Request::POST) {
@@ -84,10 +84,10 @@ class Controller_Course extends Controller_Layout {
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Edit course');
+    $this->template->title = I18n::translate('Edit course');
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -99,11 +99,11 @@ class Controller_Course extends Controller_Layout {
     $this->template = new View_Delete;
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Delete course');
+    $this->template->title = I18n::translate('Delete course');
     $this->template->content_title = $model->title;
     $this->template->content = $model->description;
 
@@ -118,11 +118,11 @@ class Controller_Course extends Controller_Layout {
     $this->template = new View_Letter_Index;
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id)->with('letters');
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Course').' '.$model->title;
+    $this->template->title = I18n::translate('Course').' '.$model->title;
     $this->template->course_id = $id;
     $this->template->items = $model->letters
       ->filter_by_page($this->request->param('page'))
@@ -135,7 +135,7 @@ class Controller_Course extends Controller_Layout {
     $this->template = new View_Course_Subscribe;
     $id = $this->request->param('id');
     $course = ORM::factory('Course', $id);
-    if (!$course->loaded())
+    if ( ! $course->loaded())
     {
       $this->redirect('error/404');
     }
@@ -147,7 +147,7 @@ class Controller_Course extends Controller_Layout {
     $this->template->controls = $controls;
     $this->template->errors = array();
     $model = ORM::factory('Client');
-    
+
     if ($this->request->method() === Request::POST) {
       $model = ORM::factory('Client')->where('email', '=', $this->request->post('email'))->find();
       $model->values($this->request->post(), array_keys($controls));
@@ -158,7 +158,7 @@ class Controller_Course extends Controller_Layout {
         if ($validation->check())
         {
           $model->save();
-          if (!$model->has('course', $course))
+          if ( ! $model->has('course', $course))
           {
             $model->add('course', $course);
           }
@@ -183,7 +183,7 @@ class Controller_Course extends Controller_Layout {
       }
       if (empty($this->template->errors))
       {
-        Session::instance()->set('flash_success', __('You were subscribed. A welcome email has been sent to you. Please check your inbox.'));
+        Session::instance()->set('flash_success', I18n::translate('You were subscribed. A welcome email has been sent to you. Please check your inbox.'));
       }
     }
     $this->template->model = $model;

@@ -56,7 +56,7 @@ class Model_Instant extends ORM {
    **/
   public static function _send($address, $text, $subject, $token = '')
   {
-    Log::instance()->add(Log::NOTICE, __('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
+    Log::instance()->add(Log::NOTICE, I18n::translate('Sending letter with subject "%subject" to address %address', array('%subject' => $subject, '%address' => $address)));
     $sender = Kohana::$config->load('email')->get('sender');
     $template = new View_Letter_View;
     $template->content = $text;

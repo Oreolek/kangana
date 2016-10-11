@@ -25,7 +25,7 @@ class Task_Prepare extends Minion_Task
     $period = Model_Course::get_period($course);
     $clients = Model_Course::get_client_ids($course, $period);
     $letters = Model_Course::get_letter_ids($course);
-    if (!is_array($clients))
+    if ( ! is_array($clients))
     {
       $this->prepare_letters($clients, $letters, $period);
     }
@@ -65,7 +65,7 @@ class Task_Prepare extends Minion_Task
     {
       // get courses which have subscribers
       $courses = Model_Course::get_ids();
-      if (!is_array($courses))
+      if ( ! is_array($courses))
       {
         $this->prepare_course($courses);
       }
@@ -74,7 +74,7 @@ class Task_Prepare extends Minion_Task
         foreach ($courses as $course)
         {
           $this->prepare_course($course);
-        } 
+        }
       }
       $db->commit();
     }

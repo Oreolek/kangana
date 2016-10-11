@@ -12,11 +12,11 @@ class Controller_Subscription extends Controller_Layout {
     'description' => 'textarea',
 //    'price' => 'input'
   );
-  
+
   public function action_index()
   {
     $this->template = new View_Subscription_Index;
-    $this->template->title = __('Subscription index');
+    $this->template->title = I18n::translate('Subscription index');
     $this->template->items = ORM::factory('Subscription')
       ->filter_by_page($this->request->param('page'))
       ->find_all();
@@ -26,17 +26,17 @@ class Controller_Subscription extends Controller_Layout {
   {
     $this->template = new View_Edit;
     $this->template->model = ORM::factory('Subscription');
-    $this->template->title = __('New subscription');
+    $this->template->title = I18n::translate('New subscription');
     $this->_edit($this->template->model);
   }
 
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Edit subscription');
+    $this->template->title = I18n::translate('Edit subscription');
     $id = $this->request->param('id');
     $model = ORM::factory('Subscription', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -48,11 +48,11 @@ class Controller_Subscription extends Controller_Layout {
     $this->template = new View_Delete;
     $id = $this->request->param('id');
     $model = ORM::factory('Subscription', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Delete subscription');
+    $this->template->title = I18n::translate('Delete subscription');
     $this->template->content_title = $model->title;
     $this->template->content = $model->description;
 
@@ -72,11 +72,11 @@ class Controller_Subscription extends Controller_Layout {
     $this->template = new View_Course_Subscribe;
     $id = $this->request->param('id');
     $subscription = ORM::factory('Subscription', $id);
-    if (!$subscription->loaded())
+    if ( ! $subscription->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Subscribe to ').$subscription->title;
+    $this->template->title = I18n::translate('Subscribe to ').$subscription->title;
     $controls = array(
       'name' => 'input',
       'email' => 'input'
@@ -84,7 +84,7 @@ class Controller_Subscription extends Controller_Layout {
     $this->template->controls = $controls;
     $this->template->errors = array();
     $model = ORM::factory('Client');
-    
+
     if ($this->request->method() === Request::POST) {
       $model = ORM::factory('Client')->where('email', '=', $this->request->post('email'))->find();
       $model->values($this->request->post(), array_keys($controls));
@@ -95,14 +95,14 @@ class Controller_Subscription extends Controller_Layout {
         if ($validation->check())
         {
           $model->save();
-          if (!$model->has('subscription', $subscription))
+          if ( ! $model->has('subscription', $subscription))
           {
             $model->add('subscription', $subscription);
           }
           $instant = ORM::factory('Instant');
           $instant->subscription_id = $id;
-          $instant->subject = __('You were subscribed to ').$subscription->title;
-          $instant->text = __('From now on you will receive letters from this subscription.');
+          $instant->subject = I18n::translate('You were subscribed to ').$subscription->title;
+          $instant->text = I18n::translate('From now on you will receive letters from this subscription.');
           $instant->send($model->email, $model->token);
           // instant is not saved because it's just a welcome email
         }
@@ -117,7 +117,7 @@ class Controller_Subscription extends Controller_Layout {
       }
       if (empty($this->template->errors))
       {
-        Session::instance()->set('flash_success', __('You were subscribed. A welcome email has been sent to you. Please check your inbox.'));
+        Session::instance()->set('flash_success', I18n::translate('You were subscribed. A welcome email has been sent to you. Please check your inbox.'));
       }
     }
     $this->template->model = $model;

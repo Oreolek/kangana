@@ -19,14 +19,14 @@ class Controller_Client extends Controller_Layout {
   public function action_index()
   {
     $this->template = new View_Client_Index;
-    $this->template->title = __('Clients');
+    $this->template->title = I18n::translate('Clients');
     $group_id = $this->request->post('group_id');
     if ($group_id) {
       $group = ORM::factory('Group', $group_id);
-      if (!$group->loaded()) {
+      if ( ! $group->loaded()) {
         $this->redirect('error/404');
       }
-      $this->template->title .= ' - ' . $group->name;
+      $this->template->title .= ' - '.$group->name;
       $this->template->items = $group
         ->clients
         ->filter_by_page($this->request->param('page'))
@@ -45,17 +45,17 @@ class Controller_Client extends Controller_Layout {
   {
     $this->template = new View_Edit;
     $this->template->model = ORM::factory('Client');
-    $this->template->title = __('New client');
+    $this->template->title = I18n::translate('New client');
     $this->_edit($this->template->model);
   }
 
   public function action_edit()
   {
     $this->template = new View_Edit;
-    $this->template->title = __('Edit client info');
+    $this->template->title = I18n::translate('Edit client info');
     $id = $this->request->param('id');
     $model = ORM::factory('Client', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
@@ -67,11 +67,11 @@ class Controller_Client extends Controller_Layout {
     $this->template = new View_Delete;
     $id = $this->request->param('id');
     $model = ORM::factory('Client', $id);
-    if (!$model->loaded())
+    if ( ! $model->loaded())
     {
       $this->redirect('error/404');
     }
-    $this->template->title = __('Delete client');
+    $this->template->title = I18n::translate('Delete client');
     $this->template->content_title = $model->name;
     $this->template->content = $model->email;
 
@@ -89,7 +89,7 @@ class Controller_Client extends Controller_Layout {
   {
     $this->template = new View_Client_Index;
     $this->template->show_create = FALSE;
-    $this->template->title = __('Clients');
+    $this->template->title = I18n::translate('Clients');
     $query = $this->request->post('query');
     $this->template->items = ORM::factory('Client')
       ->search($query)

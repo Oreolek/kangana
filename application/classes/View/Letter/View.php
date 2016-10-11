@@ -24,22 +24,22 @@ class View_Letter_View extends View {
    **/
   public $id = NULL;
   public $scripts = array();
-  
+
   public function view_link()
   {
-    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view', 'id' => $this->id), TRUE), __('Problems viewing this email? Click here.'));
+    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'view', 'id' => $this->id), TRUE), I18n::translate('Problems viewing this email? Click here.'));
   }
 
   public function get_content()
   {
     return Kostache::factory()->render($this->content);
   }
-  
+
   public function unsubscribe()
   {
     return self::unsubscribe_link($this->id, $this->address, $this->token);
   }
-  
+
   public static function unsubscribe_link($id, $address, $token)
   {
     return HTML::anchor(
@@ -47,7 +47,7 @@ class View_Letter_View extends View {
         'email' => $address,
         'token' => $token
       )),
-      __('Tired of receiving these emails? Click this link to unsubscribe.')
+      I18n::translate('Tired of receiving these emails? Click this link to unsubscribe.')
     );
   }
 }

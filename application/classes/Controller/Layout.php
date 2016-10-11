@@ -15,19 +15,15 @@ class Controller_Layout extends Controller {
   {
     parent::before();
     $action_name = $this->request->action();
-    if (
-      Kohana::$environment === Kohana::PRODUCTION &&
-      is_array($this->secure_actions) &&
-      in_array($action_name, $this->secure_actions, TRUE)
-    )
+    if (Kohana::$environment === Kohana::PRODUCTION
+      AND is_array($this->secure_actions)
+      AND in_array($action_name, $this->secure_actions, TRUE))
     {
-      if ( Auth::instance()->logged_in() === FALSE)
+      if (Auth::instance()->logged_in() === FALSE)
       {
         $this->redirect('user/signin');
-      }
-      else
-      {
-        //user is clear to go but his pages are cache-sensitive
+      } else {
+        // user is clear to go but his pages are cache-sensitive
         $this->is_private = TRUE;
       }
     }
@@ -36,7 +32,7 @@ class Controller_Layout extends Controller {
   {
     if ($this->auto_render)
     {
-      if (!empty($this->controls) && empty($this->template->controls))
+      if ( ! empty($this->controls) AND empty($this->template->controls))
       {
         $this->template->controls = $this->controls;
       }
@@ -55,9 +51,9 @@ class Controller_Layout extends Controller {
    **/
   protected function _edit($model, $controls = NULL)
   {
-    if (!($model instanceof ORM))
+    if ( ! ($model instanceof ORM))
     {
-      Log::instance()->add(Log::ERROR, __('Attempt to call _edit() on non-ORM model. Parameter class should be ORM, not  ').get_class($model).'.');
+      Log::instance()->add(Log::ERROR, I18n::translate('Attempt to call _edit() on non-ORM model. Parameter class should be ORM, not  ').get_class($model).'.');
       $this->redirect('error/500');
     }
     $this->template->errors = array();

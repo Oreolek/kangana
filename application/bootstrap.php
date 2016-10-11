@@ -64,12 +64,12 @@ $modules = [
   'application' => APPPATH,                         // Main application module
   'auth'        => $vendor_path.'kohana/auth',      // Basic authentication
   'cache'       => $vendor_path.'kohana/cache',     // Caching with multiple backends
-  //'codebench'   => $vendor_path.'kohana/codebench', // Benchmarking tool
+  // 'codebench'   => $vendor_path.'kohana/codebench', // Benchmarking tool
   'database'    => $vendor_path.'kohana/database',  // Database access
-  //'image'       => $vendor_path.'kohana/image',     // Image manipulation
+  // 'image'       => $vendor_path.'kohana/image',     // Image manipulation
   'minion'      => $vendor_path.'kohana/minion',    // CLI Tasks
   'orm'         => $vendor_path.'kohana/orm',       // Object Relationship Mapping
-  //'unittest'    => $vendor_path.'kohana/unittest',  // Unit testing
+  // 'unittest'    => $vendor_path.'kohana/unittest',  // Unit testing
   'kostache'      => $vendor_path.'zombor/kostache', // Logic-less Mustache views
   'email'         => $vendor_path.'tscms/email',// Electronic mail class
   'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
@@ -87,19 +87,6 @@ unset($modules);
  * Set the default language
  */
 I18n::lang('ru');
-
-if ( ! function_exists('__'))
-{
-  /**
-   * I18n translate alias function.
-   *
-   * @deprecated 3.4 Use I18n::translate() instead
-   */
-  function __($string, array $values = NULL, $lang = 'en-us')
-  {
-    return I18n::translate($string, $values, $lang);
-  }
-}
 
 if (isset($_SERVER['SERVER_PROTOCOL']))
 {
@@ -135,8 +122,8 @@ Kohana::init(array(
   'base_url'   => '/',
   'index_file' => false,
   'errors'     => TRUE,
-  'profile'    => (Kohana::$environment == Kohana::DEVELOPMENT), 
-  'caching'    => (Kohana::$environment == Kohana::PRODUCTION) 
+  'profile'    => (Kohana::$environment == Kohana::DEVELOPMENT),
+  'caching'    => (Kohana::$environment == Kohana::PRODUCTION)
 ));
 
 /**
@@ -162,12 +149,12 @@ Cookie::$salt = 'YehsmJK:*$jel_@dj';
  * defaults for the URI.
  */
 Route::set('minion', 'minion(/<action>)', array('action' => '.+'))
-  ->defaults(array( 
+  ->defaults(array(
     'controller' => 'Minion',
   ));
 
 Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++','message' => '.+'))
-  ->defaults(array( 
+  ->defaults(array(
     'controller' => 'Error',
   ));
 

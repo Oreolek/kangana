@@ -35,7 +35,7 @@ class View_Edit extends View_Layout {
     }
     foreach ($this->custom_controls as $key => $value)
     {
-      if (!isset($value['value']))
+      if ( ! isset($value['value']))
       {
         $value['value'] = '';
       }
