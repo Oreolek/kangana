@@ -9,6 +9,27 @@ class View_Client_Index extends View_Index {
   protected $is_admin = TRUE; // admin only view
   public $show_date = FALSE;
   public $subscription_id;
+  public $group;
+  public function get_header()
+  {
+    return array(
+      __('Name'),
+      __('Email'),
+      __('Edit'),
+      __('Delete')
+    );
+  }
+
+  /**
+   * Group search field
+   */
+  public function groups() {
+    return Form::open()
+      . Form::select('group_id', ORM::factory('Group')->find_all()->as_array('id', 'name'))
+      . Form::submit('s', __('Submit'))
+      . Form::close();
+  }
+
   /**
    * An internal function to prepare item data.
    **/

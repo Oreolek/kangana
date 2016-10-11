@@ -11,12 +11,12 @@ class View_Layout {
   public $base_scripts = array(
   );
   public $errors;
- 
+
   /**
    * Inherited paging function
    **/
   public function get_paging() {}
-  
+
   public function has_errors()
   {
     return !empty($this->errors);
@@ -80,6 +80,7 @@ class View_Layout {
         __('Courses') => 'course/index',
         __('Subscriptions') => 'subscription/index',
         __('Clients') => 'client/index',
+        __('Groups') => 'group/index',
       ));
     }
 
@@ -121,7 +122,7 @@ class View_Layout {
       return array(
         'button_text' => __('Submit'),
         'input_text' => __('Search'),
-        'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search')) 
+        'action' => Route::url('default', array('controller' => 'Client', 'action' => 'search'))
       );
     }
   }

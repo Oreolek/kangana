@@ -56,3 +56,15 @@ footer {
     }
   }
 }
+.groupform {
+  margin-top: -3em;
+  float: right;
+  width: 50%;
+  .form-group {
+    width: 50%;
+    display: inline-block;
+  }
+  input {
+    margin-right: 1em;
+  }
+}

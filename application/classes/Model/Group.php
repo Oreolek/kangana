@@ -19,10 +19,10 @@ class Model_Group extends ORM {
   public function rules()
   {
     return array(
-      'title' => array(
-	array('not_empty'),
-	array('min_length', array(':value', 4)),
-	array('max_length', array(':value', 255)),
+      'name' => array(
+      	array('not_empty'),
+      	array('min_length', array(':value', 4)),
+      	array('max_length', array(':value', 255)),
       ),
     );
   }
@@ -32,7 +32,7 @@ class Model_Group extends ORM {
    * Used in forms.
    **/
   protected $_labels = array(
-    'title' => 'Title',
+    'name' => 'Name',
   );
 
   public static function count($id)

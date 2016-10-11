@@ -1,10 +1,10 @@
-<?php defined('SYSPATH') or die('No direct script access.'); 
+<?php defined('SYSPATH') or die('No direct script access.');
 /**
  * Redefined Form helper for Bootstrap-compliant and ORM generation.
- * @package    Oreolek 
+ * @package    Oreolek
  * @category   Helpers
  **/
- 
+
 class Form extends Kohana_Form {
   public static function orm_input($model, $name, $type = 'input')
   {
@@ -179,12 +179,12 @@ class Form extends Kohana_Form {
     $template->name = $name;
     $template->label = __(Arr::get($attributes, 'label'));
     $template->options = array();
-    foreach ($options as $name => $value)
+    foreach ($options as $value => $text)
     {
       $template->options[] = array(
-        'name' => $name,
         'value' => $value,
-        'is_selected' => ($name == $selected)
+        'text' => $text,
+        'is_selected' => ($value == $selected)
       );
     }
     return self::render_control($template);
@@ -214,7 +214,7 @@ class Form extends Kohana_Form {
   {
     return self::btn('submit', __($text), 'primary', 'submit');
   }
-  
+
   protected static function render_control($template)
   {
     $renderer = Kostache_Layout::factory('form/control');

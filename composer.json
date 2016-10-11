@@ -42,7 +42,8 @@
 	"require-dev": {
 		"phing/phing": "dev-master",
 		"kohana/unittest": "3.4.*",
-		"kohana/userguide": "3.4.*"
+		"kohana/userguide": "3.4.*",
+    "kohana/coding-standards": "*"
 	},
 	"minimum-stability": "dev",
 	"extra": {

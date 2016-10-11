@@ -22,6 +22,10 @@ class View_Index extends View_Layout {
    * Index description
    **/
   public $content = '';
+  /**
+   * Table header
+   */
+  public $header = NULL;
 
   protected $is_admin;
 
@@ -49,6 +53,14 @@ class View_Index extends View_Layout {
       $i++;
     }
     return $output;
+  }
+
+  /**
+   * Table header
+   */
+  public function get_header()
+  {
+    return $this->header;
   }
 
   public function get_items()
@@ -87,10 +99,6 @@ class View_Index extends View_Layout {
     $output = array(
       'view_link' => HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'view','id' => $item->id)), $item->name, array('class' => 'link_view')),
     );
-    if ($this->show_date)
-    {
-      $output['date'] = $item->posted_at;
-    }
     if ($this->is_admin and $this->show_edit)
     {
       $output['edit_link'] = HTML::anchor(Route::url('default', array('controller' => Request::current()->controller(), 'action' => 'edit','id' => $item->id)), __('Edit'), array('class' => 'link_edit'));

@@ -4,17 +4,23 @@
 <div class="hyphenate">
   {{{content}}}
 </div>
-<div class="table_index">
+<table class="table">
+  <thead>
+{{#get_header}}
+    <th>
+      {{.}}
+    </th>
+{{/get_header}}
+  </thead>
+  <tbody>
 {{#get_items}}
-  <div class="table_row">
-    {{#date}}
-      <div class="date">{{date}}</div>
-    {{/date}}
-    <div class="hyphenate">{{{view_link}}}</div>
+  <tr>
+    <td class="hyphenate">{{{view_link}}}</td>
     {{#edit_link}}
-      <div>{{{edit_link}}}</div>
-      <div>{{{delete_link}}}</div>
+      <td>{{{edit_link}}}</td>
+      <td>{{{delete_link}}}</td>
     {{/edit_link}}
-  </div>
+  </tr>
 {{/get_items}}
-</div>
+  <tbody>
+</table>
