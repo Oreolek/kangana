@@ -15,8 +15,7 @@ class Controller_Layout extends Controller {
   {
     parent::before();
     $action_name = $this->request->action();
-    if (Kohana::$environment === Kohana::PRODUCTION
-      AND is_array($this->secure_actions)
+    if (is_array($this->secure_actions)
       AND in_array($action_name, $this->secure_actions, TRUE))
     {
       if (Auth::instance()->logged_in() === FALSE)
