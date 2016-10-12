@@ -70,6 +70,7 @@ class Controller_Layout extends Controller {
         if ($validation->check())
         {
           $model->save();
+          $this->afterSave($model);
         }
         else
         {
@@ -86,6 +87,15 @@ class Controller_Layout extends Controller {
       }
     }
     $this->template->model = $model;
+  }
+
+  /**
+   * Event after saving the model.
+   * @param ORM $model
+   * @return void
+   **/
+  protected function after_save($model)
+  {
   }
 
   /**
