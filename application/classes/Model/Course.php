@@ -41,7 +41,7 @@ class Model_Course extends ORM {
       ),
       'price' => array(
         array('numeric')
-      )
+      ),
     );
   }
 

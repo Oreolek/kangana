@@ -48,15 +48,13 @@ class Controller_Course extends Controller_Layout {
       $course->period = 1;
       $letter->order = 1;
       $validation_course = $course->validate_create($this->request->post());
-      $validation_letter = $letter->validate_create(array(
-        'subject' => $this->request->post('letter_subject'),
-        'text' => $this->request->post('letter_body')
-      ));
+      $validation_letter = $letter->validate_create($this->request->post());
       try
       {
         if ($validation_course->check() AND $validation_letter->check())
         {
           $course->create();
+          $course->add('group', (int) $this->request->post('group'));
           $letter->course_id = $course->id;
           $letter->create();
         }

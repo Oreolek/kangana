@@ -8,11 +8,15 @@ class View_Course_Simple extends View_Edit {
   public $model_letter;
   public function controls_course()
   {
+    $select = Form::select('group', ORM::factory('Group')->find_all()->as_array('id', 'name'), NULL, [
+      'label' => I18n::translate('Group')
+    ]);
     return array(
       'heading' => I18n::translate('New course'),
       'controls' => array(
         Form::orm_input($this->model_course, 'title'),
-        Form::orm_textarea($this->model_course, 'description')
+        Form::orm_textarea($this->model_course, 'description'),
+        $select,
       )
     );
   }
