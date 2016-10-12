@@ -13,7 +13,11 @@ class Model_Subscription extends ORM {
     ),
     'instants' => array(
       'model' => 'Instant'
-    )
+    ),
+    'group' => array(
+      'model' => 'Group',
+      'through' => 'subscriptions_groups'
+    ),
   );
 
   /**

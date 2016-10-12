@@ -18,6 +18,18 @@ class View_Subscription_Index extends View_Index {
       I18n::translate('Delete')
     );
   }
+
+  public function content()
+  {
+    return '<p>'
+      .I18n::translate('A subscription is a non-regular mailing list.')
+      .' '
+      .I18n::translate(
+        "You <i>add</i> a message, and then you send it to subscribers."
+      )
+      .'</p>';
+  }
+
   /**
    * An internal function to prepare item data.
    **/

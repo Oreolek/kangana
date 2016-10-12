@@ -18,6 +18,20 @@ class View_Course_Index extends View_Index {
       I18n::translate('Delete')
     );
   }
+
+  public function content()
+  {
+    return '<p>'
+      .I18n::translate('A course is a pre-defined regular mailing list.')
+      .' '
+      .I18n::translate("You <i>add</i> a message, forming a series of messages.")
+      .' '
+      .I18n::translate("Each new subscriber gets the first message in this series.")
+      .' '
+      .I18n::translate("You can customize the delay (1 day by default) between the messages.")
+      .'</p>';
+  }
+
   /**
    * An internal function to prepare item data.
    **/

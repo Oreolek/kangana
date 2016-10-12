@@ -14,7 +14,11 @@ class Model_Course extends ORM {
     ),
     'letters' => array(
       'model' => 'Letter'
-    )
+    ),
+    'group' => array(
+      'model' => 'Group',
+      'through' => 'courses_groups'
+    ),
   );
 
   /**

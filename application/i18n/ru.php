@@ -77,4 +77,11 @@ return array(
   'Groups' => 'Группы',
   'Group name' => 'Название группы',
   'Delete group' => 'Удалить группу',
+  'A subscription is a non-regular mailing list.' => 'Рассылка - это список для нерегулярной рассылки писем.',
+  "You <i>add</i> a message, and then you send it to subscribers." => 'Вы <i>добавляете</i> сообщение, а потом рассылаете его подписчикам.',
+  'Send to subscribers' => 'Разослать подписчикам',
+  'A course is a pre-defined regular mailing list.' => 'Курс - это заранее сформированный регулярный список рассылки.',
+  "You <i>add</i> a message, forming a series of messages." => 'Вы <i>добавляете</i> сообщение в серию сообщений.',
+  "Each new subscriber gets the first message in this series." => 'Каждый новый подписчик получает первое сообщение в этой серии.',
+  "You can customize the delay (1 day by default) between the messages." => 'Вы можете настроить задержку (по умолчанию - один день) между сообщениями.',
 );
