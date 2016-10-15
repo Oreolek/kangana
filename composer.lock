@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cdd5d55f92469dea3bcd533ffcd17fde",
-    "content-hash": "05d74ec93f60bdb8b4c933cbc4b857f6",
+    "hash": "5da8cc0c49d54bcb6c979650e290f395",
+    "content-hash": "74aefb055ab354ad7516e9b43041c3c8",
     "packages": [
         {
             "name": "composer/installers",
@@ -113,6 +113,69 @@
                 "zikula"
             ],
             "time": "2016-08-13 20:53:52"
+        },
+        {
+            "name": "ddeboer/transcoder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddeboer/transcoder.git",
+                "reference": "e56652fe3b97908def6f53d97498952bbf13a9f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ddeboer/transcoder/zipball/e56652fe3b97908def6f53d97498952bbf13a9f6",
+                "reference": "e56652fe3b97908def6f53d97498952bbf13a9f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-iconv": "For using the IconvTranscoder",
+                "ext-mbstring": "For using the MbTranscoder"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ddeboer\\Transcoder\\": "src/",
+                    "Ddeboer\\Transcoder\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David de Boer",
+                    "email": "david@ddeboer.nl"
+                },
+                {
+                    "name": "Community contributors",
+                    "homepage": "https://github.com/ddeboer/transcoder/graphs/contributors"
+                }
+            ],
+            "description": "Better encoding conversion for PHP",
+            "keywords": [
+                "charset",
+                "encoding",
+                "iconv",
+                "iso",
+                "mb",
+                "mb_convert_encoding",
+                "multibyte",
+                "utf-8"
+            ],
+            "time": "2015-01-23 17:55:34"
         },
         {
             "name": "kohana/auth",
@@ -1198,12 +1261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "74af0362988dfd6c53eaf7f6ade823d8e7d40348"
+                "reference": "5de3dcc4effa2753485b3d64a5a64987faea6353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/74af0362988dfd6c53eaf7f6ade823d8e7d40348",
-                "reference": "74af0362988dfd6c53eaf7f6ade823d8e7d40348",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/5de3dcc4effa2753485b3d64a5a64987faea6353",
+                "reference": "5de3dcc4effa2753485b3d64a5a64987faea6353",
                 "shasum": ""
             },
             "require": {
@@ -1283,7 +1346,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2016-10-10 11:51:22"
+            "time": "2016-10-12 13:07:40"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2373,12 +2436,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "1a6cc8d09dd675802ca93de290ac483c10ef95e0"
+                "reference": "9350cea5bf343b657f24e68980490021791935d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/1a6cc8d09dd675802ca93de290ac483c10ef95e0",
-                "reference": "1a6cc8d09dd675802ca93de290ac483c10ef95e0",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/9350cea5bf343b657f24e68980490021791935d8",
+                "reference": "9350cea5bf343b657f24e68980490021791935d8",
                 "shasum": ""
             },
             "require": {
@@ -2415,7 +2478,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-10-10 07:45:47"
+            "time": "2016-10-14 13:57:37"
         }
     ],
     "aliases": [],

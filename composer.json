@@ -37,7 +37,8 @@
 		"zombor/kostache": "^4.0",
 		"tscms/email": "dev-3.3/master",
 		"twbs/bootstrap-sass": "^3.3",
-		"zer0pants/kohana-migrations": "dev-3.4/develop"
+		"zer0pants/kohana-migrations": "dev-3.4/develop",
+		"ddeboer/transcoder": "^1.0"
 	},
 	"require-dev": {
 		"phing/phing": "dev-master",
