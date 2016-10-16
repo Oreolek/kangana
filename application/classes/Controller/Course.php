@@ -137,7 +137,7 @@ class Controller_Course extends Controller_Layout {
     {
       $this->redirect('error/404');
     }
-    $this->template->title = $course->title;
+    $this->template->title = I18n::translate('Subscribe to ') . $course->title;
     $controls = array(
       'name' => 'input',
       'email' => 'input'
@@ -160,15 +160,25 @@ class Controller_Course extends Controller_Layout {
           {
             $model->add('course', $course);
           }
-          $task = ORM::factory('Task');
-          $letter = $course->next_letter();
-          $task->letter_id = $letter->id;
-          $task->client_id = $model->id;
-          // now we break the abstraction to speed things up
-          $task->status = Model_Task::STATUS_SENT;
-          $task->date = date('Y-m-d');
-          $task->create();
-          $letter->send($model->email);
+          if ($course->type = Course::TYPE_SCHEDULED)
+          {
+            $task = ORM::factory('Task');
+            $letter = $course->next_letter();
+            $task->letter_id = $letter->id;
+            $task->client_id = $model->id;
+            // now we break the abstraction to speed things up
+            $task->status = Model_Task::STATUS_SENT;
+            $task->date = date('Y-m-d');
+            $task->create();
+            $letter->send($model->email);
+          } else {
+            $instant = ORM::factory('Letter');
+            $instant->course_id = $id;
+            $instant->subject = I18n::translate('You were subscribed to ').$course->title;
+            $instant->text = I18n::translate('From now on you will receive letters from this subscription.');
+            $instant->send($course->email, $course->token);
+            // instant is not saved because it's just a welcome email
+          }
         }
         else
         {

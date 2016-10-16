@@ -7,6 +7,16 @@
  * @author Oreolek
  **/
 class Model_Course extends ORM {
+  /**
+   * A pre-scheduled course - the subscriber gets a new letter once per N days in the series.
+   */
+  public const TYPE_SCHEDULED = 0;
+
+  /**
+   * A irregular subscription - the letters are sent when the author sends them
+   */
+  public const TYPE_IRREGULAR = 1;
+
   protected $_has_many = array(
     'clients' => array(
       'model' => 'Client',
