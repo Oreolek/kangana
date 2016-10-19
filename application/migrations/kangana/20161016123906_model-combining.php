@@ -22,87 +22,94 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
       $db->query(NULL, "alter table `letters` add column `is_draft` int(1) not null default '0'");
       $db->query(NULL, "alter table `courses` add column `type` int(2) not null default '0'");
       echo "Copying Subscription model to Courses.".PHP_EOL;
-      $subscriptions = DB::select()->from('subscriptions')->as_object()->execute();
-      foreach ($subscriptions as $subscription)
+
+      $subscriptions = DB::select()->from('subscriptions')->as_object()->execute($db);
+
+      if (!empty($subscriptions))
       {
-        $query = DB::query(
-          Database::INSERT,
-          'INSERT INTO courses (type, title, description, price)
-          VALUES(:type, :title, :description, :price)'
-        );
-        $query->parameters(array(
-          ':type' => Model_Course::TYPE_IRREGULAR,
-          ':title' => $subscription->title,
-          ':description' => $subscription->description,
-          ':price' => $subscription->price
-        ));
-        $query->execute();
-        echo 'Migrating subscription "'.$subscription->title.'"'.PHP_EOL;
-
-        $course_id = DB::select('id')
-          ->from('courses')
-          ->where('title', '=', $subscription->title)
-          ->and_where('description', '=', $subscription->description)
-          ->and_where('type', '=', Model_Course::TYPE_IRREGULAR)
-          ->execute()
-          ->get('id');
-
-        echo 'Migrating links between subscriptions and clients.';
-        $clients = DB::select('client_id')
-          ->from('clients_subscriptions')
-          ->where('subscription_id', '=', $subscription->id)
-          ->execute()
-          ->as_array(NULL, 'client_id');
-
-        foreach ($clients as $client)
+        foreach ($subscriptions as $subscription)
         {
-          $db->query(NULL, 'INSERT INTO clients_courses (client_id, course_id)
-            VALUES ('.$client.', '.$course_id.')');
-        }
-
-        echo 'Migrating links between subscriptions and groups.';
-        $groups = DB::select('group_id')
-          ->from('subscriptions_groups')
-          ->where('subscription_id', '=', $subscription->id)
-          ->execute()
-          ->as_array(NULL, 'group_id');
-
-        foreach ($groups as $group)
-        {
-          $db->query(NULL, 'INSERT INTO courses_groups (group_id, course_id)
-            VALUES ('.$group.', '.$course_id.')');
-        }
-
-        echo 'Migrating Instants.';
-
-        $instants = DB::select()
-          ->from('instants')
-          ->where('subscription_id', '=', $subscription->id)
-          ->as_object()
-          ->execute();
-        foreach ($instants as $instant)
-        {
-          echo 'Migrating letter "'.$instant->subject.'"'.PHP_EOL;
           $query = DB::query(
             Database::INSERT,
-            'INSERT INTO letters (course_id, subject, text, timestamp, sent)
-            VALUES(:course_id, :subject, :text, :timestamp, :sent)'
+            'INSERT INTO courses (type, title, description, price)
+            VALUES(:type, :title, :description, :price)'
           );
-
           $query->parameters(array(
-            ':course_id' => $course_id,
-            ':subject' => $instant->subject,
-            ':text' => $instant->text,
-            ':timestamp' => $instant->timestamp,
-            ':sent' => $instant->sent,
+            ':type' => Model_Course::TYPE_IRREGULAR,
+            ':title' => $subscription->title,
+            ':description' => $subscription->description,
+            ':price' => $subscription->price
           ));
-          $query->execute();
+          $query->execute($db);
+          echo 'Migrating subscription "'.$subscription->title.'"'.PHP_EOL;
+
+          $course_id = DB::select('id')
+            ->from('courses')
+            ->where('title', '=', $subscription->title)
+            ->and_where('description', '=', $subscription->description)
+            ->and_where('type', '=', Model_Course::TYPE_IRREGULAR)
+            ->execute($db)
+            ->get('id');
+
+          echo 'Migrating links between subscriptions and clients.';
+          $clients = DB::select('client_id')
+            ->from('clients_subscriptions')
+            ->where('subscription_id', '=', $subscription->id)
+            ->execute($db)
+            ->as_array(NULL, 'client_id');
+
+          foreach ($clients as $client)
+          {
+            $db->query(NULL, 'INSERT INTO clients_courses (client_id, course_id)
+              VALUES ('.$client.', '.$course_id.')');
+          }
+
+          echo 'Migrating links between subscriptions and groups.';
+          $groups = DB::select('group_id')
+            ->from('subscriptions_groups')
+            ->where('subscription_id', '=', $subscription->id)
+            ->execute($db)
+            ->as_array(NULL, 'group_id');
+
+          foreach ($groups as $group)
+          {
+            $db->query(NULL, 'INSERT INTO courses_groups (group_id, course_id)
+              VALUES ('.$group.', '.$course_id.')');
+          }
+
+          echo 'Migrating Instants.';
+
+          $instants = DB::select()
+            ->from('instants')
+            ->where('subscription_id', '=', $subscription->id)
+            ->as_object()
+            ->execute($db);
+          foreach ($instants as $instant)
+          {
+            echo 'Migrating letter "'.$instant->subject.'"'.PHP_EOL;
+            $query = DB::query(
+              Database::INSERT,
+              'INSERT INTO letters (course_id, subject, text, timestamp, sent)
+              VALUES(:course_id, :subject, :text, :timestamp, :sent)'
+            );
+
+            $query->parameters(array(
+              ':course_id' => $course_id,
+              ':subject' => $instant->subject,
+              ':text' => $instant->text,
+              ':timestamp' => $instant->timestamp,
+              ':sent' => $instant->sent,
+            ));
+            $query->execute($db);
+          }
         }
       }
+
       $db->query(NULL, "DROP TABLE instants");
       $db->query(NULL, "DROP TABLE subscriptions");
       $db->query(NULL, "DROP TABLE subscriptions_groups");
       $db->query(NULL, "DROP TABLE clients_subscriptions");
+
       $db->commit();
       echo 'All done.'.PHP_EOL;
     }
