@@ -74,7 +74,7 @@ $modules = [
   'email'         => $vendor_path.'tscms/email',// Electronic mail class
   'debug-toolbar' => MODPATH.'debug-toolbar',     // Debug toolbar
   'config-writer' => MODPATH.'config-writer',     // Write to PHP configs
-  'migrations'    => $vendor_path.'zer0pants/kohana-migrations', // SQL migrations
+  'migrations'    => $vendor_path.'oreolek/kohana-migrations', // SQL migrations
   'core'        => SYSPATH,                         // Core system
 ];
 if (Kohana::$environment === Kohana::DEVELOPMENT)

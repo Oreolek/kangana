@@ -20,11 +20,7 @@
 	"repositories": [
 		{
 			"type": "git",
-			"url": "https://github.com/zer0pants/kohana-migrations.git"
-		},
-		{
-			"type": "git",
-			"url": "git@github.com:Oreolek/minion.git"
+			"url": "git@github.com:Oreolek/kohana-migrations.git"
 		}
 	],
 	"require": {
@@ -35,13 +31,13 @@
 		"kohana/codebench": "3.4.*",
 		"kohana/database": "3.4.*",
 		"kohana/image": "3.4.*",
-		"oreolek/minion": "3.4.*",
+		"kohana/minion": "3.4.*",
 		"kohana/orm": "3.4.*",
 		"psr/log": "^1.0",
 		"zombor/kostache": "^4.0",
 		"tscms/email": "dev-3.3/master",
 		"twbs/bootstrap-sass": "^3.3",
-		"zer0pants/kohana-migrations": "dev-3.4/develop",
+		"oreolek/kohana-migrations": "dev-3.4/develop",
 		"ddeboer/transcoder": "^1.0"
 	},
 	"require-dev": {

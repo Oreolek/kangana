@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9eac1baa125d93ff87bcc40f4e3c0342",
-    "content-hash": "a3fc6d7996e7c8e77727008335b6570a",
+    "hash": "3fb8fd5b0f087861ad3c0a1e03f59d52",
+    "content-hash": "e508757e467a827fae945dd82d99f251",
     "packages": [
         {
             "name": "composer/installers",
@@ -695,63 +695,58 @@
             "time": "2014-06-20 19:34:49"
         },
         {
-            "name": "oreolek/minion",
+            "name": "oreolek/kohana-migrations",
             "version": "dev-3.4/develop",
             "source": {
                 "type": "git",
-                "url": "git@github.com:Oreolek/minion.git",
-                "reference": "cdf4647397ee1ec1083f983f573ec147c123a475"
+                "url": "git@github.com:Oreolek/kohana-migrations.git",
+                "reference": "ba56bc84b2dca71321b0964d15fd95ed4bcf3a53"
             },
             "require": {
-                "composer/installers": "~1.0",
                 "kohana/core": ">=3.4",
-                "php": ">=5.4.0"
+                "kohana/minion": ">=3.4",
+                "php": ">=5.2.4"
             },
-            "require-dev": {
-                "kohana/core": "3.4.*@dev",
-                "kohana/koharness": "*@dev",
-                "kohana/unittest": "3.4.*@dev"
-            },
-            "type": "kohana-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.3/develop": "3.3.x-dev",
-                    "dev-3.4/develop": "3.4.x-dev"
-                },
-                "installer-paths": {
-                    "vendor/{$vendor}/{$name}": [
-                        "type:kohana-module"
-                    ]
-                }
-            },
+            "type": "library",
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "Kohana Team",
-                    "email": "team@kohanaframework.org",
-                    "homepage": "http://kohanaframework.org/team",
+                    "name": "Michael Roberts",
+                    "email": "michael@verbate.co",
                     "role": "developer"
+                },
+                {
+                    "name": "Mitch",
+                    "email": "mitch@verbate.co",
+                    "role": "developer"
+                },
+                {
+                    "name": "Alexander Yakovlev",
+                    "email": "keloero@oreolek.ru",
+                    "role": "developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/kohana-minion/tasks-migrations/graphs/contributors",
+                    "role": "contributor"
                 }
             ],
-            "description": "The official kohana module for running tasks via the CLI.",
-            "homepage": "http://kohanaframework.org",
+            "description": "Migration tasks for the kohana-minion cli framework, 3.4 branch",
+            "homepage": "https://github.com/Oreolek/kohana-migrations",
             "keywords": [
-                "cli",
-                "console",
+                "database",
                 "framework",
                 "kohana",
-                "minion",
-                "task"
+                "migrations",
+                "tasks"
             ],
             "support": {
-                "issues": "http://dev.kohanaframework.org",
-                "forum": "http://forum.kohanaframework.org",
-                "irc": "irc://irc.freenode.net/kohana",
-                "source": "http://github.com/kohana/core"
+                "issues": "https://github.com/Oreolek/kohana-migrations/issues",
+                "source": "https://github.com/Oreolek/kohana-migrations"
             },
-            "time": "2016-10-19 04:13:53"
+            "time": "2016-10-19 04:32:04"
         },
         {
             "name": "psr/log",
@@ -957,60 +952,6 @@
                 "sass"
             ],
             "time": "2016-07-25 19:58:53"
-        },
-        {
-            "name": "zer0pants/kohana-migrations",
-            "version": "dev-3.4/develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zer0pants/kohana-migrations.git",
-                "reference": "420ad1ddb805b824e2c0e9a6624f951ecd075bc8"
-            },
-            "require": {
-                "kohana/core": ">=3.4",
-                "kohana/minion": ">=3.4",
-                "php": ">=5.2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.3/develop": "3.3.x-dev"
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Roberts",
-                    "email": "michael@verbate.co",
-                    "role": "developer"
-                },
-                {
-                    "name": "Mitch",
-                    "email": "mitch@verbate.co",
-                    "role": "developer"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/kohana-minion/tasks-migrations/graphs/contributors",
-                    "role": "contributor"
-                }
-            ],
-            "description": "Migration tasks for the kohana-minion cli framework",
-            "homepage": "https://github.com/kohana-minion/tasks-migrations",
-            "keywords": [
-                "database",
-                "framework",
-                "kohana",
-                "migrations",
-                "tasks"
-            ],
-            "support": {
-                "issues": "https://github.com/kohana-minion/tasks-migrations/issues",
-                "source": "https://github.com/kohana-minion/tasks-migrations"
-            },
-            "time": "2016-04-04 04:25:55"
         },
         {
             "name": "zombor/kostache",
@@ -2544,7 +2485,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "tscms/email": 20,
-        "zer0pants/kohana-migrations": 20,
+        "oreolek/kohana-migrations": 20,
         "phing/phing": 20
     },
     "prefer-stable": false,
