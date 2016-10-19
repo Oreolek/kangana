@@ -10,7 +10,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
 	 *
 	 * @param Kohana_Database $db Database connection
 	 */
-	public function up(Kohana_Database $db)
+  public function up(Kohana_Database $db)
   {
     echo 'Opening the transaction.'.PHP_EOL;
     $db->begin();
@@ -21,7 +21,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
       $db->query(NULL, "alter table `letters` add column `sent` int(1) null default '0'");
       $db->query(NULL, "alter table `letters` add column `is_draft` int(1) not null default '0'");
       $db->query(NULL, "alter table `courses` add column `type` int(2) not null default '0'");
-      echo "Copying Subscription model to Courses." . PHP_EOL;
+      echo "Copying Subscription model to Courses.".PHP_EOL;
       $subscriptions = DB::select()->from('subscriptions')->as_object()->execute();
       foreach ($subscriptions as $subscription)
       {
@@ -37,7 +37,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
           ':price' => $subscription->price
         ));
         $query->execute();
-        echo 'Migrating subscription "' . $subscription->title . '"' . PHP_EOL;
+        echo 'Migrating subscription "'.$subscription->title.'"'.PHP_EOL;
 
         $course_id = DB::select('id')
           ->from('courses')
@@ -57,7 +57,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
         foreach ($clients as $client)
         {
           $db->query(NULL, 'INSERT INTO clients_courses (client_id, course_id)
-            VALUES (' . $client . ', ' . $course_id . ')');
+            VALUES ('.$client.', '.$course_id.')');
         }
 
         echo 'Migrating links between subscriptions and groups.';
@@ -70,7 +70,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
         foreach ($groups as $group)
         {
           $db->query(NULL, 'INSERT INTO courses_groups (group_id, course_id)
-            VALUES (' . $group . ', ' . $course_id . ')');
+            VALUES ('.$group.', '.$course_id.')');
         }
 
         echo 'Migrating Instants.';
@@ -82,7 +82,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
           ->execute();
         foreach ($instants as $instant)
         {
-          echo 'Migrating letter "' . $instant->subject . '"' . PHP_EOL;
+          echo 'Migrating letter "'.$instant->subject.'"'.PHP_EOL;
           $query = DB::query(
             Database::INSERT,
             'INSERT INTO letters (course_id, subject, text, timestamp, sent)
@@ -104,7 +104,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
       $db->query(NULL, "DROP TABLE subscriptions_groups");
       $db->query(NULL, "DROP TABLE clients_subscriptions");
       $db->commit();
-      echo 'All done.' . PHP_EOL;
+      echo 'All done.'.PHP_EOL;
     }
     catch (Database_Exception $e)
     {
@@ -129,7 +129,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
       $db->query(NULL, "alter table `letters` DROP column `is_draft`");
       $db->query(NULL, "alter table `courses` DROP column `type`");
       $db->commit();
-      echo 'All done.' . PHP_EOL;
+      echo 'All done.'.PHP_EOL;
     }
     catch (Database_Exception $e)
     {

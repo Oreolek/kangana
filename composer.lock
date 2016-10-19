@@ -700,7 +700,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Oreolek/kohana-migrations.git",
-                "reference": "ba56bc84b2dca71321b0964d15fd95ed4bcf3a53"
+                "reference": "af6faf04f603acf5d5df80e05a4485f1b9753bfc"
             },
             "require": {
                 "kohana/core": ">=3.4",
@@ -746,7 +746,7 @@
                 "issues": "https://github.com/Oreolek/kohana-migrations/issues",
                 "source": "https://github.com/Oreolek/kohana-migrations"
             },
-            "time": "2016-10-19 04:32:04"
+            "time": "2016-10-19 04:40:42"
         },
         {
             "name": "psr/log",
