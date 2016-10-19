@@ -106,9 +106,9 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
       }
 
       $db->query(NULL, "DROP TABLE instants");
-      $db->query(NULL, "DROP TABLE subscriptions");
       $db->query(NULL, "DROP TABLE subscriptions_groups");
       $db->query(NULL, "DROP TABLE clients_subscriptions");
+      $db->query(NULL, "DROP TABLE subscriptions");
 
       $db->commit();
       echo 'All done.'.PHP_EOL;
