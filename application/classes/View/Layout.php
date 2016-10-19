@@ -83,7 +83,7 @@ class View_Layout {
       $navigation = array_merge($navigation, array(
         I18n::translate('New course') => 'course/simple',
         I18n::translate('Courses') => 'course/index',
-        I18n::translate('Subscriptions') => 'subscription/index',
+        I18n::translate('Subscriptions') => 'course/sindex',
         I18n::translate('Clients') => 'client/index',
         I18n::translate('Groups') => 'group/index',
       ));

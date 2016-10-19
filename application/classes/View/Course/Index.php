@@ -8,6 +8,8 @@
 class View_Course_Index extends View_Index {
   protected $is_admin = TRUE; // admin only view
   public $show_date = FALSE;
+  public $content;
+
   public function get_header()
   {
     return array(
@@ -17,19 +19,6 @@ class View_Course_Index extends View_Index {
       I18n::translate('Edit'),
       I18n::translate('Delete')
     );
-  }
-
-  public function content()
-  {
-    return '<p>'
-      .I18n::translate('A course is a pre-defined regular mailing list.')
-      .' '
-      .I18n::translate("You <i>add</i> a message, forming a series of messages.")
-      .' '
-      .I18n::translate("Each new subscriber gets the first message in this series.")
-      .' '
-      .I18n::translate("You can customize the delay (1 day by default) between the messages.")
-      .'</p>';
   }
 
   /**

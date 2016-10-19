@@ -5,20 +5,49 @@
  **/
 class Controller_Course extends Controller_Layout {
   protected $secure_actions = array(
-    'index','create', 'edit', 'delete', 'view'
+    'index',
+    'sindex',
+    'create',
+    'edit',
+    'delete',
+    'view',
   );
-  protected $controls = array(
-    'title' => 'input',
-    'description' => 'textarea',
-    'period' => 'input',
-    'price' => 'input'
-  );
+  protected $controls = NULL;
 
   public function action_index()
   {
     $this->template = new View_Course_Index;
     $this->template->title = I18n::translate('Course index');
+
+    $this->template->content = '<p>'
+      .I18n::translate('A course is a pre-defined regular mailing list.')
+      .' '
+      .I18n::translate("You <i>add</i> a message, forming a series of messages.")
+      .' '
+      .I18n::translate("Each new subscriber gets the first message in this series.")
+      .' '
+      .I18n::translate("You can customize the delay (1 day by default) between the messages.")
+      .'</p>';
+
     $this->template->items = ORM::factory('Course')
+      ->where('type', '=', Model_Course::TYPE_SCHEDULED)
+      ->filter_by_page($this->request->param('page'))
+      ->find_all();
+  }
+
+  public function action_sindex()
+  {
+    $this->template = new View_Course_Index;
+    $this->template->title = I18n::translate('Subscription index');
+
+    $this->template->content =  '<p>'
+      .I18n::translate('A subscription is a non-regular mailing list.')
+      .' '
+      .I18n::translate("You <i>add</i> a message, and then you send it to subscribers.")
+      .'</p>';
+
+    $this->template->items = ORM::factory('Course')
+      ->where('type', '=', Model_Course::TYPE_IRREGULAR)
       ->filter_by_page($this->request->param('page'))
       ->find_all();
   }
@@ -40,6 +69,7 @@ class Controller_Course extends Controller_Layout {
     $this->template->controls = array();
     $this->template->title = I18n::translate('New course');
     $course = ORM::factory('Course');
+    $course->type = Model_Course::TYPE_SCHEDULED;
     $letter = ORM::factory('Letter');
     if ($this->request->method() === Request::POST) {
       $course->values($this->request->post(), array('title', 'description'));
@@ -85,6 +115,15 @@ class Controller_Course extends Controller_Layout {
     $this->template->title = I18n::translate('Edit course');
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id);
+    $this->controls = [
+      'title' => 'input',
+      'description' => 'textarea',
+    ];
+    if ($model->type === Model_Course::TYPE_SCHEDULED)
+    {
+      $this->controls['period'] = 'input';
+      $this->controls['price'] = 'input';
+    };
     if ( ! $model->loaded())
     {
       $this->redirect('error/404');
