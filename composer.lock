@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5da8cc0c49d54bcb6c979650e290f395",
-    "content-hash": "74aefb055ab354ad7516e9b43041c3c8",
+    "hash": "9eac1baa125d93ff87bcc40f4e3c0342",
+    "content-hash": "a3fc6d7996e7c8e77727008335b6570a",
     "packages": [
         {
             "name": "composer/installers",
@@ -695,6 +695,65 @@
             "time": "2014-06-20 19:34:49"
         },
         {
+            "name": "oreolek/minion",
+            "version": "dev-3.4/develop",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Oreolek/minion.git",
+                "reference": "cdf4647397ee1ec1083f983f573ec147c123a475"
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "kohana/core": ">=3.4",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "kohana/core": "3.4.*@dev",
+                "kohana/koharness": "*@dev",
+                "kohana/unittest": "3.4.*@dev"
+            },
+            "type": "kohana-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.3/develop": "3.3.x-dev",
+                    "dev-3.4/develop": "3.4.x-dev"
+                },
+                "installer-paths": {
+                    "vendor/{$vendor}/{$name}": [
+                        "type:kohana-module"
+                    ]
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kohana Team",
+                    "email": "team@kohanaframework.org",
+                    "homepage": "http://kohanaframework.org/team",
+                    "role": "developer"
+                }
+            ],
+            "description": "The official kohana module for running tasks via the CLI.",
+            "homepage": "http://kohanaframework.org",
+            "keywords": [
+                "cli",
+                "console",
+                "framework",
+                "kohana",
+                "minion",
+                "task"
+            ],
+            "support": {
+                "issues": "http://dev.kohanaframework.org",
+                "forum": "http://forum.kohanaframework.org",
+                "irc": "irc://irc.freenode.net/kohana",
+                "source": "http://github.com/kohana/core"
+            },
+            "time": "2016-10-19 04:13:53"
+        },
+        {
             "name": "psr/log",
             "version": "dev-master",
             "source": {
@@ -1261,12 +1320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "5de3dcc4effa2753485b3d64a5a64987faea6353"
+                "reference": "62d357097ed0e6006f5c97c5352e445274199c3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/5de3dcc4effa2753485b3d64a5a64987faea6353",
-                "reference": "5de3dcc4effa2753485b3d64a5a64987faea6353",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/62d357097ed0e6006f5c97c5352e445274199c3f",
+                "reference": "62d357097ed0e6006f5c97c5352e445274199c3f",
                 "shasum": ""
             },
             "require": {
@@ -1346,7 +1405,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2016-10-12 13:07:40"
+            "time": "2016-10-18 19:52:52"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2436,12 +2495,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "9350cea5bf343b657f24e68980490021791935d8"
+                "reference": "c0c92082a2ffef8fab7941d4f6fd6a6a72ed627c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/9350cea5bf343b657f24e68980490021791935d8",
-                "reference": "9350cea5bf343b657f24e68980490021791935d8",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/c0c92082a2ffef8fab7941d4f6fd6a6a72ed627c",
+                "reference": "c0c92082a2ffef8fab7941d4f6fd6a6a72ed627c",
                 "shasum": ""
             },
             "require": {
@@ -2478,7 +2537,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-10-14 13:57:37"
+            "time": "2016-10-17 06:50:33"
         }
     ],
     "aliases": [],

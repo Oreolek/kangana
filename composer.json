@@ -21,6 +21,10 @@
 		{
 			"type": "git",
 			"url": "https://github.com/zer0pants/kohana-migrations.git"
+		},
+		{
+			"type": "git",
+			"url": "git@github.com:Oreolek/minion.git"
 		}
 	],
 	"require": {
@@ -31,7 +35,7 @@
 		"kohana/codebench": "3.4.*",
 		"kohana/database": "3.4.*",
 		"kohana/image": "3.4.*",
-		"kohana/minion": "3.4.*",
+		"oreolek/minion": "3.4.*",
 		"kohana/orm": "3.4.*",
 		"psr/log": "^1.0",
 		"zombor/kostache": "^4.0",
