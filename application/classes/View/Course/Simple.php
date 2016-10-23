@@ -8,7 +8,7 @@ class View_Course_Simple extends View_Edit {
   public $model_letter;
   public function controls_course()
   {
-    $select = Form::select('group', ORM::factory('Group')->find_all()->as_array('id', 'name'), NULL, [
+    $select = Form::select('group_id', ORM::factory('Group')->find_all()->as_array('id', 'name'), NULL, [
       'label' => I18n::translate('Group')
     ]);
     return array(

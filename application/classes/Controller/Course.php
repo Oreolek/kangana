@@ -72,7 +72,7 @@ class Controller_Course extends Controller_Layout {
     $course->type = Model_Course::TYPE_SCHEDULED;
     $letter = ORM::factory('Letter');
     if ($this->request->method() === Request::POST) {
-      $course->values($this->request->post(), array('title', 'description'));
+      $course->values($this->request->post(), array('title', 'description', 'group_id'));
       $letter->values($this->request->post(), array('subject', 'text'));
       $course->price = 0;
       $course->period = 1;
@@ -84,7 +84,6 @@ class Controller_Course extends Controller_Layout {
         if ($validation_course->check() AND $validation_letter->check())
         {
           $course->create();
-          $course->add('group', (int) $this->request->post('group'));
           $letter->course_id = $course->id;
           $letter->create();
         }
@@ -111,7 +110,7 @@ class Controller_Course extends Controller_Layout {
 
   public function action_edit()
   {
-    $this->template = new View_Edit;
+    $this->template = new View_Course_Edit;
     $this->template->title = I18n::translate('Edit course');
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id);
@@ -199,7 +198,11 @@ class Controller_Course extends Controller_Layout {
           {
             $model->add('course', $course);
           }
-          if ($course->type = Course::TYPE_SCHEDULED)
+          if ($course->group)
+          {
+            $model->add('group', $course->group);
+          }
+          if ($course->type = Model_Course::TYPE_SCHEDULED)
           {
             $task = ORM::factory('Task');
             $letter = $course->next_letter();
@@ -215,7 +218,7 @@ class Controller_Course extends Controller_Layout {
             $instant->course_id = $id;
             $instant->subject = I18n::translate('You were subscribed to ').$course->title;
             $instant->text = I18n::translate('From now on you will receive letters from this subscription.');
-            $instant->send($course->email, $course->token);
+            $instant->send($model->email, $model->token);
             // instant is not saved because it's just a welcome email
           }
         }

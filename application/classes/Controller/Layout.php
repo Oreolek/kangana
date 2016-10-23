@@ -70,7 +70,7 @@ class Controller_Layout extends Controller {
         if ($validation->check())
         {
           $model->save();
-          $this->afterSave($model);
+          $this->after_save($model);
         }
         else
         {

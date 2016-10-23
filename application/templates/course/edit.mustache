@@ -1,0 +1,23 @@
+<form method="POST">
+{{#has_errors}}
+  <p class="message">При проверке формы были найдены ошибки:</p>
+  <ul class="errors">
+    {{#get_errors}}
+    <li>{{.}}</li>
+    {{/get_errors}}
+  </ul>
+{{/has_errors}}
+{{{group_select}}}
+{{{get_controls}}}
+</form>
+{{#preview}}
+<h2>Предпросмотр</h2>
+<hr>
+<div class="hyphenate" id="preview">
+  {{{preview}}}
+</div>
+<hr>
+{{/preview}}
+{{^preview}}
+<div class="hyphenate" id="preview"></div>
+{{/preview}}

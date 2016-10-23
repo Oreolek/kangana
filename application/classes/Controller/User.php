@@ -13,7 +13,7 @@ class Controller_User extends Controller_Layout {
   {
     if (Auth::instance()->logged_in())
     {
-      $this->redirect('post/index');
+      $this->redirect('course/index');
     }
     $this->template = new View_Edit;
     $this->template->title = I18n::translate('User login');
