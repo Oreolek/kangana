@@ -36,6 +36,18 @@ class Model_Client extends ORM {
         array('not_empty'),
         array('min_length', array(':value', 5)),
       ),
+      'sex' => array(
+        array('max_length', array(':value', 1)),
+      ),
+      'referrer' => array(
+        array('max_length', array(':value', 255)),
+      ),
+      'city' => array(
+        array('max_length', array(':value', 255)),
+      ),
+      'country' => array(
+        array('max_length', array(':value', 255)),
+      ),
     );
   }
 

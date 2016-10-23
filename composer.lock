@@ -1261,12 +1261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "62d357097ed0e6006f5c97c5352e445274199c3f"
+                "reference": "a7c32b2daa5e4e5a9de6f79ad2351daa5e2d1ace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/62d357097ed0e6006f5c97c5352e445274199c3f",
-                "reference": "62d357097ed0e6006f5c97c5352e445274199c3f",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a7c32b2daa5e4e5a9de6f79ad2351daa5e2d1ace",
+                "reference": "a7c32b2daa5e4e5a9de6f79ad2351daa5e2d1ace",
                 "shasum": ""
             },
             "require": {
@@ -1346,7 +1346,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2016-10-18 19:52:52"
+            "time": "2016-10-21 09:54:47"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2381,12 +2381,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f3abbc0c63c0c7803db79a7398bb983e5b089f53"
+                "reference": "3d42c56f989688ad0790dcdc3c706d60748af6a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f3abbc0c63c0c7803db79a7398bb983e5b089f53",
-                "reference": "f3abbc0c63c0c7803db79a7398bb983e5b089f53",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/3d42c56f989688ad0790dcdc3c706d60748af6a6",
+                "reference": "3d42c56f989688ad0790dcdc3c706d60748af6a6",
                 "shasum": ""
             },
             "require": {
@@ -2428,7 +2428,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-28 14:20:56"
+            "time": "2016-10-21 21:10:51"
         },
         {
             "name": "webmozart/assert",
