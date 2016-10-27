@@ -61,6 +61,16 @@ class Controller_Course extends Controller_Layout {
     ];
     $this->template->model = ORM::factory('Course');
     $this->template->title = I18n::translate('New course');
+    if ($this->request->method() === Request::POST) {
+      $this->template->model->price = $this->request->param('price', 0);
+      $this->template->model->period = $this->request->param('period', 1);
+      $this->template->model->values($this->request->post(), ['type', 'group_id']);
+    }
+    if ((int) $this->template->model->type === Model_Course::TYPE_SCHEDULED)
+    {
+      $this->controls['period'] = 'input';
+      $this->controls['price'] = 'input';
+    }
     $this->_edit($this->template->model);
   }
 
@@ -126,40 +136,18 @@ class Controller_Course extends Controller_Layout {
       'title' => 'input',
       'description' => 'textarea',
     ];
-    if ($model->type === Model_Course::TYPE_SCHEDULED)
+    if ($this->request->method() === Request::POST) {
+      $model->price = $this->request->param('price', 0);
+      $model->period = $this->request->param('period', 1);
+      $model->values($this->request->post(), ['type', 'group_id']);
+    }
+    if ((int) $model->type === Model_Course::TYPE_SCHEDULED)
     {
       $this->controls['period'] = 'input';
       $this->controls['price'] = 'input';
-    };
-    $this->template->errors = array();
-
-    if ($this->request->method() === Request::POST) {
-      $model->values($this->request->post(), array_keys($this->controls));
-      $model->values($this->request->post(), ['type', 'group_id']);
-      $model->customize();
-      $validation = $model->validate_create($this->request->post());
-      try
-      {
-        if ($validation->check())
-        {
-          $model->save();
-          $this->after_save($model);
-        }
-        else
-        {
-          $this->template->errors = $validation->errors('default');
-        }
-      }
-      catch (ORM_Validation_Exception $e)
-      {
-        $this->template->errors = $e->errors('default');
-      }
-      if (empty($this->template->errors))
-      {
-        $this->redirect($this->_edit_redirect($model));
-      }
     }
     $this->template->model = $model;
+    $this->_edit($model);
   }
 
   public function action_delete()
