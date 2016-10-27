@@ -131,7 +131,35 @@ class Controller_Course extends Controller_Layout {
     {
       $this->redirect('error/404');
     }
-    $this->_edit($model);
+    $this->template->errors = array();
+
+    if ($this->request->method() === Request::POST) {
+      $model->values($this->request->post(), array_keys($controls));
+      $model->values($this->request->post(), ['type', 'group_id']);
+      $model->customize();
+      $validation = $model->validate_create($this->request->post());
+      try
+      {
+        if ($validation->check())
+        {
+          $model->save();
+          $this->after_save($model);
+        }
+        else
+        {
+          $this->template->errors = $validation->errors('default');
+        }
+      }
+      catch (ORM_Validation_Exception $e)
+      {
+        $this->template->errors = $e->errors('default');
+      }
+      if (empty($this->template->errors))
+      {
+        $this->redirect($this->_edit_redirect($model));
+      }
+    }
+    $this->template->model = $model;
   }
 
   public function action_delete()

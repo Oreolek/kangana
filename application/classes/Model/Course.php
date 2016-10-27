@@ -54,6 +54,12 @@ class Model_Course extends ORM {
       'price' => array(
         array('numeric')
       ),
+      'group_id' => array(
+        array('numeric')
+      ),
+      'type' => array(
+        array('numeric')
+      ),
     );
   }
 
