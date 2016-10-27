@@ -8,6 +8,8 @@ class View_Course_Edit extends View_Edit {
   {
     return Form::select('group_id', ORM::factory('Group')->find_all()->as_array('id', 'name'), NULL, [
       'label' => I18n::translate('Group')
+    ]).Form::select('type', Model_Course::type_labels(), $this->model->type, [
+      'label' => I18n::translate('Type')
     ]);
   }
 }

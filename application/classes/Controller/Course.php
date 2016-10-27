@@ -54,7 +54,11 @@ class Controller_Course extends Controller_Layout {
 
   public function action_create()
   {
-    $this->template = new View_Edit;
+    $this->template = new View_Course_Edit;
+    $this->controls = [
+      'title' => 'input',
+      'description' => 'textarea',
+    ];
     $this->template->model = ORM::factory('Course');
     $this->template->title = I18n::translate('New course');
     $this->_edit($this->template->model);

@@ -68,6 +68,14 @@ class Model_Course extends ORM {
     'description' => 'Description (for the clients)'
   );
 
+  public static function type_labels()
+  {
+    return [
+      self::TYPE_IRREGULAR => I18n::translate('Subscription'),
+      self::TYPE_SCHEDULED => I18n::translate('Course'),
+    ];
+  }
+
   public function customize()
   {
     if ($this->period < 1)

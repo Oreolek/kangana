@@ -86,4 +86,5 @@ return array(
   "You can customize the delay (1 day by default) between the messages." => 'Вы можете настроить задержку (по умолчанию - один день) между сообщениями.',
   'Group' => 'Группа',
   'New group' => 'Новая группа',
+  'Type' => 'Тип',
 );
