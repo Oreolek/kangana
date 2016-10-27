@@ -118,6 +118,10 @@ class Controller_Course extends Controller_Layout {
     $this->template->title = I18n::translate('Edit course');
     $id = $this->request->param('id');
     $model = ORM::factory('Course', $id);
+    if ( ! $model->loaded())
+    {
+      $this->redirect('error/404');
+    }
     $this->controls = [
       'title' => 'input',
       'description' => 'textarea',
@@ -127,14 +131,10 @@ class Controller_Course extends Controller_Layout {
       $this->controls['period'] = 'input';
       $this->controls['price'] = 'input';
     };
-    if ( ! $model->loaded())
-    {
-      $this->redirect('error/404');
-    }
     $this->template->errors = array();
 
     if ($this->request->method() === Request::POST) {
-      $model->values($this->request->post(), array_keys($controls));
+      $model->values($this->request->post(), array_keys($this->controls));
       $model->values($this->request->post(), ['type', 'group_id']);
       $model->customize();
       $validation = $model->validate_create($this->request->post());
