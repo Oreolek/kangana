@@ -34,7 +34,6 @@ class Model_Client extends ORM {
       ),
       'name' => array(
         array('not_empty'),
-        array('min_length', array(':value', 5)),
       ),
       'sex' => array(
         array('max_length', array(':value', 1)),
