@@ -26,7 +26,6 @@ return array(
   'Subscription index' => 'Все рассылки',
   'Delete subscription' => 'Удалить рассылку',
   'Edit subscription' => 'Редактировать рассылку',
-  'Subscribe to ' => 'Подписка на ',
   'Subscription' => 'Рассылка',
   'Course' => 'Курс',
   'New course' => 'Новый курс',
