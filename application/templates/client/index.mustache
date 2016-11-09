@@ -9,11 +9,14 @@
   {{{.}}}
 </div>
 {{/content}}
+{{{get_paging}}}
 <table class="table">
   <thead>
+    <tr>
 {{#get_header}}
-    <th>{{.}}</th>
+      <th>{{.}}</th>
 {{/get_header}}
+    </tr>
   </thead>
   <tbody>
 {{#get_items}}

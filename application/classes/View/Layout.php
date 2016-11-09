@@ -13,10 +13,64 @@ class View_Layout {
   public $errors;
 
   /**
-   * Inherited paging function
+   * Items to show
+   **/
+  public $items = NULL;
+
+  /**
+   * Pagination controls
    **/
   public function get_paging()
   {
+    $current_page = $this->get_current_page();
+    $item_count = count($this->items);
+    $page_size = Kohana::$config->load('common.page_size');
+    $page_count = ceil($item_count / $page_size);
+    if ($page_count === 1.0)
+      return '';
+    $i = 1;
+    $output = '';
+    while ($i <= $page_count)
+    {
+      $output .= '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => Request::current()->action(), 'page' => $i)).'"';
+      if ($i == $current_page)
+      {
+        $output .= ' class="active"';
+      }
+      $output .= '>'.$i.'</a>';
+      $i++;
+    }
+    return $output;
+  }
+
+  /**
+   * Filters $this->items to only current page.
+   **/
+  protected function filter_items()
+  {
+    $current_page = $this->get_current_page();
+    $page_size = Kohana::$config->load('common.page_size');
+    $item_count = count($this->items);
+    if ($item_count > $page_size)
+    {
+      $page_count = ceil($item_count / $page_size);
+      return array_slice($this->items->as_array(), ($current_page - 1) * $page_size, $page_size);
+    }
+    else
+    {
+      return $this->items;
+    }
+  }
+
+  /**
+   * Pagination: calculate current page
+   **/
+  protected function get_current_page()
+  {
+    $current_page = Request::current()->param('page');
+    if ( ! $current_page)
+      return 1;
+    return $current_page;
   }
 
   public function has_errors()

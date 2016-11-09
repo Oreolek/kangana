@@ -9,9 +9,6 @@
    </head>
   <body>
     <div class="container">
-      <div class="paging">
-        {{{get_paging}}}
-      </div>
       <nav class="navbar navbar-default" role="navigation">
         {{#search_form}}
           <form class="navbar-form navbar-left" role="search" action="{{{action}}}" method="POST">
@@ -23,7 +20,7 @@
         {{/search_form}}
         <ul class="nav navbar-nav navbar-right">
         {{#navigation}}
-          <li><a href="{{url}}">{{title}}</a></li> 
+          <li><a href="{{url}}">{{title}}</a></li>
         {{/navigation}}
         </ul>
       </nav>
