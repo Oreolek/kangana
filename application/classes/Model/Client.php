@@ -11,10 +11,6 @@ class Model_Client extends ORM {
       'model' => 'Course',
       'through' => 'clients_courses'
     ),
-    'subscription' => array(
-      'model' => 'Subscription',
-      'through' => 'clients_subscriptions'
-    ),
     'group' => array(
       'model' => 'Group',
       'through' => 'clients_groups'

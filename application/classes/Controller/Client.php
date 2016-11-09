@@ -20,8 +20,14 @@ class Controller_Client extends Controller_Layout {
   {
     $this->template = new View_Client_Index;
     $this->template->title = I18n::translate('Clients');
-    $group_id = $this->request->post('group_id');
-    if ($group_id) {
+    if ($this->request->method() === Request::POST)
+    {
+      $group_id = $this->request->post('group_id');
+    } else {
+      $group_id = $this->request->query('group_id');
+    }
+    if ($group_id)
+    {
       $group = ORM::factory('Group', $group_id);
       if ( ! $group->loaded()) {
         $this->redirect('error/404');
@@ -47,6 +53,23 @@ class Controller_Client extends Controller_Layout {
     $this->template->model = ORM::factory('Client');
     $this->template->title = I18n::translate('New client');
     $this->_edit($this->template->model);
+  }
+
+  /**
+   * Manually add a client.
+   **/
+  public function action_view()
+  {
+    $this->template = new View_Client_View();
+    $model = ORM::factory('Client', $this->request->param('id'))
+      ->with('courses')
+      ->with('groups');
+    if ( ! $model->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $this->template->title = I18n::translate('Client details for').' '.$model->email;
+    $this->template->model = $model;
   }
 
   public function action_edit()
