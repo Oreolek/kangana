@@ -40,7 +40,6 @@ class View_Index extends View_Layout {
     {
       return I18n::translate('No objects found to show');
     };
-    $items = $this->filter_items();
     foreach ($this->items as $item)
     {
       array_push($result, $this->show_item($item));

@@ -13,9 +13,13 @@ class View_Layout {
   public $errors;
 
   /**
-   * Items to show
+   * Items to show — filtered list
    **/
   public $items = NULL;
+  /**
+   * How many items there are
+   */
+  public $item_count = 0;
 
   /**
    * Pagination controls
@@ -23,14 +27,27 @@ class View_Layout {
   public function get_paging()
   {
     $current_page = $this->get_current_page();
-    $item_count = count($this->items);
+    $item_count = $this->item_count;
     $page_size = Kohana::$config->load('common.page_size');
     $page_count = ceil($item_count / $page_size);
     if ($page_count === 1.0)
       return '';
-    $i = 1;
     $output = '';
-    while ($i <= $page_count)
+    $i = $current_page - 10;
+    if ($i < 1)
+    {
+      $i = 1;
+    }
+    $max = $page_count;
+    if ($max > $current_page + 10)
+    {
+      $max = $current_page + 10;
+    }
+    if ($i > 1)
+    {
+      $output .= '<span>…</span>&nbsp;';
+    }
+    while ($i <= $max)
     {
       $output .= '<a href="'.Route::url('default', array('controller' => Request::current()->controller(), 'action' => Request::current()->action(), 'page' => $i)).'"';
       if ($i == $current_page)
@@ -40,26 +57,11 @@ class View_Layout {
       $output .= '>'.$i.'</a>';
       $i++;
     }
+    if ($max < $page_count)
+    {
+      $output .= '&nbsp;<span>…</span>';
+    }
     return $output;
-  }
-
-  /**
-   * Filters $this->items to only current page.
-   **/
-  protected function filter_items()
-  {
-    $current_page = $this->get_current_page();
-    $page_size = Kohana::$config->load('common.page_size');
-    $item_count = count($this->items);
-    if ($item_count > $page_size)
-    {
-      $page_count = ceil($item_count / $page_size);
-      return array_slice($this->items->as_array(), ($current_page - 1) * $page_size, $page_size);
-    }
-    else
-    {
-      return $this->items;
-    }
   }
 
   /**

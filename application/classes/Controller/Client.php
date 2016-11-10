@@ -37,10 +37,15 @@ class Controller_Client extends Controller_Layout {
         ->clients
         ->filter_by_page($this->request->param('page'))
         ->find_all();
+      $this->template->item_count = $group
+        ->clients
+        ->count_all();
     } else {
       $this->template->items = ORM::factory('Client')
         ->filter_by_page($this->request->param('page'))
         ->find_all();
+      $this->template->item_count = ORM::factory('Client')
+        ->count_all();
     }
   }
 
