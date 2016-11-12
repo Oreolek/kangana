@@ -1,0 +1,16 @@
+language: php
+php:
+  - "7.0"
+before_script:
+  # install CodeSniffer for Kohana Coding Standards checks
+  # - git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer --depth=1
+  # Install Kohana Coding Standards
+  # - git clone https://github.com/kohana/coding-standards.git kohana-coding-standards --depth=1
+  # - cd php-codesniffer
+  # - scripts/phpcs --config-set installed_paths ../kohana-coding-standards
+script:
+  - find {application} -name "*.php" -print0 \
+     | xargs -0 -n1 -P8 php -l \
+     | grep -v '^No syntax errors detected' \
+     ; test $? -eq 1
+    # - php-codesniffer/scripts/phpcs -p -s -v -n --standard=Kohana --extensions=php application

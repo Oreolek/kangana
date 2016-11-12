@@ -152,7 +152,7 @@ class Model_Course extends ORM {
   public function delete()
   {
     $letter_ids = $this->get_letter_ids($this->id);
-    if (!empty($letter_ids))
+    if ( ! empty($letter_ids))
     {
       $query = DB::delete('tasks');
       if (is_array($letter_ids))

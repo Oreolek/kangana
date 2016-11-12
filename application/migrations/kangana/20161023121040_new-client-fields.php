@@ -5,7 +5,7 @@
  */
 class Migration_Kangana_20161023121040 extends Minion_Migration_Base {
 
-	public function up(Kohana_Database $db)
+  public function up(Kohana_Database $db)
   {
 		$db->query(NULL, 'ALTER TABLE clients ADD COLUMN sex CHAR(1) NULL ');
 		$db->query(NULL, 'ALTER TABLE clients ADD COLUMN referrer VARCHAR(255) NULL ');

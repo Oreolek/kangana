@@ -25,7 +25,7 @@ class Migration_Kangana_20161016123906 extends Minion_Migration_Base {
 
       $subscriptions = DB::select()->from('subscriptions')->as_object()->execute($db);
 
-      if (!empty($subscriptions))
+      if ( ! empty($subscriptions))
       {
         foreach ($subscriptions as $subscription)
         {

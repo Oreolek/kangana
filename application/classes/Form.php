@@ -8,7 +8,7 @@
 class Form extends Kohana_Form {
   public static function orm_input($model, $name, $type = 'input')
   {
-    switch($type)
+    switch ($type)
     {
       case 'check':
       case 'chck':

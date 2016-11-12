@@ -41,7 +41,7 @@ class View_Edit extends View_Layout {
       }
       $output .= '<div class="container">'.Form::label($key, $value['label']);
       $input = '';
-      switch($value['type'])
+      switch ($value['type'])
       {
         case 'file':
           $input = Form::file($key);

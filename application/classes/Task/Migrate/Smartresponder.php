@@ -34,7 +34,7 @@ class Task_Migrate_Smartresponder extends Minion_Task
     $params = $this->get_options();
     $path = $params['csv'];
 
-    if (!file_exists($path))
+    if ( ! file_exists($path))
     {
       echo "ERROR: File not found.";
       return;
@@ -46,7 +46,7 @@ class Task_Migrate_Smartresponder extends Minion_Task
 
     $group = ORM::factory('Group')->where('id', '=', $params['group_id'])->find();
     if ( ! $group->loaded()) {
-      echo "No group with id " . $params['group_id'] . " found.\n";
+      echo "No group with id ".$params['group_id'  " found.\n";
       return;
     }
 
@@ -56,26 +56,26 @@ class Task_Migrate_Smartresponder extends Minion_Task
         echo "File opened.\n";
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
           $client = ORM::factory('Client')->where('email', '=', $data[0]);
-          if (!$client->loaded()) {
+          if ( ! $client->loaded()) {
             $client = ORM::factory('Client');
             $client->email = $data[0];
           }
-          $name = trim($transcoder->transcode($data[1] . ' ' . $data[2], 'cp1251'));
+          $name = trim($transcoder->transcode($data[1].' '.$data[2], 'cp1251'));
           $client->name = $name;
           $client->sex = $data[5];
-          if (!empty($data[13]))
+          if ( ! empty($data[13]))
           {
             $client->referrer = $data[13];
           }
-          if (!empty($data[7]))
+          if ( ! empty($data[7]))
           {
             $client->city = $transcoder->transcode($data[7], 'cp1251');
           }
-          if (!empty($data[6]))
+          if ( ! empty($data[6]))
           {
             $client->country = $data[6];
           }
-          echo "Importing client " . $name . ".\n";
+          echo "Importing client ".$name.".\n";
           try
           {
             $client->customize();

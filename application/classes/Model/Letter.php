@@ -42,7 +42,7 @@ class Model_Letter extends ORM {
 
   public function customize()
   {
-    if($this->order == 0)
+    if ($this->order == 0)
     {
       $this->order = Model_Course::count_letters($this->course_id) + 1;
     }

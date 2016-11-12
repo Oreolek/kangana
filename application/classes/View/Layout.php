@@ -99,7 +99,7 @@ class View_Layout {
   {
     $scripts = array_merge ($this->base_scripts, $this->scripts);
     $temp = "";
-    foreach($scripts as $script)
+    foreach ($scripts as $script)
     {
       if (strstr($script, '://') === FALSE) // no protocol given, script is local
       {

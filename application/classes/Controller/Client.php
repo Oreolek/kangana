@@ -65,7 +65,7 @@ class Controller_Client extends Controller_Layout {
    **/
   public function action_view()
   {
-    $this->template = new View_Client_View();
+    $this->template = new View_Client_View;
     $model = ORM::factory('Client', $this->request->param('id'))
       ->with('courses')
       ->with('groups');

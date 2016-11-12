@@ -112,7 +112,7 @@ class Model_Task extends ORM {
         {
           return $retval;
         }
-        elseif($i < count( $letters ))
+        elseif ($i < count( $letters ))
         {
           return $letters[$i];
         }

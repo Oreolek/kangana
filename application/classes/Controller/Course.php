@@ -66,7 +66,7 @@ class Controller_Course extends Controller_Layout {
       $this->template->model->period = $this->request->param('period', 1);
       $this->template->model->values($this->request->post(), ['type', 'group_id']);
     }
-    if ((int) $this->template->model->type === Model_Course::TYPE_SCHEDULED)
+    if ( (int) $this->template->model->type === Model_Course::TYPE_SCHEDULED)
     {
       $this->controls['period'] = 'input';
       $this->controls['price'] = 'input';
@@ -141,7 +141,7 @@ class Controller_Course extends Controller_Layout {
       $model->period = $this->request->param('period', 1);
       $model->values($this->request->post(), ['type', 'group_id']);
     }
-    if ((int) $model->type === Model_Course::TYPE_SCHEDULED)
+    if ( (int) $model->type === Model_Course::TYPE_SCHEDULED)
     {
       $this->controls['period'] = 'input';
       $this->controls['price'] = 'input';
