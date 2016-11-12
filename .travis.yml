@@ -9,7 +9,7 @@ before_script:
   # - cd php-codesniffer
   # - scripts/phpcs --config-set installed_paths ../kohana-coding-standards
 script:
-  - find {application} -name "*.php" -print0 \
+  - find . -name "*.php" -print0 \
      | xargs -0 -n1 -P8 php -l \
      | grep -v '^No syntax errors detected' \
      ; test $? -eq 1
