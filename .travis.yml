@@ -14,6 +14,6 @@ before_script:
   # - cd php-codesniffer
   # - scripts/phpcs --config-set installed_paths ../kohana-coding-standards
 script:
-  - find . -name "*.php" -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected' ; test $? -eq 1
+  - find application -name "*.php" -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected' ; test $? -eq 1
   - vendor/bin/phpunit -c application/tests
   # - php-codesniffer/scripts/phpcs -p -s -v -n --standard=Kohana --extensions=php application
