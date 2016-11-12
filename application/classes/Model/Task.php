@@ -137,6 +137,7 @@ class Model_Task extends ORM {
 
   /**
    * Get last sent or prepared letter and check if it's time to send another one.
+   * @return bool
    **/
   public static function check_period($client_id, $letters, $period)
   {
@@ -158,9 +159,7 @@ class Model_Task extends ORM {
       ->and_where(DB::expr('DATEDIFF(CURDATE(), `date`)'), '=', $period)
       ->execute()
       ->get('date');
-    if ( ! empty($check))
-      return TRUE;
-    return FALSE;
+    return is_null($check);
   }
 
   /**
