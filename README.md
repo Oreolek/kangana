@@ -1,4 +1,4 @@
-#Kangana
+#Kangana [![Build Status](https://travis-ci.org/Oreolek/kangana.svg?branch=master)](https://travis-ci.org/Oreolek/kangana)
 
 A PHP engine for managing email letter series and email subscribers.
 
