@@ -4,12 +4,11 @@ php:
 cache:
   directories:
     - vendor
-sudo: required
 before_script:
   - composer install --prefer-dist
   - phpenv config-rm xdebug.ini
-  - sudo chmod -R +w `pwd`/application/logs
-  - sudo chmod -R +w `pwd`/application/cache
+  - mkdir `pwd`/application/logs
+  - mkdir `pwd`/application/cache
   # install CodeSniffer for Kohana Coding Standards checks
   # - git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer --depth=1
   # Install Kohana Coding Standards
