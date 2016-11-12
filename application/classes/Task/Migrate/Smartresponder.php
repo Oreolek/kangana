@@ -46,7 +46,7 @@ class Task_Migrate_Smartresponder extends Minion_Task
 
     $group = ORM::factory('Group')->where('id', '=', $params['group_id'])->find();
     if ( ! $group->loaded()) {
-      echo "No group with id ".$params['group_id'  " found.\n";
+      echo "No group with id ".$params['group_id']." found.\n";
       return;
     }
 
