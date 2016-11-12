@@ -2,6 +2,7 @@ language: php
 php:
   - "7.0"
 before_script:
+  phpenv config-rm xdebug.ini
   # install CodeSniffer for Kohana Coding Standards checks
   # - git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer --depth=1
   # Install Kohana Coding Standards
