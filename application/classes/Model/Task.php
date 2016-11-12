@@ -139,9 +139,13 @@ class Model_Task extends ORM {
    * Get last sent or prepared letter and check if it's time to send another one.
    * @return bool
    **/
-  public static function check_period($client_id, $letters, $period)
+  public static function check_period($client_id, $letters, $period = NULL)
   {
-    $query = DB::select('date')
+    if (is_null($period) or $period === 0)
+    {
+      return TRUE;
+    }
+    $query = DB::select(array(DB::expr('COUNT(*)'), 'cnt'))
       ->from('tasks');
     if (is_array($letters))
     {
@@ -151,15 +155,21 @@ class Model_Task extends ORM {
     {
       $query = $query->where('letter_id', '=', $letters);
     }
-    $check = NULL;
+    $query = $query
+      ->and_where('status', 'IN', [self::STATUS_SENT, self::STATUS_PENDING])
+      ->and_where('client_id', '=', $client_id);
+
+    $check = $query->execute()->get('cnt');
+    if ($check === '0') // no letters at all
+    {
+      return TRUE;
+    }
+
     $check = $query
-      ->and_where('status', '=', self::STATUS_SENT)
-      ->or_where('status', '=', self::STATUS_PENDING)
-      ->and_where('client_id', '=', $client_id)
-      ->and_where(DB::expr('DATEDIFF(CURDATE(), `date`)'), '=', $period)
+      ->and_where(DB::expr('DATEDIFF(CURDATE(), `date`)'), '>=', $period)
       ->execute()
-      ->get('date');
-    return is_null($check);
+      ->get('cnt');
+    return ( $check !== '0');
   }
 
   /**

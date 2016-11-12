@@ -48,7 +48,7 @@ class Task_Prepare extends Minion_Task
         Model_Task::prepare($client_id, $letter);
       }
     } else {
-      echo "Letter won't be prepared because it's too early to send it.";
+      echo "Letter won't be prepared because it's too early to send it.\n";
     }
   }
 
