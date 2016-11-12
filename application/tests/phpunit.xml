@@ -2,7 +2,7 @@
 <phpunit colors="true" bootstrap="./bootstrap.php">
   <testsuites>
     <testsuite name="Application Tests">
-      <file>../../modules/unittest/tests.php</file>
+      <file>CoursesTest.php</file>
     </testsuite>
   </testsuites>
   <groups>

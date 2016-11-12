@@ -1,8 +1,12 @@
 language: php
 php:
   - "7.0"
+cache:
+  directories:
+    - vendor
 before_script:
-  phpenv config-rm xdebug.ini
+  - composer install --prefer-dist
+  - phpenv config-rm xdebug.ini
   # install CodeSniffer for Kohana Coding Standards checks
   # - git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer --depth=1
   # Install Kohana Coding Standards
@@ -11,4 +15,5 @@ before_script:
   # - scripts/phpcs --config-set installed_paths ../kohana-coding-standards
 script:
   - find . -name "*.php" -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected' ; test $? -eq 1
-    # - php-codesniffer/scripts/phpcs -p -s -v -n --standard=Kohana --extensions=php application
+  - vendor/bin/phpunit -c application/tests
+  # - php-codesniffer/scripts/phpcs -p -s -v -n --standard=Kohana --extensions=php application

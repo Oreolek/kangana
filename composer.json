@@ -43,6 +43,7 @@
 	"require-dev": {
 		"phing/phing": "dev-master",
 		"kohana/unittest": "3.4.*",
+    "phpunit/dbunit": ">=1.2",
 		"kohana/userguide": "3.4.*",
     "kohana/coding-standards": "*"
 	},

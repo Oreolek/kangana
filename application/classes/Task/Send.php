@@ -16,8 +16,9 @@ class Task_Send extends Minion_Task
    * @return null
    * TODO: group by letters and send them using Bcc instead of one at a time
    */
-  protected function _execute(array $params)
+  protected function _execute()
   {
+    $params = $this->get_options();
     $db = Database::instance();
     $db->begin();
     try

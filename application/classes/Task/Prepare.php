@@ -57,8 +57,9 @@ class Task_Prepare extends Minion_Task
    *
    * @return null
    */
-  protected function _execute(array $params)
+  protected function _execute()
   {
+    $params = $this->get_options();
     $db = Database::instance();
     $db->begin();
     try
