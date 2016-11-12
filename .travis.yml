@@ -7,8 +7,6 @@ cache:
 before_script:
   - composer install --prefer-dist
   - phpenv config-rm xdebug.ini
-  - mkdir `pwd`/application/logs
-  - mkdir `pwd`/application/cache
   # install CodeSniffer for Kohana Coding Standards checks
   # - git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer --depth=1
   # Install Kohana Coding Standards
