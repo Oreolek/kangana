@@ -1,6 +1,6 @@
 [submodule "modules/debug-toolbar"]
 	path = modules/debug-toolbar
-	url = git@github.com:Oreolek/debug-toolbar.git
+	url = https://github.com/oreolek/debug-toolbar.git
 [submodule "modules/config-writer"]
 	path = modules/config-writer
 	url = https://github.com/ppx17/kohana-config-file-writer.git
