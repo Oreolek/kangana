@@ -1,3 +1,5 @@
+#Kangana
+
 A PHP engine for managing email letter series and email subscribers.
 
 License is [AGPL 3.0](http://www.tldrlegal.com/l/AGPL3)
