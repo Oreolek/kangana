@@ -71,7 +71,7 @@ class Task_Prepare extends Minion_Task
     try
     {
       // get courses which have subscribers
-      $courses = Model_Course::get_ids();
+      $courses = Model_Course::get_ids(Model_Course::TYPE_SCHEDULED);
       if ( ! is_array($courses))
       {
         $this->prepare_course($courses);

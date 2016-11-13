@@ -103,5 +103,30 @@ class Controller_Letter extends Controller_Layout {
     $this->template = new View_Message;
     $this->template->message = I18n::translate('You have been successfully unsubscribed from course %s', array('%s' => $course->title));
   }
-
+  public function action_send()
+  {
+    $this->template = new View_Message;
+    $this->template->title = I18n::translate('Send instant to all subscribers');
+    $id = $this->request->param('id');
+    $model = ORM::factory('Letter', $id);
+    if ( ! $model->loaded())
+    {
+      $this->redirect('error/404');
+    }
+    $subscription = ORM::factory('Course', $model->course_id)->with('clients');
+    $clients = $subscription->get_clients();
+    if (empty($clients))
+    {
+      $this->template->message = I18n::translate('No clients to send to!');
+    }
+    else
+    {
+      foreach ($clients as $client)
+      {
+        $model->send($client->email, $client->token);
+      }
+      $model->save();
+      $this->template->message = I18n::translate('The instant has been sent.');
+    }
+  }
 }

@@ -109,7 +109,7 @@ class Model_Course extends ORM {
   /**
    * Get ID of all courses which have subscribers
    **/
-  public static function get_ids()
+  public static function get_ids($type = self::TYPE_SCHEDULED)
   {
     $use_groups = Kohana::$config->load('common.groupmode');
     if( ! $use_groups)
@@ -117,8 +117,11 @@ class Model_Course extends ORM {
       return DB::select('course_id')
         ->distinct(TRUE)
         ->from('clients_courses')
+        ->join('courses')
+        ->on('courses.id', '=', 'clients_courses.course_id')
+        ->where('courses.type', '=', $type)
         ->execute()
-        ->get('course_id');
+        ->as_array(NULL, 'course_id');
     }
     else
     {
@@ -126,8 +129,9 @@ class Model_Course extends ORM {
       $ids = DB::select('id')
         ->from('courses')
         ->where('group_id', 'IN', $groups)
+        ->and_where('type', '=', $type)
         ->execute()
-        ->get('id');
+        ->as_array(NULL, 'id');
       return $ids;
     }
   }
@@ -172,6 +176,19 @@ class Model_Course extends ORM {
         ->where('group_id', '=', $group_id)
         ->execute()
         ->get('client_id');
+    }
+  }
+
+  public function get_clients()
+  {
+    $use_groups = Kohana::$config->load('common.groupmode');
+    if( ! $use_groups)
+    {
+      return $this->clients->find_all();
+    }
+    else
+    {
+      return $this->group->clients->find_all();
     }
   }
 
