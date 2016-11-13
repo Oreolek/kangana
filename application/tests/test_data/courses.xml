@@ -8,32 +8,36 @@
       <value>Test Group</value>
     </row>
   </table>
-  <table name="courses">
-    <column>id</column>
-    <column>title</column>
-    <column>description</column>
-    <column>period</column>
-    <column>price</column>
-    <column>group_id</column>
-    <row>
-      <value>1</value>
-      <value>Test course</value>
-      <value>Application testing purposes</value>
-      <value>1</value>
-      <value>0</value>
-      <value>1</value>
-    </row>
-  </table>
   <table name="clients">
     <column>id</column>
     <column>email</column>
     <column>name</column>
     <column>token</column>
+    <column>referrer</column>
+    <column>sex</column>
     <row>
       <value>1</value>
       <value>test@example.com</value>
       <value>Test User</value>
       <value></value><!-- empty token -->
+      <value></value><!-- empty referrer -->
+      <value>f</value>
+    </row>
+  </table>
+  <table name="courses">
+    <column>id</column>
+    <column>group_id</column>
+    <column>title</column>
+    <column>description</column>
+    <column>period</column>
+    <column>price</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>Test course</value>
+      <value>Application testing purposes</value>
+      <value>1</value>
+      <value>0</value>
     </row>
   </table>
   <table name="clients_courses">
@@ -50,6 +54,11 @@
     <column>id</column>
     <column>client_id</column>
     <column>group_id</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
   </table>
   <table name="letters">
     <column>id</column>

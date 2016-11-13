@@ -118,16 +118,17 @@ class Model_Course extends ORM {
         ->distinct(TRUE)
         ->from('clients_courses')
         ->execute()
-        ->as_array(NULL, 'course_id');
+        ->get('course_id');
     }
     else
     {
       $groups = Model_Group::get_ids();
-      return DB::select('id')
+      $ids = DB::select('id')
         ->from('courses')
         ->where('group_id', 'IN', $groups)
         ->execute()
-        ->as_array(NULL, 'id');
+        ->get('id');
+      return $ids;
     }
   }
 
