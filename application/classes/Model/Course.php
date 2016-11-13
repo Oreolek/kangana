@@ -111,7 +111,24 @@ class Model_Course extends ORM {
    **/
   public static function get_ids()
   {
-    return DB::select('course_id')->distinct(TRUE)->from('clients_courses')->execute()->as_array(NULL, 'course_id');
+    $use_groups = Kohana::$config->load('common.groupmode');
+    if( ! $use_groups)
+    {
+      return DB::select('course_id')
+        ->distinct(TRUE)
+        ->from('clients_courses')
+        ->execute()
+        ->as_array(NULL, 'course_id');
+    }
+    else
+    {
+      $groups = Model_Group::get_ids();
+      return DB::select('id')
+        ->from('courses')
+        ->where('group_id', 'IN', $groups)
+        ->execute()
+        ->as_array(NULL, 'id');
+    }
   }
 
   public static function get_period($course_id)
@@ -130,13 +147,31 @@ class Model_Course extends ORM {
       ->order_by('order');
     return $query->execute()->as_array(NULL, 'id');
   }
+
   public static function get_client_ids($course_id)
   {
-    return DB::select('client_id')
-      ->from('clients_courses')
-      ->where('course_id', '=', $course_id)
-      ->execute()
-      ->get('client_id');
+    $use_groups = Kohana::$config->load('common.groupmode');
+    if( ! $use_groups)
+    {
+      return DB::select('client_id')
+        ->from('clients_courses')
+        ->where('course_id', '=', $course_id)
+        ->execute()
+        ->get('client_id');
+    }
+    else
+    {
+      $group_id = DB::select('group_id')
+        ->from('courses')
+        ->where('id', '=', $course_id)
+        ->execute()
+        ->get('group_id');
+      return DB::select('client_id')
+        ->from('clients_groups')
+        ->where('group_id', '=', $group_id)
+        ->execute()
+        ->get('client_id');
+    }
   }
 
   /**

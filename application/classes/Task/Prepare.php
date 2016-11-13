@@ -17,10 +17,12 @@ class Task_Prepare extends Minion_Task
     if (is_null($course))
     {
       Log::instance()->add(Log::ERROR, 'Course ID is NULL when preparing');
+      echo "Course ID is NULL when preparing\n";
       return;
     }
     $count = Model_Course::count_letters($course);
     if ($count == 0)
+      echo "No letters found in course $course; skipping.\n";
       return;
     $period = Model_Course::get_period($course);
     $clients = Model_Course::get_client_ids($course, $period);
@@ -46,6 +48,8 @@ class Task_Prepare extends Minion_Task
       if ($letter !== FALSE)
       {
         Model_Task::prepare($client_id, $letter);
+      } else {
+        echo "No letters to prepare.\n";
       }
     } else {
       echo "Letter won't be prepared because it's too early to send it.\n";
@@ -83,6 +87,8 @@ class Task_Prepare extends Minion_Task
     }
     catch(Database_Exception $e)
     {
+      echo $e->getMessage();
+      Log::instance()->add(Log::ERROR, $e->getMessage());
       $db->rollback();
     }
   }

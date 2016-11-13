@@ -1,17 +1,27 @@
 <?xml version="1.0" ?>
 <dataset>
+  <table name="groups">
+    <column>id</column>
+    <column>name</column>
+    <row>
+      <value>1</value>
+      <value>Test Group</value>
+    </row>
+  </table>
   <table name="courses">
     <column>id</column>
     <column>title</column>
     <column>description</column>
     <column>period</column>
     <column>price</column>
+    <column>group_id</column>
     <row>
       <value>1</value>
       <value>Test course</value>
       <value>Application testing purposes</value>
       <value>1</value>
       <value>0</value>
+      <value>1</value>
     </row>
   </table>
   <table name="clients">
@@ -35,6 +45,11 @@
       <value>1</value>
       <value>1</value>
     </row>
+  </table>
+  <table name="clients_groups">
+    <column>id</column>
+    <column>client_id</column>
+    <column>group_id</column>
   </table>
   <table name="letters">
     <column>id</column>

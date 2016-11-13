@@ -15,6 +15,20 @@ class CoursesTest extends Unittest_Database_TestCase
     return $this->createXMLDataSet(Kohana::find_file('tests', 'test_data/courses', 'xml'));
   }
 
+  function test_get_ids()
+  {
+    $courses = Model_Course::get_ids();
+    $this->assertNotEmpty($courses);
+    $this->assertContains(1, $courses);
+  }
+
+  function test_get_clients()
+  {
+    $clients = Model_Course::get_client_ids(1);
+    $this->assertNotEmpty($clients);
+    $this->assertContains('1', $clients);
+  }
+
   /**
    * @group Mail
    **/

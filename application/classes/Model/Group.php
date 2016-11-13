@@ -48,4 +48,12 @@ class Model_Group extends ORM {
   {
     return self::count($this->id);
   }
+
+  /**
+   * Get ID of all groups which have subscribers
+   **/
+  public static function get_ids()
+  {
+    return DB::select('group_id')->distinct(TRUE)->from('clients_groups')->execute()->as_array(NULL, 'group_id');
+  }
 }
