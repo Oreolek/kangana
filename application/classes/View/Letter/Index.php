@@ -38,6 +38,6 @@ class View_Letter_Index extends View_Index {
 
   public function link_new()
   {
-    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'create', 'id' => $this->course_id)), I18n::translate('Add'), array('class' => 'link_new'));
+    return HTML::anchor(Route::url('default', array('controller' => 'Letter', 'action' => 'create', 'id' => $this->course_id)), I18n::translate('Add letter'), array('class' => 'btn btn-default link_new'));
   }
 }

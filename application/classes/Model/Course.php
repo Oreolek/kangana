@@ -93,7 +93,11 @@ class Model_Course extends ORM {
    **/
   public function count_clients()
   {
-    return DB::select(array(DB::expr('COUNT(client_id)'), 'cnt'))->from('clients_courses')->where('course_id', '=', $this->id)->execute()->get('cnt');
+    $use_groups = Kohana::$config->load('common.groupmode');
+    if( ! $use_groups)
+      return DB::select(array(DB::expr('COUNT(client_id)'), 'cnt'))->from('clients_courses')->where('course_id', '=', $this->id)->execute()->get('cnt');
+    else
+      return $this->group->count_clients();
   }
 
   public static function exists($id)

@@ -96,4 +96,5 @@ return array(
   'City' => 'Город',
   'Groups' => 'Группы',
   'Courses' => 'Курсы',
+  'Add letter' => 'Добавить сообщение',
 );

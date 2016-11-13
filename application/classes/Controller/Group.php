@@ -17,13 +17,8 @@ class Controller_Group extends Controller_Layout {
   );
   public function action_index()
   {
-    $this->template = new View_Index;
+    $this->template = new View_Group_Index;
     $this->template->title = I18n::translate('Groups');
-    $this->template->header = [
-      I18n::translate('Group name'),
-      I18n::translate('Edit'),
-      I18n::translate('Delete'),
-    ];
     $this->template->items = ORM::factory('Group')
       ->filter_by_page($this->request->param('page'))
       ->find_all();

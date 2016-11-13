@@ -6,4 +6,5 @@ return array(
  'thumbnail_width' => 200,
  'thumbnail_height' => 150,
  'page_size' => 20, // pagination
+ 'groupmode' => TRUE // use groups
 );
