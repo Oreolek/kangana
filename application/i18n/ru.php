@@ -98,4 +98,5 @@ return array(
   'Courses' => 'Курсы',
   'Add letter' => 'Добавить сообщение',
   'No clients to send to!' => 'Нет клиентов, кому отправлять!',
+  'Send' => 'Разослать',
 );
