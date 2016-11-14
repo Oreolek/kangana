@@ -123,7 +123,7 @@ class Controller_Letter extends Controller_Layout {
     {
       foreach ($clients as $client)
       {
-        $model->send($client->email, $client->token);
+        $model->send($client);
       }
       $model->save();
       $this->template->message = I18n::translate('The instant has been sent.');

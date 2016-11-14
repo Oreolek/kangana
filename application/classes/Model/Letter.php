@@ -51,11 +51,11 @@ class Model_Letter extends ORM {
   /**
    * Function to send a email to a specified address.
    * Not suitable for a large-scale use.
-   * @param email $address email address
+   * @param ORM $client Recipient
    **/
-  public function send($address, $token = '')
+  public function send($client)
   {
-    return self::_send($address, $this->text, $this->subject, $this->id, $token);
+    return Model_Task::prepare($client->id, $this);
   }
 
   /**
@@ -86,7 +86,10 @@ class Model_Letter extends ORM {
     {
       $email->to($address);
     }
-    return $email->send();
+    if ( ! $email->send())
+    {
+      echo "Error sending message $id to $address\n";
+    }
   }
 
 }
